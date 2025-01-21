@@ -1,0 +1,590 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #feead4;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Main section */
+.main {
+  background-image: url('images/main-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 30px 0; /* Reduced padding */
+}
+
+/* Flexbox layout for content */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Text container */
+.text-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+.text-container h2 {
+  font-size: 2rem; /* Reduced font size */
+  color: #333;
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+.text-container .highlight {
+  color: #fb4a36;
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem; /* Adjusted proportion */
+}
+.lobster {
+  font-family: 'Lobster', cursive;
+}
+
+.sub-heading {
+  color: gray;
+  font-weight: 450;
+  font-size: 1.2rem; /* Added font size */
+  margin-bottom: 15px; /* Controlled margin */
+}
+
+.text-container p {
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 15px; /* Consistent spacing */
+}
+
+/* Buttons */
+.button-group {
+  margin-top: 20px;
+  margin-right: 80px;
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Center the buttons */
+}
+
+.btn, .btn-secondary {
+  padding: 10px 20px; /* Adjusted padding */
+  font-size: 0.9rem; /* Slightly smaller font */
+  text-decoration: none;
+  border-radius: 30px;
+  transition: 0.3s ease;
+  font-weight: bold;
+}
+
+.btn {
+  background-color: #fb4a36;
+  color: white;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #f33520;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #fb4a36;
+  border: 2px solid #fb4a36;
+}
+
+.btn-secondary:hover {
+  background-color: #fb4a36;
+  color: white;
+}
+
+/* Image container */
+.image-container {
+  flex: 1;
+  max-width: 50%;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Rounded corners */
+}
+  
+/* Menu Section */
+.menu-section {
+  background-color: #ffe4c2;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.section-title span {
+  color: #fb4a36;
+}
+
+/* Menu Items Layout */
+.menu-items {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Menu Card Styling */
+.menu-card {
+  width: 45%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  position: relative;
+  text-align: center;
+  color: white;
+  overflow: hidden; /* Prevents content overflow */
+}
+
+/* Overlay for hover effect */
+.menu-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0); /* Initially transparent */
+  transition: background 0.3s ease-in-out;
+}
+
+/* Show dark background on hover */
+.menu-card:hover::before {
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay when hovered */
+}
+
+/* Menu Card Content */
+.menu-card h3,
+.menu-card p {
+  position: absolute;
+  width: 100%;
+  padding: 0 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0; /* Hide text initially */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Positioning title and description */
+.menu-card h3 {
+  top: 35%;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-card p {
+  top: 50%;
+  font-size: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Show text when hovered */
+.menu-card:hover h3,
+.menu-card:hover p {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Explore Variety Button (Always Visible) */
+.menu-card .btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  color: #fb4a36;
+  border: 2px solid #fb4a36;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.menu-card .btn:hover {
+  background-color: #fb4a36;
+  color: white;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .menu-card {
+    width: 100%;
+  }
+
+  .menu-card h3 {
+    font-size: 1.8rem;
+  }
+
+  .menu-card p {
+    font-size: 0.9rem;
+  }
+}
+
+
+
+  /* Seasonal Section Styling */
+.info_section {
+  background: url(../images/paralax-half.jpg) no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  background-attachment: fixed;
+  background-position: center center;
+  background-color: #e25111;
+}
+
+
+
+.heading_space {
+  font-family: 'BebasRegular', sans-serif;
+    font-size: 40px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.EnjoyFood {
+  font-size: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.paralax {
+  background: url(../images/paralax.jpg) no-repeat fixed;
+  padding: 6% 0;
+  background-size: cover;
+  background-position: center center;
+}
+
+.paralax h2 {
+  font-size: 40px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.paralax .detail {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Button Styling */
+.btn-common-white {
+  background: #e25111;
+  padding: 12px 30px;
+  letter-spacing: 0.5px;
+  border-radius: 30px;
+  line-height: 1;
+  font-size: 15px;
+  display: inline-block;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.btn-common-white:hover, .btn-common-white:focus {
+  background: #fff;
+  color: #e25111;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 1000px) {
+  .paralax h2 {
+      font-size: 30px;
+  }
+  .paralax .detail {
+      font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .paralax h2 {
+      font-size: 26px;
+  }
+  .paralax .detail {
+      font-size: 14px;
+  }
+}
+
+
+/* About Us Section */
+.aboutus-section {
+  padding: 40px 0; /* Reduced from 60px */
+  background: url(../images/about-bg.png);
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.5rem; /* Slightly smaller */
+  margin-bottom: 20px; /* Reduced from 30px */
+  font-weight: bold;
+  color: #fb4a36;
+  position: relative;
+}
+
+/* Center the title */
+.section-title span {
+  color: #333;
+}
+
+/* Content layout */
+.aboutus-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Text overlay style */
+.aboutus-text {
+  flex: 1;
+  max-width: 100%;
+  padding: 20px; /* Reduced from 40px */
+  position: relative;
+  color: white;
+}
+
+.text-overlay {
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for contrast */
+  padding: 20px; /* Reduced from 30px */
+  border-radius: 10px; /* Slightly reduced radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+}
+
+.aboutus-text p {
+  font-size: 1rem; /* Reduced from 1.1rem */
+  line-height: 1.6; /* Slightly tighter line-height */
+  text-align: justify;
+  margin-bottom: 15px; /* Added for consistent spacing */
+}
+
+/* Adjust image size and layout */
+.aboutus-image {
+  flex: 1;
+  max-width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Added padding for spacing */
+}
+
+.aboutus-image img {
+  width: 90%; 
+  max-width: 500px; 
+  border-radius: 10px; /* Slightly reduced radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .aboutus-content {
+    flex-direction: column;
+  }
+
+  .aboutus-text {
+    max-width: 100%;
+    text-align: center;
+    padding: 15px; /* Further reduced padding */
+  }
+
+  .aboutus-image {
+    max-width: 100%;
+    padding: 15px; /* Further reduced padding */
+  }
+
+  .aboutus-image img {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .aboutus-text {
+    padding: 10px; /* Further reduced padding */
+  }
+
+  .text-overlay {
+    padding: 15px; /* Further reduced padding */
+  }
+
+  .aboutus-image img {
+    width: 100%;
+  }
+}
+
+
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 40px 0;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-col {
+  flex: 1;
+  margin: 10px;
+  margin-left: 100px;
+}
+
+.footer-col h4 {
+  color: #fb4a36;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Social Icons Container */
+.social-icons {
+  display: flex;
+  /*justify-content: center; /* Centers the icons horizontally */
+  /*align-items: center;     /* Centers the icons vertically */
+  gap: 20px;               /* Space between icons */
+  padding: 5px 0;         /* Optional padding */
+}
+
+/* Social Icons Links */
+.social-icons a {
+  color: #ffffff;          /* Sets the icon color to white */
+  font-size: 24px;         /* Adjusts the size of the icons */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Optional: Change Icon Color on Hover */
+.social-icons a:hover {
+  color: #e25111;          /* Reddish color on hover */
+}
+
+/* Optional: Add Background Circle on Hover */
+.social-icons a:hover {
+  color: #ffffff;          /* Keep icon white on hover */
+  background-color: #e25111; /* Reddish background on hover */
+  border-radius: 50%;      /* Makes the background a circle */
+  padding: 10px;           /* Adds padding around the icon */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .aboutus-content {
+    flex-direction: column;
+  }
+
+  .review-items {
+    flex-direction: column;
+  }
+}
+
+
+/* Facts Counter Section */
+#facts {
+  padding: 60px 0;
+  background: url(../images/bg-facts.jpg) no-repeat center center fixed;
+  background-size: cover;
+  text-align: center;
+}
+
+.number-counters {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.counters-item {
+  padding: 30px;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  /*background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+}
+
+.counters-item:hover {
+  transform: scale(1.05);
+}
+
+.counters-item i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #fff; /* Icon color set to white */
+}
+
+.counters-item h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #e25111; /* Reddish color for numbers */
+}
+
+.counters-item p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .number-counters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .counters-item {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .counters-item h2 {
+    font-size: 2rem;
+  }
+
+  .counters-item p {
+    font-size: 1rem;
+  }
+}

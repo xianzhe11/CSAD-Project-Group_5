@@ -1,0 +1,149 @@
+/* menu.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #feead4;
+    padding-top: 100px;
+    overflow-x: hidden;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #fcafa7;
+    padding: 20px 40px 30px 40px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: fit-content;
+}
+
+.heading-title {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.heading-description {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #1d1818;
+}
+
+.category-nav .nav-tabs .nav-link {
+    color: #e25111;
+    font-weight: 500;
+    border: none;
+}
+
+.category-nav .nav-tabs .nav-link.active {
+    border-bottom: 2px solid #e25111;
+    color: #e25111;
+}
+
+.category-nav .nav-tabs .nav-link:hover {
+    color: #e25111;
+}
+
+.menu-section {
+    padding-top: 15px;
+    padding-bottom: 0px;
+    background-color: #ffe4c2;
+}
+
+.menu-item {
+    margin-bottom: 20px; /* Adds space between rows */
+}
+
+.menu-card {
+    background-color: #fdd9c9;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.menu-card:hover {
+    transform: scale(1.02);
+}
+
+.menu-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 250px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.description {
+    font-size: 1rem;
+    text-align: center;
+    color: #555;
+}
+
+.card-status {
+    color: red;
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fcafa7;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.addItemBtn {
+    background-color: #fb4a36;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.addItemBtn:hover {
+    background-color: #e25111;
+}
+
+.disabled-button {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .addItemBtn {
+        width: 100%;
+    }
+}
