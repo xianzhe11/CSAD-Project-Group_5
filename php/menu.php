@@ -30,9 +30,10 @@ if ($categoryResult) {
     <?php include 'navbar.php'; ?>
 
     <div class="heading">
-        <div class="heading-title">Our Menu</div>
-        <div class="heading-description">~Discover a feast of flavors with our exciting menu!</div>
+        <div class="heading-title">Restaurant Menu</div>
+        <!--<div class="heading-description">~Discover a feast of flavors with our exciting menu!</div>-->
     </div>
+    <!--<hr class="gray_line">-->
 
     <div class="category-nav">
         <ul class="nav nav-tabs justify-content-center" id="categoryTab" role="tablist">
@@ -68,7 +69,7 @@ if ($categoryResult) {
                                             <p class="card-status">Unavailable</p>
                                         <?php endif; ?>
                                         <div class="button-container">
-                                            <p class="card-text">Rs&nbsp;<?= number_format($row['price'], 2) ?>/-</p>
+                                            <p class="card-text">SGD&nbsp;<?= number_format($row['price'], 2) ?>/-</p>
                                             <button class="addItemBtn <?= $row['status'] == 'Unavailable' ? 'disabled-button' : ''; ?>">
                                                 <i class="fas fa-cart-plus"></i> Add to cart
                                             </button>

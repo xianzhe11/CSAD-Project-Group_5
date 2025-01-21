@@ -6,6 +6,13 @@
     box-sizing: border-box;
 }
 
+.gray_line{
+    max-width: 8000px;
+    border: none;
+    margin: 0 auto;
+    border-top: 2px solid white;
+}
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: #feead4;
@@ -18,11 +25,13 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #fcafa7;
-    padding: 20px 40px 30px 40px;
+    /*background-color: #fcafa7;*/
+    padding: 5px;
     border-radius: 8px;
     margin: 20px auto;
-    max-width: fit-content;
+    /*max-width: fit-content;*/
+    width: 100%;
+    
 }
 
 .heading-title {

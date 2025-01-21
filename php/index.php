@@ -58,7 +58,7 @@ $conn->close();
         </div>
         <!-- Image Container -->
         <div class="image-container">
-          <img src="../images/pizza1.png" alt="Delicious Pizza">
+          <img src="../images/burger.png" alt="Delicious Pizza">
         </div>
       </div>
     </div>

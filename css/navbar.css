@@ -18,6 +18,7 @@ body {
   top: 0;          /* At the top */
   left: 0;         /* Align to the left */
   width: 100%;     /* Full width */
+  height: 90%;
   background-color: #ffbda1;
   padding: 20px 30px;
   border-bottom-left-radius: 80px;
