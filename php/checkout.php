@@ -313,23 +313,27 @@ if (empty($_SESSION['csrf_token'])) {
             $('input[name="order_type"]').change(function(){
                 if($(this).val() === 'dine_in'){
                     $('#dineInOptions').show();
+                    $('#dineInOptions input').attr('required', true);
                     $('#takeawayOptions').hide();
+                    $('#takeawayOptions input').removeAttr('required');
                 }
                 else{
                     $('#dineInOptions').hide();
+                    $('#dineInOptions input').removeAttr('required');
                     $('#takeawayOptions').show();
+                    $('#takeawayOptions input').attr('required', true);
                 }
             });
 
             // Toggle Credit Card Details and Handle 'required' Attributes
             $('input[name="payment_method"]').change(function(){
                 if($(this).val() === 'credit_card'){
-                    $('#creditCardDetails').slideDown();
+                    $('#creditCardDetails').show();
                     // Add 'required' to credit card fields
                     $('#creditCardDetails input').attr('required', true);
                 }
                 else{
-                    $('#creditCardDetails').slideUp();
+                    $('#creditCardDetails').hide();
                     // Remove 'required' from credit card fields
                     $('#creditCardDetails input').removeAttr('required');
                 }

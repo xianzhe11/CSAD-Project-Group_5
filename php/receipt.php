@@ -16,8 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve and sanitize payment method
     $payment_method = isset($_POST['payment_method']) ? trim($_POST['payment_method']) : 'N/A';
 
-    // Retrieve table number directly (since order_type is not used)
+    // Retrieve table number directly 
     $table_number = isset($_POST['table_number']) ? htmlspecialchars(trim($_POST['table_number'])) : 'N/A';
+    $address = isset($_POST['address']) ? htmlspecialchars(trim($_POST['address'])) : 'N/A';
 
     // Retrieve cart items from session
     $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     try {
         // Prepare the SQL statement for inserting into 'orders' table
-        $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `table_number`, `total_price`) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `table_number`, `address`, `total_price`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $conn->error);
         }
@@ -52,11 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Bind parameters
         $stmt->bind_param(
-            "sissd",
+            "sisssd",
             $order_id,       // s: string
             $user_id,        // i: integer (nullable)
             $payment_method, // s: string
             $table_number,   // s: string (nullable)
+            $address,        // s: string
             $total_price     // d: double
         );
 
@@ -68,27 +70,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Get the last inserted order's ID
         $last_order_id = $conn->insert_id;
 
+        // **Modify the SQL statement to include 'customizations'**
         // Prepare the SQL statement for inserting into 'order_items' table
-        $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`) VALUES (?, ?, ?, ?, ?)");
+        // Added 'customizations' field to the INSERT statement
+        $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`, `customizations`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt_item) {
             throw new Exception("Prepare statement for order_items failed: " . $conn->error);
         }
 
-        // Bind parameters for order_items
+        // **Update the bind_param to match the number of parameters**
+        // 's' for string (customizations)
+        $stmt_item->bind_param(
+            "isidds",
+            $last_order_id,    // i: integer
+            $item_name,        // s: string
+            $quantity,         // i: integer
+            $price_each,       // d: double
+            $total_item_price, // d: double
+            $customizations    // s: string (JSON)
+        );
+
+        // Bind and execute for each cart item
         foreach ($cart_items as $item) {
             $item_name = htmlspecialchars($item['name']);
             $quantity = (int)$item['quantity'];
             $price_each = number_format((float)$item['price'], 2, '.', '');
             $total_item_price = number_format($quantity * $item['price'], 2, '.', '');
-
-            $stmt_item->bind_param(
-                "isidd",
-                $last_order_id,    // i: integer
-                $item_name,        // s: string
-                $quantity,         // i: integer
-                $price_each,       // d: double
-                $total_item_price  // d: double
-            );
+            $customizations   = isset($item['customizations']) ? $item['customizations'] : '';
 
             // Execute the statement
             if (!$stmt_item->execute()) {
@@ -105,7 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'payment_method' => $payment_method,
             'table_number'   => $table_number,
             'cart_items'     => $cart_items,
-            'total_price'    => $total_price
+            'total_price'    => $total_price,
+            'address'        => $address
         ];
 
         // Clear the cart
@@ -192,6 +201,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             background-color: #F05D5F;
             color: white;
         }
+        /* Customizations Styling */
+        .customizations {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .customizations ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
         @media (max-width: 576px) {
             .tick {
                 font-size: 100px;
@@ -222,7 +241,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Order Summary</h4>
             <p><strong>Order ID:</strong> <?php echo htmlspecialchars($_SESSION['order']['order_id']); ?></p>
             <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($_SESSION['order']['payment_method']); ?></p>
-            
+            <p><strong>Table Number:</strong> <?php if($table_number != null) echo htmlspecialchars($_SESSION['order']['table_number']); ?></p>
+            <p><strong>Address:</strong> <?php if($address != null) echo htmlspecialchars($_SESSION['order']['address']); ?></p>
+
             <div class="order-items">
                 <strong>Order Items:</strong>
                 <table>
@@ -242,14 +263,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?php echo number_format($item['price'], 2); ?></td>
                                 <td><?php echo number_format($item['quantity'] * $item['price'], 2); ?></td>
                             </tr>
+                            <?php
+                                // Decode the customizations JSON
+                                $customizations = json_decode($item['customizations'], true);
+                                if (!empty($customizations)) {
+                                    echo '<tr>';
+                                    echo '<td colspan="4" class="customizations"><strong>Customizations:</strong>';
+                                    echo '<ul>';
+                                    foreach ($customizations as $key => $value) {
+                                        echo '<li>' . htmlspecialchars($key) . ': ' . htmlspecialchars($value) . '</li>';
+                                    }
+                                    echo '</ul></td>';
+                                    echo '</tr>';
+                                }
+                            ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
 
             <p class="mt-3"><strong>Total Amount:</strong> SGD <?php echo number_format($_SESSION['order']['total_price'], 2); ?></p>
-
-            <p><strong>Table Number:</strong> <?php echo htmlspecialchars($_SESSION['order']['table_number']); ?></p>
         </div>
     </div>
 

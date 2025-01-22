@@ -1,14 +1,6 @@
 <?php
 // progressbar.php
 
-// Determine the current step based on the page
-// You can set this variable dynamically based on your routing logic
-// For example, you might set it based on the URL or session data
-
-// Example using a GET parameter 'step'. Adjust as needed.
-// = isset($_GET['step']) ? (int)$_GET['step'] : 1;
-
-// Ensure current_step is between 1 and 3
 if ($current_step < 1) $current_step = 1;
 if ($current_step > 3) $current_step = 3;
 

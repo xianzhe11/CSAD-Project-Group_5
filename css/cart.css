@@ -1,118 +1,113 @@
+/* cart.css */
 
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f8f9fa;
 }
+
 .cart-container {
   max-width: 1250px;
   margin: 20px auto;
-  padding: 10px 40px;
+  padding: 20px 40px;
   padding-bottom: 50px;
 }
+
 .cart-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  max-width: 1250px;
-  height: 180px;
   background-color: #F05D5F;
   color: #fff;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
   position: relative;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
-.cart-item .price-section {
-  flex: 1;
+
+.price-section {
+  flex: 0 0 100px;
   text-align: left;
   font-size: 1.5rem;
 }
-.cart-item .price-section .price {
+
+.price-section .price {
   font-weight: 700;
 }
-.cart-item .details {
-  flex: 3;
+
+.details {
+  flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 0 20px;
+  min-width: 300px; /* Ensure minimum width */
 }
-.cart-item .details img {
+
+.details img {
   width: 150px;
   height: 150px;
   object-fit: cover;
   border-radius: 10px;
   margin-right: 20px;
 }
-.cart-item .details .info {
+
+.info {
   flex: 1;
 }
-.cart-item .details .info .name {
+
+.name {
   font-size: 1.5rem;
   font-weight: 600;
 }
-.cart-item .details .info .description {
+
+.description {
   font-size: 1rem;
   margin-top: 10px;
 }
-.cart-item .quantity-section {
-  flex: 1;
+
+.quantity-section {
+  flex: 0 0 120px;
   text-align: right;
+  margin-top: 10px;
 }
-.cart-item .quantity-section .quantity-controls {
+
+.quantity-controls {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 20px;
 }
-.cart-item .quantity-section .quantity-controls button {
-  background: none;
+
+.quantity-controls button {
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.cart-item .quantity-section .quantity-controls span {
-  margin: 0 10px;
-  font-size: 1.2rem;
-}
-.pay-button-container {
-  display: flex; 
-  justify-content: center;  /* Centers horizontally */
-  align-items: center;      /* Centers vertically */
-  margin-top: 30px;         /* Add spacing from cart items */
-  width: 100%;              /* Ensures it takes the full width of the parent container */
-}
-/* Updated Pay Button Style */
-.pay-button {
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 5px; /* Changed from 50% to 5px for rectangle */
-  width: 200px; /* Increased width for rectangle */
-  height: 60px; /* Adjusted height */
   font-size: 1.2rem;
   cursor: pointer;
-  position: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.3s ease;
 }
-.pay-button:hover {
-  background-color: #218838;
+
+.quantity-controls button:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
-.pay-button .total-price {
-  text-align: center;
+
+.quantity-controls span {
+  margin: 0 10px;
+  font-size: 1.2rem;
 }
-.pay-button .total-price span {
-  display: block;
-  font-size: 1rem;
-}
-/* Delete Button Style */
-.delete-button {
+
+.delete-form {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.delete-button {
   background: none;
   border: none;
   color: #fff;
@@ -120,6 +115,75 @@ body {
   cursor: pointer;
   transition: color 0.3s ease;
 }
+
 .delete-button:hover {
   color: #000;
+}
+
+.pay-button-container {
+  display: flex; 
+  justify-content: center;  
+  align-items: center;      
+  margin-top: 30px;         
+  width: 100%;              
+}
+
+.pay-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px; 
+  width: 200px; 
+  height: 60px; 
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.pay-button:hover {
+  background-color: #218838;
+}
+
+.total-price {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .price-section {
+    flex: 0 0 auto;
+    margin-bottom: 10px;
+  }
+
+  .details {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .details img {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .quantity-section {
+    flex: 0 0 auto;
+    margin-top: 10px;
+  }
+
+  .pay-button-container {
+    flex-direction: column;
+  }
+
+  .pay-button {
+    width: 100%;
+    max-width: 300px;
+  }
 }

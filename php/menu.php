@@ -125,7 +125,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                                             <?php endif; ?>
                                             <div class="button-container">
                                                 <p class="card-text">SGD&nbsp;<?= number_format($row['price'], 2) ?>/-</p>
-                                                <form method="POST" class="d-inline">
+                                                <form method="GET" action="order_customise.php" class="d-inline">
                                                     <input type="hidden" name="add_to_cart" value="1">
                                                     <input type="hidden" name="item_id" value="<?= htmlspecialchars($row['id']) ?>">
                                                     <input type="hidden" name="item_name" value="<?= htmlspecialchars($row['itemName']) ?>">

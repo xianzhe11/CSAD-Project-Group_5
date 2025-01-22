@@ -53,7 +53,7 @@ $conn->close();
             At <strong>Burger Bliss</strong>, we believe in making every meal an unforgettable experience.
           </p>
           <div class="button-group">
-            <a href="login.php" class="btn">Start Order</a>
+            <a href="menu.php" class="btn">Start Order</a>
             <a href="menu.php" class="btn btn-secondary">Explore Menu</a>
           </div>
         </div>
@@ -100,7 +100,7 @@ $conn->close();
   <div class="container text-center">
     <h2 class="heading_space">Seasonal Promotions!</h2>
     <p class="EnjoyFood">Enjoy Delicious Food in Limited time</p>
-    <a href="login.php" class="btn-common-white page-scroll">Order Now</a>
+    <a href="menu.php" class="btn-common-white page-scroll">Order Now</a>
   </div>
 </section>
 
@@ -176,9 +176,9 @@ $conn->close();
         <div class="footer-col">
           <h4>Follow Us</h4>
           <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/singaporepoly/?hl=en" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/singaporepoly/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/singaporepoly/?hl=en" target="_blank"><i class="fab fa-twitter"></i></a>
           </div>
         </div>
         <div class="footer-col">
@@ -186,7 +186,9 @@ $conn->close();
           <form action="#">
             <input type="email" placeholder="Your email address" required>
             <button type="submit">Subscribe</button>
-          </form>
+          </form><br>
+          <h4>Admin Dashboard</h4>
+          <a style="color: white;" href="admin.pfp">Dashboard</a>
         </div>
       </div>
       <div class="footer-bottom">
