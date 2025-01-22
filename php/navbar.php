@@ -36,6 +36,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <li><a href="<?php echo ($currentPage === 'index.php') ? '#Reservation' : 'index.php#Reservation'; ?>">Reservation</a></li>
         <li><a href="<?php echo ($currentPage === 'index.php') ? '#about-us' : 'index.php#about-us'; ?>">About Us</a></li>
         <li><a href="<?php echo ($currentPage === 'index.php') ? '#contact' : 'index.php#contact'; ?>">Contact</a></li>
+        <li><a href="review.php">Review</a></li>
       </ul>
 
       <!-- Cart and Login -->
