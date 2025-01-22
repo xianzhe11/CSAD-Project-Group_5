@@ -27,10 +27,10 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <li class="dropdown">
           <a href="<?php echo ($currentPage === 'index.php') ? '#menu' : 'menu.php'; ?>">Our Food</a>
           <ul class="dropdown-menu">
-            <li><a href="menu.php#appetizer">Appetizers</a></li>
-            <li><a href="menu.php#pizza">Pizza</a></li>
-            <li><a href="menu.php#burger">Burger</a></li>
-            <li><a href="menu.php#beverage">Beverages</a></li>
+          <li><a href="menu.php?category=appetizer">Appetizers</a></li>
+          <li><a href="menu.php?category=pizza">Pizza</a></li>
+          <li><a href="menu.php?category=burgers">Burger</a></li>
+          <li><a href="menu.php?category=beverages">Beverages</a></li>
           </ul>
         </li>
         <li><a href="<?php echo ($currentPage === 'index.php') ? '#Reservation' : 'index.php#Reservation'; ?>">Reservation</a></li>

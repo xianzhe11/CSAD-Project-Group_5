@@ -32,11 +32,12 @@ $conn->close();
 </head>
 <body>
   <?php
-  if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+  /*if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
     include 'nav-logged.php';
   } else {
     include 'navbar.php';
-  }
+  }*/
+  include 'navbar.php';
   ?>
 
 <div class="main" id="home">

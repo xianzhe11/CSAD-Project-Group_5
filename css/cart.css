@@ -1,0 +1,125 @@
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+.cart-container {
+  max-width: 1250px;
+  margin: 20px auto;
+  padding: 10px 40px;
+  padding-bottom: 50px;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1250px;
+  height: 180px;
+  background-color: #F05D5F;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+.cart-item .price-section {
+  flex: 1;
+  text-align: left;
+  font-size: 1.5rem;
+}
+.cart-item .price-section .price {
+  font-weight: 700;
+}
+.cart-item .details {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.cart-item .details img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+.cart-item .details .info {
+  flex: 1;
+}
+.cart-item .details .info .name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.cart-item .details .info .description {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.cart-item .quantity-section {
+  flex: 1;
+  text-align: right;
+}
+.cart-item .quantity-section .quantity-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+.cart-item .quantity-section .quantity-controls button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.cart-item .quantity-section .quantity-controls span {
+  margin: 0 10px;
+  font-size: 1.2rem;
+}
+.pay-button-container {
+  display: flex; 
+  justify-content: center;  /* Centers horizontally */
+  align-items: center;      /* Centers vertically */
+  margin-top: 30px;         /* Add spacing from cart items */
+  width: 100%;              /* Ensures it takes the full width of the parent container */
+}
+/* Updated Pay Button Style */
+.pay-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px; /* Changed from 50% to 5px for rectangle */
+  width: 200px; /* Increased width for rectangle */
+  height: 60px; /* Adjusted height */
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.pay-button:hover {
+  background-color: #218838;
+}
+.pay-button .total-price {
+  text-align: center;
+}
+.pay-button .total-price span {
+  display: block;
+  font-size: 1rem;
+}
+/* Delete Button Style */
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.delete-button:hover {
+  color: #000;
+}

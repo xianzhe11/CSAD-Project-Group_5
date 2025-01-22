@@ -4,21 +4,18 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 /* Body styling */
 body {
   font-family: "Poppins", sans-serif;
   background-color: #feead4;
   padding-top: 80px; /* Adjust if navbar is fixed */
 }
-
 /* Navbar styling */
 .custom-navbar {
   position: fixed; /* Fixed position */
   top: 0;          /* At the top */
   left: 0;         /* Align to the left */
   width: 100%;     /* Full width */
-  height: 90%;
   background-color: #ffbda1;
   padding: 20px 30px;
   border-bottom-left-radius: 80px;
@@ -26,7 +23,6 @@ body {
   z-index: 1000;   /* Stay on top */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
 }
-
 /* Flexbox layout to align items horizontally */
 .navbar-container {
   display: flex;
@@ -35,7 +31,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 /* Logo/Brand styling */
 .brand {
   font-family: 'Lobster', cursive;
@@ -44,18 +39,15 @@ body {
   text-decoration: none;
   margin-left: 50px;
 }
-
 /* Center navigation links */
 .nav-links {
   display: flex;
   gap: 30px;
   list-style: none; /* Removes default bullets */
 }
-
 .nav-links li {
   position: relative; /* Necessary for dropdown positioning */
 }
-
 .nav-links a {
   text-decoration: none;
   color: black;
@@ -63,17 +55,14 @@ body {
   font-size: 18px;
   transition: color 0.3s ease;
 }
-
 /* Change color on hover */
 .nav-links a:hover {
   color: #fb4a36;
 }
-
 /* Dropdown menu styling */
 .dropdown {
   position: relative; /* Ensure parent is relative for absolute positioning */
 }
-
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -94,14 +83,12 @@ body {
   opacity: 0;
   visibility: hidden;
 }
-
 .dropdown:hover .dropdown-menu {
   display: block;
   /* For smooth transition */
   opacity: 1;
   visibility: visible;
 }
-
 .dropdown-menu li {
   padding: 5px 0;      /* Top and Bottom padding */
   padding-left: 10px;  /* Left padding to create space for bullets */
@@ -109,31 +96,26 @@ body {
   /* Ensure default display for list items */
   display: list-item;
 }
-
 .dropdown-menu li a {
   color: #212529;
   display: block;
 }
-
 .dropdown-menu li a:hover {
   background-color: #fb4a36;
   color: white;
 }
-
 /* Right section (cart + login button) */
 .right-section {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-
 /* Cart icon */
 .cart-icon {
   font-size: 25px;
   color: green;
   text-decoration: none;
 }
-
 /* Login button */
 .login-btn {
   background-color: #fb4a36;
@@ -145,11 +127,9 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
-
 .login-btn:hover {
   background-color: #f98c39;
 }
-
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .nav-links {
@@ -162,11 +142,9 @@ body {
     background-color: #ffbda1;
     padding: 20px 0;
   }
-
   .nav-links.active {
     display: flex; /* Show when active */
   }
-
   .menu-toggle {
     display: block;
     font-size: 30px;
@@ -174,11 +152,9 @@ body {
     border: none;
     cursor: pointer;
   }
-
   body {
     padding-top: 100px; /* Adjust if navbar height changes on smaller screens */
   }
-
   /* Adjust dropdown-menu for mobile if needed */
   .dropdown-menu {
     width: 100%; /* Make dropdown full width on mobile */
