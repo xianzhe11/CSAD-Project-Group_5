@@ -29,18 +29,13 @@ $steps = [
         </div>
     <?php endforeach; ?>
 </div>
-
-<!-- Example content to demonstrate the current step -->
 <div>
     <?php if ($current_step == 1): ?>
-        
-        <!-- Shopping Cart content here -->
+        <!-- Set Active Circle -->     
     <?php elseif ($current_step == 2): ?>
-        
-        <!-- Payment Method content here -->
-    <?php elseif ($current_step == 3): ?>
-        
-        <!-- Order Details content here -->
+        <!-- Set Active Circle --> 
+    <?php elseif ($current_step == 3): ?> 
+        <!-- Set Active Circle -->
     <?php endif; ?>
 </div>
 

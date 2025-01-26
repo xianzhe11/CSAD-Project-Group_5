@@ -144,82 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Inline CSS -->
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        .receipt-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px 20px;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .tick {
-            color: #28a745;
-            font-size: 160px;
-            margin-bottom: 20px;
-        }
-        .success-message {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 40px;
-        }
-        .order-details {
-            border: 2px solid #F05D5F;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: left;
-        }
-        .order-details h4 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: #F05D5F;
-        }
-        .order-details p {
-            margin: 10px 0;
-        }
-        .order-items {
-            margin-top: 20px;
-        }
-        .order-items table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .order-items th, .order-items td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-        .order-items th {
-            background-color: #F05D5F;
-            color: white;
-        }
-        /* Customizations Styling */
-        .customizations {
-            margin-top: 5px;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .customizations ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-        @media (max-width: 576px) {
-            .tick {
-                font-size: 100px;
-            }
-            .success-message {
-                font-size: 20px;
-            }
-        }
-    </style>
+    <link href="../css/receipt.css" rel='stylesheet'>
+
 </head>
 <body>
 

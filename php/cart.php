@@ -1,6 +1,13 @@
 <?php
 session_start();
 $current_step = 1;
+
+// Function to check if the user is logged in
+function isUserLoggedIn() {
+    // Adjust this function based on how you manage user sessions
+    return isset($_SESSION['user_id']); // Assuming 'user_id' is set upon login
+}
+
 // Handle quantity updates and item deletions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'], $_POST['item_id'])) {
@@ -201,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="price">SGD <?= number_format($item['price'], 2) ?></div>
                     </div>
                     <div class="details">
-                        <img src="../images/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
+                        <img src="../food_images/<?= htmlspecialchars($item['image']) ?>" alt="<?= htmlspecialchars($item['name']) ?>">
                         <div class="info">
                             <div class="info-left">
                                 <div class="name"><?= htmlspecialchars($item['name']) ?></div>
@@ -258,19 +265,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endforeach; ?>
 
-            <!-- Pay Button -->
+            <!-- Pay Button Container -->
             <div class="pay-button-container">
-                <form action="checkout.php" method="GET">
-                    <button type="submit" class="pay-button">
-                        <div class="total-price">
-                            Pay<br> SGD <?= number_format($total, 2) ?> 
-                        </div>
+                <?php if (isUserLoggedIn()): ?>
+                    <!-- User is logged in, proceed to checkout.php -->
+                    <form action="checkout.php" method="GET">
+                        <button type="submit" class="pay-button">
+                            Checkout &nbsp;<i class="fas fa-shopping-cart"></i>
+                        </button>
+                    </form>
+                <?php else: ?>
+                    <!-- User is not logged in, trigger modal -->
+                    <button type="button" class="pay-button" data-toggle="modal" data-target="#loginPromptModal">
+                        Checkout &nbsp;<i class="fas fa-shopping-cart"></i>
                     </button>
-                </form>
+                <?php endif; ?>
             </div>
         <?php else: ?>
             <p class="text-center">Your cart is empty.</p>
         <?php endif; ?>
+    </div>
+
+    <!-- Modal: Login or Guest Checkout -->
+    <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginPromptModalLabel">Proceed to Checkout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>You need to sign in to your account or continue as a guest to proceed with the checkout.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="login.php" class="btn btn-primary" style="transform: translateX(-80%);">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </a>
+            <a href="checkout.php?guest=true" class="btn btn-success" style="transform: translateX(-40%);">
+                <i class="fas fa-user-secret"></i> Checkout as Guest
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <?php include 'footer.html'; ?>
