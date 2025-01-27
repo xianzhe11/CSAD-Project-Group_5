@@ -94,6 +94,23 @@ body {
     max-height: 250px;
 }
 
+.card-status {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+.customizations-section {
+    display: none;
+}
+/* Preserve original button and price layout */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button-container .card-text {
+    margin-bottom: 0;
+}
 .card-body {
     display: flex;
     flex-direction: column;

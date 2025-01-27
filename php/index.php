@@ -6,16 +6,6 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-/*$sql = "SELECT itemName, image, price FROM menuitem WHERE is_popular = 1";
-if ($result = $conn->query($sql)) {
-  $popularItems = [];
-  while ($row = $result->fetch_assoc()) {
-    $popularItems[] = $row;
-  }
-  $result->close();
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}*/
 $conn->close();
 ?>
 
@@ -188,11 +178,11 @@ $conn->close();
             <button type="submit">Subscribe</button>
           </form><br>
           <h4>Admin Dashboard</h4>
-          <a style="color: white;" href="admin.pfp">Dashboard</a>
+          <a style="color: white;" href="admin_navbar.php">Dashboard</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 Authored by Wong Xian Zhe. All Rights Reserved.</p>
+        <p>&copy; 2024 Authored by CSAD Group 5. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
