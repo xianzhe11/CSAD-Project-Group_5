@@ -55,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="../css/cart.css" rel='stylesheet'>
     <style>
         /* Custom CSS for Cart Page */
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
@@ -201,8 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $total = 0;
                 foreach ($_SESSION['cart'] as $item):
                     $itemTotal = $item['price'] * $item['quantity'];
-                    $total += $itemTotal;
-            ?>
+                    $total += $itemTotal; ?>
                 <div class="cart-item">
                     <div class="price-section">
                         <div class="price">SGD <?= number_format($item['price'], 2) ?></div>
@@ -217,9 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                             </div>
                             <?php if (!empty($item['customizations'])): ?>
-                                <?php
-                                    $customizations = json_decode($item['customizations'], true);
-                                ?>
+                                <?php $customizations = json_decode($item['customizations'], true);?>
                                 <div class="info-right">
                                     <div class="customizations">
                                         <strong>Customizations:</strong>

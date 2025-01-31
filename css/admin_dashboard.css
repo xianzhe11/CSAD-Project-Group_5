@@ -1,0 +1,207 @@
+/* Root Variables for Consistency */
+:root {
+    --font-primary: 'Roboto', sans-serif;
+    --font-secondary: 'Lobster', cursive;
+    --accent-color: #ff6347; /* Tomato */
+    --card-bg: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --primary-color: #4CAF50; /* Green */
+    --secondary-color: #2196F3; /* Blue */
+    --tertiary-color: #ff9800; /* Orange */
+    --status-pending: #ff9800;
+    --status-completed: #4CAF50;
+    --transition-speed: 0.3s;
+}
+
+/* Ensure the body uses flexbox to accommodate the sidebar */
+body {
+    display: flex;
+    margin: 0;
+    font-family: var(--font-primary);
+    background-color: #f4f6f9;
+}
+
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    background-color: #f4f6f9;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: margin-left var(--transition-speed);
+    animation: mainContentFadeIn 1s ease-in-out;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.main-content h2 {
+    font-family: var(--font-secondary);
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: 1.4s;
+}
+
+.main-content p {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: 1.5s;
+}
+
+/* Statistics Cards */
+.stats-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px var(--card-shadow);
+    border-radius: 8px;
+    flex: 1 1 calc(25% - 20px);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 30px;
+    color: var(--accent-color);
+    margin-right: 15px;
+}
+
+.card-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #555555;
+}
+
+.card-info p {
+    margin: 5px 0 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+
+/* Charts Section */
+.charts-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.chart-container {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px var(--card-shadow);
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 calc(50% - 20px);
+}
+
+.chart-container h3 {
+    margin-bottom: 15px;
+    color: #555555;
+    font-size: 18px;
+}
+
+/* Recent Orders and Reviews */
+.recent-section {
+    margin-top: 40px;
+}
+
+.recent-section h3 {
+    margin-bottom: 15px;
+    color: #555555;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+table th {
+    background-color: #f8f8f8;
+    color: #333333;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.status.pending {
+    background-color: var(--status-pending);
+}
+
+.status.completed {
+    background-color: var(--status-completed);
+}
+
+.recent-reviews td i.fa-star {
+    color: #FFD700; /* Gold */
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .card {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .charts-section {
+        flex-direction: column;
+    }
+
+    .chart-container {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 100%;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mainContentFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
