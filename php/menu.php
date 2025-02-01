@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
-
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 // Function to sanitize input data
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));

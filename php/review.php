@@ -3,7 +3,7 @@ session_start();
 
 // Include the database connection
 require_once 'db_connection.php'; // Ensure this path is correct
-
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 // Initialize variables
 $errors = [];
 $success = "";

@@ -4,18 +4,18 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
   }
-:root {
+  :root {
     --width: 200px;
     --height : 200px;
-}
+  }
   
   body {
     width: 100%;
     height: 50px; 
     background-color: #fef6e4;
-
+  
   }
-
+  
   .rect {
     background-color: #000000;
     height: 100vh; 
@@ -26,7 +26,7 @@
     left: 10%; 
     top: 50%; 
     transform: translateY(-50%); 
-}
+  }
   .cover{
     background-color: #ffb84d;
     min-height: 5vh;
@@ -85,8 +85,7 @@
     overflow: hidden;
     height: 450px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-  
+  }
   
   .right-side {
     background: #fef6e4;
@@ -96,17 +95,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-}
+  }
   
   .right-side h2 {
     font-size: 28px;
     margin-bottom: 20px;
     text-align: center;
   }
-  
+   #form{
+    width: 300px;
+  }
   .input-group {
     margin-bottom: 20px;
-    
     
   }
   
@@ -115,6 +115,7 @@
     font-size: 14px;
     margin-bottom: 5px;
     color: #555;
+    align-self: flex-start; 
   }
   
   .input-group input {
@@ -124,6 +125,9 @@
     background-color: #E0E0E0;
     border: 1px solid #ddd;
     border-radius: 10px;
+    margin-right: 20px;
+    
+    
   }
   
   .input-group input:focus {
@@ -135,18 +139,19 @@
     background: rgb(95, 159, 102);
     border: none;
     color: white;
-    right: 10%;
+    margin-top: 10px;
     padding: 10px 15px;
     font-size: 20px;
-    margin-left: 28px;
+    margin-left: 55px;
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
-    width: 70%;
+    width: 60%;
   }
   .login-button h5{
     color: #000000;
     font-size: 14px;
+
   }
   
   .login-button:hover {
@@ -219,9 +224,39 @@
     margin-top:18%;
     
   }
-
- 
-
+  .error1{
+    position: fixed;
+    text-align: center;
+    top: 42.5%;
+    font-size: 8px;
+    color : red;
+    font-weight: bold;
+    left: 73%;
+    z-index: 20;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 15px;
+   
+  }
+  .error2{
+    position: fixed;
+    text-align: center;
+    top: 52%;
+    font-size: 8px;
+    color : red;
+    font-weight: bold;
+    left: 73%;
+    z-index: 20;
+    border-radius: 20px;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 15px;
+   
+  }
+  
+  
+  
   @media (min-width: 768px) {
     .container {
         right: 10%; 
@@ -232,7 +267,7 @@
         align-self: flex-start; 
         padding: 40px 30px; 
     }
-
- 
-}
+  
+  
+  }
   

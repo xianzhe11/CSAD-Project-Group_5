@@ -4,20 +4,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/registe.css">
+<link rel="stylesheet" href="../css/register.css">
 <link rel="stylesheet" href="../css/navbar.css">
 <title>Register</title>
 
 </head>
 <body>
 <?php
- include("navbar.php");
- include 'db_connection.php';
+session_start();
+include("navbar.php");
+include 'db_connection.php';
+$_SESSION['prev_page'] = "index.php";
 ?>
 
 <?php
+$user= $email = $pass= "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Get data
+        
         $user = $_POST['username'];
         $email = $_POST['email'];
         $pass = $_POST['password'];
@@ -29,11 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo '<div class="error">Sorry! Username Already Exists</div>'; //registed username
+        $user = "";
     } else {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             echo '<div class="error">Sorry! Email is already registered</div>'; // registered email
+            $email = "";
         } else {
             $sql = "INSERT INTO users (username, email, pass) VALUES ('$user', '$email', '$hashed_password')"; //insert data
             if ($conn->query($sql) === TRUE) {
@@ -46,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+
 <div class="container">
     <div class="left-side">
       <div class = "slide">
@@ -64,18 +71,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <form id ="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
       <div class="input-group">
           <label for="username">Username</label>
-          <input type="username" id="username" name ="username" placeholder="Username">
-          <div id = "erroruser"></div>
+          <input type="username" id="username" name ="username" placeholder="Username" value="<?php echo $user; ?>">
+          <span id = "erroruser"></span>
         </div>
         <div class="input-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name ="email" placeholder="Email">
-          <div id = "erroremail"></div>
+          <input type="email" id="email" name ="email" placeholder="Email" value="<?php echo $email; ?>">
+          <span id = "erroremail"></span>
         </div>
         <div class="input-group">
           <label for="password">Password</label>
-          <input type="password" id="password" name ="password" placeholder="Password">
-          <div id = "errorpass"></div>
+          <input type="password" id="password" name ="password" placeholder="Password" value="<?php echo $pass; ?>">
+          <span id = "errorpass"></span>
         </div>
         
         <button onclick="validate();"  class="login-button" id = "btn" >Create Account</button>
