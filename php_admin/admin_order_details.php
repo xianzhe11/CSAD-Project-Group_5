@@ -186,7 +186,7 @@ $conn->close();
                     // Determine if user is a guest
                     $is_guest = empty($order['username']);
                     // Set profile picture
-                    $profile_picture = $is_guest ? 'path/to/default_pfp.png' : ( !empty($order['profile_picture']) ? htmlspecialchars($order['profile_picture']) : 'path/to/default_pfp.png' );
+                    $profile_picture = $is_guest ? '../images/empty_pfp.png' : ( !empty($order['profile_picture']) ? htmlspecialchars($order['profile_picture']) : '../images/empty_pfp.png' );
                 ?>
                 <img src="<?php echo $profile_picture; ?>" alt="">
                 <div class="user-details">
