@@ -1,132 +1,238 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #fef6e4;
-    }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+:root {
+    --width: 200px;
+    --height : 200px;
+}
   
+  body {
+    width: 100%;
+    height: 50px; 
+    background-color: #fef6e4;
+
+  }
+
+  .rect {
+    background-color: #000000;
+    height: 100vh; 
+    width: 300px;
+    opacity: 0.8;
+    z-index: 15;
+    position: fixed; 
+    left: 10%; 
+    top: 50%; 
+    transform: translateY(-50%); 
+}
+  .cover{
+    background-color: #ffb84d;
+    min-height: 5vh;
+    width : 100%;
+    position: absolute; 
+    top : 0 ;
+    z-index:10;
+  }
+  .burger{
+    height: 45vh; 
+    width: 45vh;
+    opacity: 1;
+    z-index: 15;
+    position: fixed; 
+    left: 5%; 
+    top: 8%; 
+  }
+  .fries{
+    height: 40vh; 
+    width: 40vh;
+    opacity: 1;
+    z-index: 15;
+    position: fixed; 
+    left: 17%; 
+    top: 30%; 
+  }
+  .drink{
+    height: 50vh; 
+    width: 50vh;
+    opacity: 1;
+    z-index: 15;
+    position: fixed; 
+    left: 4%; 
+    top: 42%; 
+  }
+  .wave {
+    min-height: 0vh;
+    width : 100%;
+    margin: 0; 
+    background : #fef6e4;
+    position: relative; 
+    rotate : 180deg;
+  }
+  
+  .container {
+    position: absolute;
+    top: 50%;
+    right: 5%; /* Adjust to move the container horizontally */
+    transform: translateY(-50%);
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 450px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+  
+  
+  .right-side {
+    background: #fef6e4;
+    flex: 1;
+    padding: 40px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+  
+  .right-side h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    
+    
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #E0E0E0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .input-group input:focus {
+    outline: none;
+    border-color: #ff7f00;
+  }
+  
+  .login-button {
+    background: rgb(95, 159, 102);
+    border: none;
+    color: white;
+    right: 10%;
+    padding: 10px 15px;
+    font-size: 20px;
+    margin-left: 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 70%;
+  }
+  .login-button h5{
+    color: #000000;
+    font-size: 14px;
+  }
+  
+  .login-button:hover {
+    background: rgb(90, 205, 75);
+  }
+  .icon1{
+    height: 5vh; 
+    width: 5vh;
+    position: fixed; 
+    left: 60%; 
+    top: 82%; 
+    rotate: 315deg;
+  }
+  .icon2{
+    height: 5vh; 
+    width: 5vh;
+    position: fixed; 
+    left: 94%; 
+    top: 68%; 
+    rotate: 32deg;
+  }
+  
+  .icon3{
+    height: 5vh; 
+    width: 5vh;
+    position: fixed; 
+    left: 85%; 
+    top: 5%; 
+    rotate: 159deg;
+  }
+  .icon4{
+    height: 5vh; 
+    width: 5vh;
+    position: fixed; 
+    left: 40%; 
+    top: 15%; 
+    rotate: 215deg;
+  }
+  .background{
+    height: 100vh; 
+    width: 80vh;
+    position: fixed; 
+    opacity: 0.4; 
+    top: 0%; 
+    z-index :11;
+    border:none;
+  
+  }
+  .signuptext{
+    position: fixed; 
+    margin-top: 25%;
+    left: 10%; 
+    top: 48%; 
+  }
+  .signuptext2{
+    position: fixed; 
+    margin-top: 25%;
+    left: 22%; 
+    top: 52%; 
+  }
+  .sign {
+    background: transparent;
+    border: 2px solid #000000;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+    position: fixed;
+    margin-top:18%;
+    
+  }
+
+ 
+
+  @media (min-width: 768px) {
     .container {
-      display: flex;
-      width: 90%;
-      max-width: 1200px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        right: 10%; 
+        justify-content: flex-end; 
     }
-
-    .left-side {
-      background: linear-gradient(to bottom right, #ff7f00, #ffb84d);
-      color: white;
-      padding: 40px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .left-side h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .left-side p {
-      font-size: 16px;
-      margin-bottom: 30px;
-    }
-
-    .left-side button {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .left-side button:hover {
-      background: white;
-      color: #ff7f00;
-    }
-
+    
     .right-side {
-      background: white;
-      flex: 1;
-      padding: 40px 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+        align-self: flex-start; 
+        padding: 40px 30px; 
     }
 
-    .right-side h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .input-group {
-      margin-bottom: 20px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 5px;
-      color: #555;
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 10px;
-      font-size: 14px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .input-group input:focus {
-      outline: none;
-      border-color: #ff7f00;
-    }
-
-    .login-button {
-      background: #ff7f00;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      font-size: 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
-    }
-
-    .login-button:hover {
-      background: #e67300;
-    }
-
-
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-
-      .left-side, .right-side {
-        padding: 20px;
-      }
-
-      .left-side {
-        text-align: center;
-      }
-    }
+ 
+}
+  
