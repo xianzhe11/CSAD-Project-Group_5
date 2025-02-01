@@ -16,7 +16,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
     <!-- Sidebar Navigation -->
     <nav class="sidebar">
         <div class="logo">
-            <a href="index.php">Bliss Burger</a>
+            <a href="../php/index.php">Bliss Burger</a>
         </div>
 
         <!-- Navigation Items -->

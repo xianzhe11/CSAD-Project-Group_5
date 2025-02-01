@@ -56,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        // Prepare the SQL statement with new fields
-        $stmt = $conn->prepare("INSERT INTO `reviews` (`name`, `email`, `date_of_visit`, `phone_number`, `feedback`, `food_quality`, `service`, `value`, `cleanliness`, `speed`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // Prepare the SQL statement with new fields and status
+        $stmt = $conn->prepare("INSERT INTO `reviews` (`name`, `email`, `date_of_visit`, `phone_number`, `feedback`, `food_quality`, `service`, `value`, `cleanliness`, `speed`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
         if ($stmt) {
             $stmt->bind_param(
                 "sssssiiiii",
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
 
             if ($stmt->execute()) {
-                $success = "Thank you for your feedback!";
+                $success = "Thank you for your feedback! Your review is pending approval.";
                 // Clear POST data to prevent resubmission
                 $_POST = [];
             } else {
@@ -88,9 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Retrieve existing reviews
+// Retrieve existing reviews with status 'approved'
 $reviews = [];
-$result = $conn->query("SELECT * FROM `reviews` ORDER BY `created_at` DESC");
+$result = $conn->query("SELECT * FROM `reviews` WHERE `status` = 'approved' ORDER BY `created_at` DESC");
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $reviews[] = $row;
@@ -112,7 +112,6 @@ $conn->close();
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="../css/review.css" rel='stylesheet'>
-
 </head>
 <body>
     <!-- Navbar -->
@@ -273,7 +272,7 @@ $conn->close();
                 <?php foreach ($reviews as $review): ?>
                     <div class="review-item">
                         <div class="review-header">
-                            <strong>#<?php echo htmlspecialchars($review['id']); ?>  <?php echo htmlspecialchars($review['name']); ?></strong>
+                            <strong>#<?php echo htmlspecialchars($review['id']); ?> <?php echo htmlspecialchars($review['name']); ?></strong>
                             <span class="review-date">Visited on <?php echo date("F j, Y", strtotime($review['date_of_visit'])); ?></span>
                         </div>
                         <p class="mt-2"><?php echo nl2br(htmlspecialchars($review['feedback'])); ?></p>

@@ -178,7 +178,7 @@ $conn->close();
             <button type="submit">Subscribe</button>
           </form><br>
           <h4>Admin Dashboard</h4>
-          <a style="color: white;" href="admin_navbar.php">Dashboard</a>
+          <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
         </div>
       </div>
       <div class="footer-bottom">

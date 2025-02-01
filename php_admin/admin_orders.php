@@ -18,51 +18,13 @@ $result = $conn->query($sql);
     <title>Admin Orders</title>
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link rel="stylesheet" href="../css/admin_navbar.css">
+    <link rel="stylesheet" href="../css/admin_orders.css">
     <!-- Include Bootstrap CSS for better styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables CSS for advanced table features -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .main-content {
-            padding: 20px;
-        }
-        h2 {
-            font-family: 'Lobster', cursive;
-            margin-bottom: 20px;
-            color: #333333;
-        }
-        .status-pending { color: orange; font-weight: bold; }
-        .status-preparing { color: blue; font-weight: bold; }
-        .status-delivering { color: pink; font-weight: bold;}
-        .status-completed { color: green; font-weight: bold; }
-        .status-cancelled { color: red; font-weight: bold; }
-        .order-type {
-            font-weight: bold;
-            color: #555555;
-        }
-        .btn-view {
-            background-color: #17a2b8;
-            color: #ffffff;
-            
-        }
-        .btn-status {
-            background-color: #6c757d;
-            color: #ffffff;
-        }
-        .modal-header {
-            background-color: #343a40;
-            color: #ffffff;
-        }
-        .modal-footer {
-            background-color: #f1f1f1;
-        }
-    </style>
+
 </head>
 <body>
     <?php include "admin_navbar.php"?>
@@ -70,8 +32,9 @@ $result = $conn->query($sql);
     <!-- Main Content Area -->
     <div class="main-content container-fluid">
         <h2>Admin Orders</h2>
-        <table id="ordersTable" class="table table-striped table-bordered">
-            <thead class="table-danger">
+        <p>Manage restaurant's orders efficiently.</p>
+        <table id="ordersTable" class="order-table table table-striped table-bordered">
+            <thead>
                 <tr>
                     <th>Order ID</th>
                     <th>User</th>
@@ -230,7 +193,30 @@ $result = $conn->query($sql);
             // Initialize DataTable
             $('#ordersTable').DataTable({
                 "order": [[7, "desc"]], // Order by Created At descending
-                "responsive": true
+                "responsive": true,
+                "dom": '<"d-flex justify-content-between align-items-center"lfB>tip', // Custom layout
+                "initComplete": function () {
+                    // Add Refresh Button
+                    $('.dataTables_filter').append(
+                        '<button id="refreshBtn" class="btn btn-refresh ms-2"><i class="fas fa-sync-alt"></i> Refresh</button>'
+                    );
+                    // Customize Search Input
+                    $('.dataTables_filter label').contents().filter(function() {
+                        return this.nodeType === 3; // Remove default "Search:" text
+                    }).remove();
+
+                    // Add placeholder to search input
+                    $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
+
+                    // Wrap input and icon
+                    $('.dataTables_filter input').wrap('<div class="search-box"></div>');
+                    $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
+                    $('.custom-search').after('<i class="fas fa-search search-icon"></i>');
+                }
+            });
+            // Refresh Button Click Event
+            $(document).on('click', '#refreshBtn', function () {
+                location.reload(); // Reload the page
             });
 
             // Handle Change Status button click

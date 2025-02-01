@@ -150,18 +150,30 @@ table tbody tr:hover {
 
 .status {
     padding: 5px 10px;
-    border-radius: 4px;
-    color: #ffffff;
+    border-radius: 5px;
     font-size: 12px;
-    text-transform: capitalize;
+    font-weight: bold;
+    color: white;
 }
 
 .status.pending {
-    background-color: var(--status-pending);
+    background-color: orange;
+}
+
+.status.preparing {
+    background-color: blue;
+}
+
+.status.delivering {
+    background-color: #17a2b8;
 }
 
 .status.completed {
-    background-color: var(--status-completed);
+    background-color: green;
+}
+
+.status.cancelled {
+    background-color: red;
 }
 
 .recent-reviews td i.fa-star {

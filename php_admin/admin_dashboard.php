@@ -13,6 +13,32 @@
 session_start();
 include "db_connection.php"; // Include the database connection
 
+// Fetch recent orders
+$recent_orders_query = "
+    SELECT orders.order_id AS order_id, users.username AS customer_name, orders.total_price, orders.order_status,
+           GROUP_CONCAT(order_items.item_name SEPARATOR ', ') AS items
+    FROM orders
+    LEFT JOIN users ON orders.user_id = users.id
+    LEFT JOIN order_items ON orders.id = order_items.order_id
+    GROUP BY orders.id
+    ORDER BY orders.id DESC
+    LIMIT 2"; // Fetch the 5 most recent orders
+
+$recent_orders_result = $conn->query($recent_orders_query);
+$recent_orders = [];
+
+if ($recent_orders_result && $recent_orders_result->num_rows > 0) {
+    while ($row = $recent_orders_result->fetch_assoc()) {
+        $recent_orders[] = [
+            'order_id' => $row['order_id'],
+            'customer_name' => htmlspecialchars($row['customer_name'] ?? 'Guest'),
+            'items' => htmlspecialchars($row['items']),
+            'total_price' => number_format($row['total_price'], 2),
+            'order_status' => htmlspecialchars($row['order_status']),
+        ];
+    }
+}
+
 // Fetch total Menu Items
 $menu_count_query = "SELECT COUNT(*) as total_menu FROM menu_items";
 $menu_result = $conn->query($menu_count_query);
@@ -192,38 +218,43 @@ $conn->close(); // Close the connection
             </div>
         </div>
 
-        <!-- Recent Orders -->
-        <div class="recent-section">
-            <h3>Recent Orders</h3>
-            <table class="recent-orders">
-                <thead>
+    <!-- Recent Orders -->
+    <div class="recent-section">
+        <h3>Recent Orders</h3>
+        <table class="recent-orders">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total ($)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($recent_orders)): ?>
+                    <?php foreach ($recent_orders as $order): ?>
+                        <tr>
+                            <td>#<?php echo $order['order_id']; ?></td>
+                            <td><?php echo $order['customer_name']; ?></td>
+                            <td><?php echo $order['items']; ?></td>
+                            <td>$<?php echo $order['total_price']; ?></td>
+                            <td>
+                                <span class="status <?php echo strtolower($order['order_status']); ?>">
+                                    <?php echo $order['order_status']; ?>
+                                </span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total ($)</th>
-                        <th>Status</th>
+                        <td colspan="5" class="text-center">No recent orders found.</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>#1001</td>
-                        <td>John Doe</td>
-                        <td>Burger, Fries</td>
-                        <td>25.00</td>
-                        <td><span class="status pending">Pending</span></td>
-                    </tr>
-                    <tr>
-                        <td>#1002</td>
-                        <td>Jane Smith</td>
-                        <td>Pizza, Soda</td>
-                        <td>30.00</td>
-                        <td><span class="status completed">Completed</span></td>
-                    </tr>
-                    <!-- Add more orders as needed -->
-                </tbody>
-            </table>
-        </div>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+
 
         <!-- Recent Reviews -->
         <div class="recent-section">

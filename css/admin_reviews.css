@@ -1,0 +1,187 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+.main-content {
+    padding: 20px;
+}
+h2 {
+    font-family: 'Lobster', cursive;
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 1.6rem; 
+}
+.message {
+    margin-bottom: 20px;
+}
+.reviews-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem; 
+}
+.reviews-table th, .reviews-table td {
+    border-left: none !important;  /* Removes left border */
+    border-right: none !important; /* Removes right border */     
+    text-align: center;
+    vertical-align: middle; /* Ensure content aligns properly */
+}
+.reviews-table th {
+    background-color: #e93e68 !important;
+    color: #ffffff !important;
+    font-size: 0.85rem; 
+}
+.status-badge {
+    padding: 4px 8px; 
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+.status-pending {
+    background-color: orange;
+}
+.status-approved {
+    background-color: green;
+}
+.status-rejected {
+    background-color: red;
+}
+.action-buttons form {
+    display: inline-block;
+}
+.action-buttons button {
+    padding: 4px 8px; 
+    font-size: 0.75rem; 
+}
+.ratings {
+    white-space: nowrap; /* Prevent star icons from wrapping */
+}
+.ratings i {
+    margin-right: 2px; /* spacing between stars */
+    font-size: 0.9rem; 
+}
+
+/*Button Refresh */
+.btn-refresh {
+    background-color: #e93e68 !important; /* Custom color */
+    color: white !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 15px !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn-refresh i {
+    margin-right: 5px !important;
+}
+
+/* Hover Effect */
+.btn-refresh:hover {
+    background-color: #c12f57 !important; /* Slightly darker on hover */
+    color: #ffffff !important;
+    cursor: pointer !important;
+}
+
+/* Search Box Container */
+.search-box {
+    position: relative !important;
+    display: inline-block !important;
+    width: 200px !important; /* Adjust as needed */
+    margin-right: 15px !important;
+}
+
+/* Custom Search Input */
+.custom-search {
+    width: 100% !important;
+    border-radius: 20px !important; /* Rounded corners */
+    padding: 8px 35px 8px 12px !important; /* Right padding for icon space */
+    border: 1px solid #ccc !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.9rem !important;
+}
+
+/* Focus Effect */
+.custom-search:focus {
+    border-color: #e93e68 !important;
+    box-shadow: 0 0 5px rgba(233, 62, 104, 0.5) !important;
+}
+
+/* Search Icon Inside the Input */
+.search-icon {
+    position: absolute !important;
+    right: 10px !important; /* Icon position inside the box */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #e93e68 !important;
+    pointer-events: none !important; /* Allow clicks to pass through to input */
+    font-size: 1rem !important;
+}
+
+/* Common Button Styles */
+.action-btn {
+    width: 80px !important;          /* Equal width */
+    height: 40px !important;          /* Equal height */
+    padding: 8px 0 !important;        /* Center the text vertically */
+    font-size: 0.85rem !important;    /* Consistent font size */
+    border-radius: 5px !important;    /* Slight rounded corners */
+    display: inline-flex !important;  /* Align icon and text */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;              /* Space between icon and text */
+    transition: all 0.3s ease !important;
+    margin-top: 2.5px !important;
+    margin-bottom: 2.5px !important;
+}
+
+/* Approve Button Styling */
+.btn-approve {
+    background-color: #28a745 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.btn-approve:hover {
+    background-color: #218838 !important; /* Darker green */
+}
+
+/* Reject Button Styling */
+.btn-reject {
+    background-color: #dc3545 !important; /* Red */
+    color: white !important;
+    border: none !important;
+}
+
+.btn-reject:hover {
+    background-color: #c82333 !important; /* Darker red*/
+}
+
+/* Spacing Between Buttons */
+.action-form {
+    display: inline-block !important;        /* Inline by default */
+}
+
+/* Stacked Layout (for small screens) */
+@media (max-width: 576px) {
+    .action-form {
+        display: block;           /* Stack vertically */
+        margin: 5px 0;            /* Add vertical spacing */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        max-width: 100%; 
+    }
+    .reviews-table {
+        font-size: 0.7rem; /* Further reduce font size on small screens */
+    }
+    .reviews-table th, .reviews-table td {
+        padding: 8px 10px; /* Further reduce padding */
+    }
+    h2 {
+        font-size: 1.4rem; /* Adjust heading size */
+    }
+}

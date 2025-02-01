@@ -59,11 +59,9 @@ body {
 
 .logo a:hover {
     text-decoration: none;
+    color: grey;
 }
 .logo a:visited {
-    text-decoration: none;
-}
-.logo a:hover {
     text-decoration: none;
 }
 .logo a:active {

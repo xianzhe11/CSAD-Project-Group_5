@@ -1,0 +1,107 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+.main-content {
+    padding: 20px;
+}
+h2 {
+    font-family: 'Lobster', cursive;
+    margin-bottom: 20px;
+    color: #333333;
+}
+.status-pending { color: orange; font-weight: bold; }
+.status-preparing { color: blue; font-weight: bold; }
+.status-delivering { color: pink; font-weight: bold;}
+.status-completed { color: green; font-weight: bold; }
+.status-cancelled { color: red; font-weight: bold; }
+.order-type {
+    font-weight: bold;
+    color: #555555;
+}
+.btn-view {
+    background-color: #17a2b8 !important;
+    color: #ffffff !important;
+    
+}
+.btn-status {
+    background-color: #6c757d !important;
+    color: #ffffff !important;
+}
+.modal-header {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+.modal-footer {
+    background-color: #f1f1f1 !important;
+}
+
+.order-table th, .order-table td{      
+    border-left: none !important;  /* Removes left border */
+    border-right: none !important; /* Removes right border */     
+    padding: 10px 12px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+.order-table th {
+    background-color: #e93e68 !important;
+    color: white !important;
+}
+
+/*Refresh Button */
+.btn-refresh {
+    background-color: #e93e68 !important; /* Custom color */
+    color: white !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 15px !important;
+    transition: background-color 0.3s ease !important;
+}
+
+.btn-refresh i {
+    margin-right: 5px !important;
+}
+
+
+.btn-refresh:hover {
+    background-color: #c12f57 !important; /* Slightly darker on hover */
+    color: #ffffff !important;
+    cursor: pointer !important;
+}
+
+/* Search Box Container */
+.search-box {
+    position: relative !important;
+    display: inline-block !important;
+    width: 200px !important; 
+    margin-right: 15px !important;
+}
+
+/* Custom Search Input */
+.custom-search {
+    width: 100% !important;
+    border-radius: 20px !important; /* Rounded corners */
+    padding: 8px 35px 8px 12px !important; /* Right padding for icon space */
+    border: 1px solid #ccc !important;
+    outline: none !important;
+    transition: all 0.3s ease !important;
+    font-size: 0.9rem !important;
+}
+
+/* Focus Effect */
+.custom-search:focus {
+    border-color: #e93e68 !important;
+    box-shadow: 0 0 5px rgba(233, 62, 104, 0.5) !important;
+}
+
+/* Search Icon Inside the Input */
+.search-icon {
+    position: absolute !important;
+    right: 10px !important; /* Icon position inside the box */
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #e93e68 !important;
+    pointer-events: none !important; /* Allow clicks to pass through to input */
+    font-size: 1rem !important;
+}
