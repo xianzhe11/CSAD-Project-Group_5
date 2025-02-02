@@ -152,7 +152,13 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     </style>
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
 
     <!-- Display Success Message -->
     <?php if (isset($_SESSION['success_message'])): ?>

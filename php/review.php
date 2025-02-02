@@ -114,10 +114,14 @@ $conn->close();
     <link href="../css/review.css" rel='stylesheet'>
 </head>
 <body>
-    <!-- Navbar -->
-    <?php include 'navbar.php'; ?>
-
-    <!-- Main Container -->
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
+    <!-- Main Content -->
     <div class="review-container">
         <h2 class="mb-4 text-center">We Value Your Feedback</h2>
 

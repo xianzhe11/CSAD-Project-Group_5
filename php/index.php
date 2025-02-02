@@ -23,12 +23,11 @@ $conn->close();
 </head>
 <body>
   <?php
-  /*if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
-    include 'nav-logged.php';
+  if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+    include 'navbar_loggedIn.php';
   } else {
     include 'navbar.php';
-  }*/
-  include 'navbar.php';
+  }
   ?>
 
 <div class="main" id="home">

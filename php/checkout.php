@@ -38,8 +38,13 @@ if (empty($_SESSION['csrf_token'])) {
 
 </head>
 <body>
-
-    <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
     <?php $current_step = 2; include 'progressbar.php'; ?>
     <?php include 'footer.html'; ?>
 

@@ -157,16 +157,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 <body>
-
-    <!-- Navbar (Optional) -->
-    <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
 
     <!-- Receipt Container -->
     <div class="receipt-container">
-        <!-- Big Tick Icon -->
-        <i class="fas fa-check-circle tick"></i>
-
-        <!-- Success Message -->
+        <i class="fas fa-check-circle tick"></i> <!-- Tick Icon -->
         <div class="success-message">
             Your order was successfully placed!
         </div>
