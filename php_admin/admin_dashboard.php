@@ -3,12 +3,11 @@
 
 
 
-// TODO: Implement authentication check to ensure only authorized users can access the dashboard
-// Example:
-// if (!isset($_SESSION['admin_logged_in'])) {
-//     header("Location: login.php");
-//     exit();
-// }
+// Implement authentication to ensure only authorized users can access the dashboard
+/* if (!isset($_SESSION['admin_logged_in'])) {
+     header("Location: login.php");
+     exit();
+} */
 
 session_start();
 include "db_connection.php"; // Include the database connection
@@ -22,7 +21,7 @@ $recent_orders_query = "
     LEFT JOIN order_items ON orders.id = order_items.order_id
     GROUP BY orders.id
     ORDER BY orders.id DESC
-    LIMIT 2"; // Fetch the 5 most recent orders
+    LIMIT 2";
 
 $recent_orders_result = $conn->query($recent_orders_query);
 $recent_orders = [];

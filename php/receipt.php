@@ -56,7 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Assuming you have user authentication and a user ID
-        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+        $user_id = isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] ? $_SESSION['user_id'] : null;
+
 
         // Bind parameters
         $stmt->bind_param(
@@ -78,16 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Get the last inserted order's ID
         $last_order_id = $conn->insert_id;
 
-        // **Modify the SQL statement to include 'customizations'**
-        // Prepare the SQL statement for inserting into 'order_items' table
-        // Added 'customizations' field to the INSERT statement
         $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`, `customizations`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt_item) {
             throw new Exception("Prepare statement for order_items failed: " . $conn->error);
         }
 
-        // **Update the bind_param to match the number of parameters**
-        // 's' for string (customizations)
         $stmt_item->bind_param(
             "isidds",
             $last_order_id,    // i: integer

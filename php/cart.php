@@ -5,7 +5,7 @@ $current_step = 1;
 // Function to check if the user is logged in
 function isUserLoggedIn() {
     // Adjust this function based on how you manage user sessions
-    return isset($_SESSION['user_id']); // Assuming 'user_id' is set upon login
+    return isset($_SESSION['userloggedin']); // Assuming 'user_id' is set upon login
 }
 
 // Handle quantity updates and item deletions
