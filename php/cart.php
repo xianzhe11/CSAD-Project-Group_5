@@ -193,6 +193,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php include 'navbar.php'; ?>
     <?php include 'progressBar.php'; ?>
+    <?php $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];?>
 
     <div class="container cart-container">
         <?php if (isset($_SESSION['cart']) && count($_SESSION['cart']) > 0): ?>
