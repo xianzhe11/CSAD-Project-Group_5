@@ -26,7 +26,8 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
             <li><a href="admin_menu.php" class="<?php echo ($current_page == 'admin_menu') ? 'active' : ''; ?>" title="Menu"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Menu</a></li>
             <li><a href="admin_reviews.php" class="<?php echo ($current_page == 'admin_reviews') ? 'active' : ''; ?>" title="Reviews"><i class="fa-solid fa-comments" aria-hidden="true"></i>Reviews</a></li>
             <li><a href="admin_reservation.php"  class="<?php echo ($current_page == 'admin_reservation') ? 'active' : ''; ?>"title="Reservation"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservation</a></li>
-            <li><a href="admin_settings.php" class="<?php echo ($current_page == 'admin_settings') ? 'active' : ''; ?>" title="Settings"><i class="fa-solid fa-gear" aria-hidden="true"></i>Settings</a></li>
+            <li><a href="admin_customers.php" class="<?php echo ($current_page == 'admin_customers') ? 'active' : ''; ?>" title="Customers"><i class="fa-solid fa-person" aria-hidden="true"></i>Customers</a></li>
+            <li><a href="admin_live_table.php" class="<?php echo ($current_page == 'admin_live_table') ? 'active' : ''; ?>" title="Live_Table"><i class="fa-solid fa-table" aria-hidden="true"></i>Live Table</a></li>
         </ul>
 
         <!-- Add Menu Box -->
