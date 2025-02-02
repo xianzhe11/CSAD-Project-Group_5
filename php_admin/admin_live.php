@@ -177,16 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_id'])) {
 
 <div class="container">
     <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>Burger Haven</h2>
-        <nav>
-            <ul>
-                <li><a href="#" onclick="showSection('reservation-list')">Table Reservations</a></li>
-                <li><a href="#" onclick="showSection('manage-tables')">Manage Tables</a></li>
-            </ul>
-
-        </nav>
-    </aside>
+        <?php include "admin_navbar.php"?>
 
     <!-- Main Content -->
     <main class="main-content">

@@ -11,7 +11,7 @@ $sql = "SELECT orders.*, users.username FROM orders LEFT JOIN users ON orders.us
 $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">

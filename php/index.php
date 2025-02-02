@@ -96,7 +96,6 @@ $conn->close();
 
 <!-- Reservation Section -->
 <<?php
-session_start();
 $rsvmsg = isset($_SESSION['rsvmsg']) ? $_SESSION['rsvmsg'] : ""; // Retrieve message from session
 unset($_SESSION['rsvmsg']); // Clear the message after displaying
 ?>

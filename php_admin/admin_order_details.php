@@ -123,7 +123,7 @@ $conn->close();
             <div class="row" style="margin-left: 20px;">
                 <div class="col-md-6 mb-3">
                     <p><strong>User:</strong> <?php echo !empty($order['username']) ? htmlspecialchars($order['username']) : 'Guest'; ?></p>
-                    <p><strong>Order Type:</strong> <?php echo ($order['order_type'] === 'dine-in') ? 'Dine In' : 'Takeaway'; ?></p>
+                    <p><strong>Order Type:</strong> <?php echo ($order['order_type'] === 'dine_in') ? 'Dine-In' : 'Takeaway'; ?></p>
                     <?php if ($order['order_type'] === 'dine_in' && !empty($order['table_number'])): ?>
                         <p><strong>Table Number:</strong> <?php echo htmlspecialchars($order['table_number']); ?></p>
                     <?php elseif ($order['order_type'] === 'takeaway' && !empty($order['address'])): ?>
