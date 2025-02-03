@@ -5,7 +5,7 @@ $current_step = 1;
 // Function to check if the user is logged in
 function isUserLoggedIn() {
     // Adjust this function based on how you manage user sessions
-    return isset($_SESSION['user_id']); // Assuming 'user_id' is set upon login
+    return isset($_SESSION['userloggedin']); // Assuming 'user_id' is set upon login
 }
 
 // Handle quantity updates and item deletions
@@ -53,146 +53,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="../css/progressBar.css" rel='stylesheet'>
     <link href="../css/cart.css" rel='stylesheet'>
-    <style>
-        /* Custom CSS for Cart Page */
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
-        .cart-container {
-            padding: 40px 20px;
-        }
-        .cart-item {
-            background-color: #F05D5F;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 40px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .price-section {
-            width: 80px;
-            text-align: center;
-        }
-        .price {
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-        .details {
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-        .details img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-right: 20px;
-        }
-        .info {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .info-left {
-            flex: 1;
-        }
-        .info-left .name {
-            font-size: 1.1em;
-            font-weight: 600;
-        }
-        .info-left .description {
-            font-size: 0.95em;
-            color: #555;
-        }
-        .info-right {
-            width: 200px;
-        }
-        .customizations {
-            font-size: 0.9em;
-            color: #fff;
-        }
-        .customizations ul {
-            list-style-type: disc;
-            padding-left: 20px;
-            margin: 5px 0 0 0;
-        }
-        .quantity-section {
-            width: 120px;
-            text-align: center;
-        }
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quantity-controls button {
-            width: 30px;
-            height: 30px;
-            padding: 0;
-            text-align: center;
-        }
-        .delete-form {
-            margin-left: 20px;
-        }
-        .delete-button {
-            background: none;
-            border: none;
-            color: #dc3545;
-            cursor: pointer;
-            font-size: 1.2em;
-        }
-        .delete-button:hover {
-            color: #a71d2a;
-        }
-        .pay-button-container {
-            text-align: right;
-            margin-top: 30px;
-        }
-        .pay-button {
-            background-color: #28a745;
-            color: #ffffff;
-            border: none;
-            border-radius: 30px;
-            padding: 15px 30px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .pay-button:hover {
-            background-color: #218838;
-        }
-        @media (max-width: 768px) {
-            .info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .info-right {
-                width: 100%;
-                margin-top: 10px;
-            }
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .delete-form {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-            .pay-button-container {
-                text-align: center;
-            }
-        }
-    </style>
 </head>
 <body>
-
-    <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
     <?php include 'progressBar.php'; ?>
     <?php $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];?>
 
@@ -202,8 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $total = 0;
                 foreach ($_SESSION['cart'] as $item):
                     $itemTotal = $item['price'] * $item['quantity'];
-                    $total += $itemTotal;
-            ?>
+                    $total += $itemTotal; ?>
                 <div class="cart-item">
                     <div class="price-section">
                         <div class="price">SGD <?= number_format($item['price'], 2) ?></div>
@@ -218,9 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                             </div>
                             <?php if (!empty($item['customizations'])): ?>
-                                <?php
-                                    $customizations = json_decode($item['customizations'], true);
-                                ?>
+                                <?php $customizations = json_decode($item['customizations'], true);?>
                                 <div class="info-right">
                                     <div class="customizations">
                                         <strong>Customizations:</strong>

@@ -2,6 +2,20 @@
 
 // Get the current page's filename
 $currentPage = basename($_SERVER['PHP_SELF']);
+
+
+if (session_status() === PHP_SESSION_NONE) { // Start the session if it hasn't been started already
+  session_start();
+}
+
+$totalItems = 0;
+
+if (isset($_SESSION['cart'])) {
+  //Sum the quantities of each item 
+  foreach ($_SESSION['cart'] as $item) {
+      $totalItems += $item['quantity'];
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +79,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
       <!-- (cart + login button) -->
       <div class="right-section">
-        <a href="cart.php" class="cart-icon" title="Cart" data-count="1"><i class="fas fa-shopping-cart"></i></a>
+        <a href="cart.php" class="cart-icon" title="Cart" data-count="<?= htmlspecialchars($totalItems) ?>"><i class="fas fa-shopping-cart"></i></a>
         <a href="login.php" class="login-btn">Login</a>
       </div>
     </div>

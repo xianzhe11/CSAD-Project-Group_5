@@ -21,19 +21,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
+    $stmt = $conn->prepare("SELECT id, email, pass FROM users WHERE email = ?");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
     echo '<div class="error1"></div>';
     echo '<div class="error2">s</div>';
     if ($result->num_rows == 1) {
-        $sql = "SELECT pass FROM users WHERE email='$email'";
-        $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $hashed_password = $row['pass'];
+        
         echo '<div class="error1"></div>';
         if(password_verify($pass, $hashed_password)){
        
           $_SESSION['user_email'] = $email; // user exists so set session
+          $_SESSION['user_id'] = $row['id'];
+          $_SESSION['userloggedin'] = true;
 
           if (isset($_SESSION['prev_page'])) {
             $prevPage = $_SESSION['prev_page'];
@@ -54,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<div class="error1">Credentials are Wrong. Please check your Credentials</div>'; //wrong creds
         echo '<div class="error2">Credentials are Wrong. Please check your Credentials</div>';
     }
-
+    $stmt->close();
     $conn->close();
 }
 ?>

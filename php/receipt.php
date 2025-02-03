@@ -7,12 +7,6 @@ require_once 'db_connection.php'; // Ensure this path is correct
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Validate CSRF Token (Optional but Recommended)
-    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-        echo 'Invalid CSRF token.';
-        exit();
-    }
-
     // Retrieve and sanitize payment method
     $payment_method = isset($_POST['payment_method']) ? trim($_POST['payment_method']) : 'N/A';
 
@@ -22,6 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Retrieve cart items from session
     $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+
+    // Retrieve order type
+    $order_type = isset($_POST['order_type']) ? trim($_POST['order_type']) : null;
+
+    // Set table_number and address based on order_type
+    if ($order_type === 'dine_in') {
+        $table_number = isset($_POST['table_number']) && trim($_POST['table_number']) !== '' ? htmlspecialchars(trim($_POST['table_number'])) : NULL;
+        $address = NULL;
+    } elseif ($order_type === 'takeaway') {
+        $address = isset($_POST['address']) && trim($_POST['address']) !== '' ? htmlspecialchars(trim($_POST['address'])) : NULL;
+        $table_number = NULL;
+    }
 
     // Check if cart is not empty
     if (empty($cart_items)) {
@@ -37,29 +43,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Generate a unique order ID (e.g., using timestamp and random number)
     $order_id = 'ORD' . time() . rand(1000, 9999);
-
+    
     // Begin Transaction
     $conn->begin_transaction();
 
     try {
         // Prepare the SQL statement for inserting into 'orders' table
-        $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `table_number`, `address`, `total_price`) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `order_type`, `table_number`, `address`, `total_price`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $conn->error);
         }
 
         // Assuming you have user authentication and a user ID
-        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+        $user_id = isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] ? $_SESSION['user_id'] : null;
+
 
         // Bind parameters
         $stmt->bind_param(
-            "sisssd",
-            $order_id,       // s: string
-            $user_id,        // i: integer (nullable)
-            $payment_method, // s: string
-            $table_number,   // s: string (nullable)
-            $address,        // s: string
-            $total_price     // d: double
+            "sissssd",
+            $order_id, // s: string
+            $user_id,         // i: integer (nullable)
+            $payment_method,  // s: string
+            $order_type,      // s: string
+            $table_number,    // s: string (nullable)
+            $address,         // s: string (nullable)
+            $total_price      // d: double
         );
 
         // Execute the statement
@@ -70,16 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Get the last inserted order's ID
         $last_order_id = $conn->insert_id;
 
-        // **Modify the SQL statement to include 'customizations'**
-        // Prepare the SQL statement for inserting into 'order_items' table
-        // Added 'customizations' field to the INSERT statement
         $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`, `customizations`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt_item) {
             throw new Exception("Prepare statement for order_items failed: " . $conn->error);
         }
 
-        // **Update the bind_param to match the number of parameters**
-        // 's' for string (customizations)
         $stmt_item->bind_param(
             "isidds",
             $last_order_id,    // i: integer
@@ -111,6 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['order'] = [
             'order_id'       => $order_id,
             'payment_method' => $payment_method,
+            'order_type'     => $order_type,
             'table_number'   => $table_number,
             'cart_items'     => $cart_items,
             'total_price'    => $total_price,
@@ -148,16 +153,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </head>
 <body>
-
-    <!-- Navbar (Optional) -->
-    <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+      include 'navbar_loggedIn.php';
+    } else {
+      include 'navbar.php';
+    }
+    ?>
 
     <!-- Receipt Container -->
     <div class="receipt-container">
-        <!-- Big Tick Icon -->
-        <i class="fas fa-check-circle tick"></i>
-
-        <!-- Success Message -->
+        <i class="fas fa-check-circle tick"></i> <!-- Tick Icon -->
         <div class="success-message">
             Your order was successfully placed!
         </div>
@@ -167,8 +173,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h4>Order Summary</h4>
             <p><strong>Order ID:</strong> <?php echo htmlspecialchars($_SESSION['order']['order_id']); ?></p>
             <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($_SESSION['order']['payment_method']); ?></p>
-            <p><strong>Table Number:</strong> <?php if($table_number != null) echo htmlspecialchars($_SESSION['order']['table_number']); ?></p>
-            <p><strong>Address:</strong> <?php if($address != null) echo htmlspecialchars($_SESSION['order']['address']); ?></p>
+            <p><strong>Order Type:</strong> <?php echo htmlspecialchars(str_replace('_', ' ', ucfirst($_SESSION['order']['order_type']))); ?></p>
+            <?php if ($_SESSION['order']['order_type'] === 'dine_in' && !empty($_SESSION['order']['table_number'])): ?>
+                <p><strong>Table Number:</strong> <?php echo htmlspecialchars($_SESSION['order']['table_number']); ?></p>
+            <?php endif; ?>
+            <?php if ($_SESSION['order']['order_type'] === 'takeaway' && !empty($_SESSION['order']['address'])): ?>
+                <p><strong>Address:</strong> <?php echo htmlspecialchars($_SESSION['order']['address']); ?></p>
+            <?php endif; ?>
 
             <div class="order-items">
                 <strong>Order Items:</strong>

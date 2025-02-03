@@ -23,12 +23,11 @@ $conn->close();
 </head>
 <body>
   <?php
-  /*if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
-    include 'nav-logged.php';
+  if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+    include 'navbar_loggedIn.php';
   } else {
     include 'navbar.php';
-  }*/
-  include 'navbar.php';
+  }
   ?>
 
 <div class="main" id="home">
@@ -93,6 +92,67 @@ $conn->close();
     <p class="EnjoyFood">Enjoy Delicious Food in Limited time</p>
     <a href="menu.php" class="btn-common-white page-scroll">Order Now</a>
   </div>
+</section>
+
+<!-- Reservation Section -->
+<<?php
+$rsvmsg = isset($_SESSION['rsvmsg']) ? $_SESSION['rsvmsg'] : ""; // Retrieve message from session
+unset($_SESSION['rsvmsg']); // Clear the message after displaying
+?>
+
+<section class="reserve-section" id="reservation">
+  <div class="container text-center">
+    <h1 class="heading_reserv"><br><span style="color:red">TABLE</span> <span>RESERVATION</span></h1>
+    <p class="ReservFood">Book your dining experience with us here</p>
+
+    <!-- Display reservation message -->
+    <?php if (!empty($rsvmsg)) : ?>
+      <p style="color: green; font-weight: bold;"><?php echo $rsvmsg; ?></p>
+    <?php endif; ?>
+
+    <div class="table">
+      <div class="reservation row">
+        <div class="reservation-image">
+          <img src="../images/table.jpg">
+        </div>
+        <div class="reservation-section">
+          <h1 style="background-color: #feead4;">Reserve Here</h1><br><br>
+          <form id="reservation-form" action="reservation.php" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Contact:</label>
+                <input type="tel" id="contact" name="contact" required>
+              </div>
+              <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date_resv" name="reservedDate" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="reservedTime">Time:</label>
+                <input type="time" id="time_resv" name="reservedTime" required>
+              </div>
+              <div class="form-group">
+                <label for="guests">Number of Guests:</label>
+                <input type="number" id="guests" name="noOfGuests" required min="1">
+              </div>
+            </div>
+            <button type="submit" value="submit">Reserve Now</button>
+          </form>
+        </div>
+      </div>
+    </div>
 </section>
 
 <!-- About Us Section -->
@@ -179,7 +239,7 @@ $conn->close();
             <button type="submit">Subscribe</button>
           </form><br>
           <h4>Admin Dashboard</h4>
-          <a style="color: white;" href="admin_navbar.php">Dashboard</a>
+          <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
         </div>
       </div>
       <div class="footer-bottom">
