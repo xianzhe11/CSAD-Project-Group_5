@@ -62,6 +62,8 @@ if (empty($_SESSION['csrf_token'])) {
                 <div class="payment-option">
                     <input type="radio" id="creditCard" name="payment_method" value="credit_card" required>
                     <label for="creditCard">Credit Card</label>
+                    <img src="../images/mastercard.png" alt="mastercard" style="width:40px; height:40px; margin-left: 63%;">
+                    <img src="../images/visa.png" alt="visa" style="width:40px; height:40px;">
                 </div>
 
                 <!-- Credit Card Details (Inside Form) -->
@@ -75,14 +77,17 @@ if (empty($_SESSION['csrf_token'])) {
                 <div class="payment-option">
                     <input type="radio" id="grabPay" name="payment_method" value="grabpay">
                     <label for="grabPay">GrabPay</label>
+                    <img src="../images/grabpay.png" alt="GrabPay" style="width:100px; height:40px; margin-left: 66%;">
                 </div>
                 <div class="payment-option">
                     <input type="radio" id="paypal" name="payment_method" value="paypal">
-                    <label for="paypal">PayPal</label>
+                    <label for="paypal"></i>PayPal</label>
+                    <img src="../images/paypal.png" alt="paypal" style="width:40px; height:40px; margin-left: 72%;">
                 </div>
                 <div class="payment-option">
                     <input type="radio" id="paynow" name="payment_method" value="paynow">
                     <label for="paynow">PayNow</label>
+                    <img src="../images/paynow.png" alt="PayNow" style="width:100px; height:60px; margin-left: 67%;">
                 </div>
             
                 <!-- Google Pay Button -->
