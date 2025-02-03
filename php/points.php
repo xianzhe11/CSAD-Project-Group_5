@@ -30,18 +30,33 @@ $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
     <div class = "pointtext" >Current Points</div>
     <div class="container">
         <div class="slider">
-            <img src = "../images/Limited.png" alt= "third" id = "image"/>
-            <img src = "../images/cheeseredeem.png" alt= "third" id  = "image"/>
-            <img src = "../images/cheeseredeem.png" alt= "third" id = "image"/>
-            <img src = "../food_images/drink.png" alt= "third" id = "image"/>
-            <img src = "../food_images/drink.png" alt= "third" id  = "image"/>
-            <img src = "../food_images/drink.png" alt= "third" id = "image"/>
-            <img src = "../food_images/drink.png" alt= "third" id  = "image"/>
+            <img src = "../images/Limited.png" alt= "third" class = "image1" />
+            <img src = "../images/pastaredeem.png" alt= "third" class = "image1"/>
+            <img src = "../images/cheeseredeem.png" alt= "third" class  = "image1"/>
+            <img src = "../images/chickenredeem.png" alt= "third" class = "image1"/>
+            <img src = "../food_images/drink.png" a lt= "third" class  = "image1"/>
+            <img src = "../food_images/drink.png" alt= "third" class = "image1"/>
+            <img src = "../food_images/drink.png" alt= "third" class  = "image1"/>
         </div>
     </div>  
+    <div id="popup" class="popup">
+  <div class="popup-content">
+    <img id="popupimage" src="" alt="image">
+    <p>Are you sure you want to redeem this product?</p>
+    <button id="confirmBtn">Confirm</button>
+    <button id="cancelBtn">Cancel</button>
+    <div class = "userpoint">Your Current Points are</div>
+    <div class = "costpoint">This redemption costs</div>
+    <div class = "pointafter">Your points after redemption</div>
+    <div class = "point1"></div>
+    <div class = "point2"></div>
+    <div class = "point3"></div>
+  </div>
+</div>
   
 
 </body>
+
 <script>
   const container = document.querySelector('.slider');
 
@@ -50,6 +65,29 @@ $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
     event.preventDefault();
     // Scroll horizontally.
     container.scrollLeft += event.deltaY;
+  });
+
+  const popup = document.getElementById('popup');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const popupimage = document.getElementById('popupimage');
+  let selectedImage;
+
+  container.addEventListener('click', function(event) {
+    if (event.target.classList.contains('image1')) {
+      selectedImage = event.target;
+      popupimage.src = selectedImage.src;
+      popup.style.display = 'block';
+    }
+  });
+
+  confirmBtn.addEventListener('click', function() {
+    //add stuff
+    popup.style.display = 'none';
+  });
+
+  cancelBtn.addEventListener('click', function() {
+    popup.style.display = 'none';
   });
 </script>
 </html>
