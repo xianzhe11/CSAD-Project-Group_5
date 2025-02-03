@@ -10,7 +10,11 @@
 <body>
 <?php
 session_start();
-include("navbar.php");
+if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+    include 'navbar_loggedIn.php';
+  } else {
+    include 'navbar.php';
+  }
 $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 ?>
     <div class= "wave">
@@ -25,12 +29,27 @@ $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
     </div>
     <div class = "pointtext" >Current Points</div>
     <div class="container">
-        <img src = "../food_images/drink.png" alt= "third" style = "--pos:3" id = "image"/>
-        <img src = "../food_images/drink.png" alt= "third" style = "--pos:3" id = "image2"/>
-        <img src = "../food_images/drink.png" alt= "third" style = "--pos:3" id = "image3"/>
-        <img src = "../food_images/drink.png" alt= "third" style = "--pos:3" id = "image4"/>
-    </div>
-
+        <div class="slider">
+            <img src = "../images/Limited.png" alt= "third" id = "image"/>
+            <img src = "../images/cheeseredeem.png" alt= "third" id  = "image"/>
+            <img src = "../images/cheeseredeem.png" alt= "third" id = "image"/>
+            <img src = "../food_images/drink.png" alt= "third" id = "image"/>
+            <img src = "../food_images/drink.png" alt= "third" id  = "image"/>
+            <img src = "../food_images/drink.png" alt= "third" id = "image"/>
+            <img src = "../food_images/drink.png" alt= "third" id  = "image"/>
+        </div>
+    </div>  
+  
 
 </body>
+<script>
+  const container = document.querySelector('.slider');
+
+  container.addEventListener('wheel', function(event) {
+    // Prevent vertical scrolling
+    event.preventDefault();
+    // Scroll horizontally.
+    container.scrollLeft += event.deltaY;
+  });
+</script>
 </html>
