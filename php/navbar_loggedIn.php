@@ -117,6 +117,7 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
             <li><a href="menu.php?category=pizza"><i class="fas fa-pizza-slice"></i> Pizza</a></li>
             <li><a href="menu.php?category=burgers"><i class="fas fa-hamburger"></i> Burgers</a></li>
             <li><a href="menu.php?category=beverages"><i class="fas fa-coffee"></i> Beverages</a></li>
+            <li><a href="menu.php?category=seasonal"><i class="fas fa-snowflake"></i></i> Seasonal</a></li>
           </ul>
         </li>
         <li>
@@ -164,3 +165,4 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
   <script src="../script/navScript.js"></script>
 </body>
 </html>
+
