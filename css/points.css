@@ -1,0 +1,159 @@
+*{
+    padding :0 ;
+    margin : 0;
+    box-sizing: border-box;
+}
+:root {
+    --width: 200px;
+    --height : 250px;
+  }
+body {
+    width: 100%;
+    height: 50px; 
+    background-color: #feead4;
+  }
+.wave {
+    width : 70%;
+    right:  29%;
+    margin: 0; 
+    background : #feead4;
+    position: relative; 
+    rotate : 90deg;
+}
+.wave2 {
+    width : 55%;
+    left:62%;
+    height: 120%;
+    margin: 0; 
+    background : #feead4;
+    position: relative; 
+    rotate : 270deg;
+}
+.pointtext{
+    background : #FEFDE9 ; 
+    margin-left : 20%;
+    margin-top: -15%;
+    width: 60%;
+    height: 50px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #1234d9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+}
+.container {
+    display: fixed;
+    height: 250px;
+    width: 1000px;
+    margin-top: 5%;
+    margin-left: 22.5%;
+    background: #feead4;
+    max-width: 900px;
+    border-radius: 10px;
+    overflow: hidden;
+    touch-action: pan-y;
+
+
+  }
+.slider {
+    display: flex;
+    width: 100%;
+    height: 250px;
+    overflow-x: auto; /* horizontal scrolling */
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory; /* smooth scrolling */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /*Firefox */
+    -ms-overflow-style: none; /* For ie, edge */
+    gap: 20px; /* images space */
+}
+
+.slider img {
+    position : relative ;
+    flex-shrink: 0; /* no image shrink for overlflow */
+    width: 300px;
+    height: 225px; 
+    border-radius: 20px;
+    left: 2%;
+    overflow: hidden;
+    align-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.slider::-webkit-scrollbar {
+    display: none; /* hide scrollbar for Chrome, safari */
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+.popup-content {
+    background-color: #feead4;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 525px;
+    border-radius: 10px;
+    height: 650px;
+    text-align: center;
+  }
+.popup-content img {
+    width: 420px;
+    height: 260px; 
+    border-radius: 20px;
+    align-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.popup-content p {
+    width: 108%;
+    max-width: 525px;
+    height: 50px; 
+    margin: 0;
+    margin-left: -4%;
+    position: relative;
+    top: 39%;
+    align-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    background-color: #FEFDE9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+#confirmBtn{
+    background-color: rgb(52, 165, 52);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    position: relative;
+    top: 41%;
+}
+#cancelBtn{
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    position: relative; 
+    top: 41%;
+}
+.userpoint{
+    position: relative;
+    left:-20%;
+    top:-15%;
+}
+.costpoint{
+    position: relative;
+    left:-20.5%;
+    top:-7%;
+}
+.pointafter{
+    position: relative;
+    left:-15%;
+    top:2%;
+}
