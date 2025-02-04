@@ -39,21 +39,19 @@ body {
     border-radius: 15px;
     border: 1px solid #1234d9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    align-content:center;
 
 }
 .container {
     display: fixed;
     height: 250px;
-    width: 1000px;
-    margin-top: 5%;
+    width: 900px;
+    margin-top: 3%;
     margin-left: 22.5%;
     background: #feead4;
-    max-width: 900px;
     border-radius: 10px;
     overflow: hidden;
     touch-action: pan-y;
-
-
   }
 .slider {
     display: flex;
@@ -78,6 +76,8 @@ body {
     overflow: hidden;
     align-self: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
 }
 
 .slider::-webkit-scrollbar {
@@ -134,6 +134,8 @@ body {
     border-radius: 12px;
     position: relative;
     top: 41%;
+    cursor: pointer;
+    
 }
 #cancelBtn{
     width: 100px;
@@ -141,6 +143,7 @@ body {
     border-radius: 12px;
     position: relative; 
     top: 41%;
+    cursor: pointer;
 }
 .userpoint{
     position: relative;
@@ -149,11 +152,109 @@ body {
 }
 .costpoint{
     position: relative;
-    left:-20.5%;
+    left:-12.5%;
     top:-7%;
 }
 .pointafter{
     position: relative;
     left:-15%;
     top:2%;
+}
+#point1{
+    position: relative;
+    top:-26.5%;
+    left:30%;
+    font-weight: bold;
+}   
+#point2{
+    position: relative;
+    top:-18.5%;
+    left:30%;
+    font-weight: bold;
+}  
+#point3{
+    position: relative;
+    top:-9.5%;
+    left:30%;
+    font-weight: bold;
+}    
+.cont1{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont1 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label1{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc1{
+    position: relative;
+    width: 430px;
+    left: 23%;
+    top:-75%;
+}
+#redeem1{
+    position: relative;
+    left: 80%;
+    top:-190px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.cont2{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont2 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label2{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc2{
+    position: relative;
+    width: 435px;
+    left: 23%;
+    top:-85%;
+}
+#redeem2{
+    position: relative;
+    left: 80%;
+    top:-215px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
 }
