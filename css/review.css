@@ -4,11 +4,17 @@ body {
     margin: 0;
     padding: 0;
 }
+input {
+    background-color: #feead4 !important;
+}
+textarea {
+    background-color: #feead4 !important;
+}
 .review-container {
     max-width: 900px;
     margin: 50px auto;
     padding: 30px;
-    background-color: #ffffff;
+    background-color: #ffe4c2;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
@@ -36,7 +42,7 @@ body {
     color: #ffc107;
 }
 .review-item {
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #fff;
     padding: 20px 0;
 }
 .review-item:last-child {

@@ -70,6 +70,11 @@ body {
     background-color: #ffe4c2;
 }
 
+
+.modal-content {
+    background-color: #feead4 !important;
+}
+
 .menu-item {
     margin-bottom: 20px; /* Adds space between rows */
 }
