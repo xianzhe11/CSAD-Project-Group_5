@@ -44,11 +44,10 @@ body {
 .container {
     display: fixed;
     height: 250px;
-    width: 1000px;
-    margin-top: 5%;
+    width: 55%;
+    margin-top: 2%;
     margin-left: 22.5%;
     background: #feead4;
-    max-width: 900px;
     border-radius: 10px;
     overflow: hidden;
     touch-action: pan-y;
