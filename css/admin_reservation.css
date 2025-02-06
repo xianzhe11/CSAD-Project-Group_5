@@ -1,0 +1,129 @@
+/* Reset default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+/* Page Heading */
+h2, h1 {
+    font-family: "Lobster", cursive; /* Use double quotes or escape single quotes */
+    margin-bottom: 20px;
+    color: #B90743;
+}
+
+/* Full-Width Main Container */
+.container {
+    display: flex;
+    width: 100vw; /* Force full width */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent unwanted horizontal scrolling */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #B90743;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f8f9fa;
+    margin: 0;
+    width: 100%; /* Ensure full width */
+}
+
+/* Reservation Table */
+.reservation-list {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.reservation-list h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.reservation-table thead {
+    background-color: #e93e68 !important;
+    color: #ffffff !important;
+    font-size: 0.85rem; 
+}
+.reservation-table th, .reservation-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.delete-btn:hover {
+    background: darkred;
+}
+
+.no-reservations {
+    color: red;
+    padding: 10px;
+    background: #ffeeee;
+}
+.refresh-container {
+    margin-left: auto; /* Pushes the button to the right */
+}
+
+/*Button Refresh */
+.btn-refresh {
+    background-color: #e93e68 !important; /* Custom color */
+    color: white !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 15px !important;
+    transition: background-color 0.3s ease !important;
+    margin-bottom: 15px;
+    background-color: #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-refresh i {
+    margin-right: 5px !important;
+}
+
+.btn-refresh {
+    background-color: #e93e68 !important; /* Custom color */
+    color: white !important;
+    border: none !important;
+    padding: 6px 12px !important;
+    font-size: 0.85rem !important;
+    border-radius: 15px !important;
+    transition: background-color 0.3s ease !important;
+}
+/* Hover Effect */
+.btn-refresh:hover {
+    background-color: #c12f57 !important; /* Slightly darker on hover */
+    color: #ffffff !important;
+    cursor: pointer !important;
+}
+.custom-header {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+

@@ -71,6 +71,17 @@ if ($review_result && $review_result->num_rows > 0) {
     $total_reviews = 0;
 }
 
+// Fetch total reservations
+$reservation_count_query = "SELECT COUNT(*) as total_reservation FROM reservation";
+$reservation_result = $conn->query($reservation_count_query);
+
+if ($reservation_result && $reservation_result->num_rows > 0) {
+    $reservation_row = $reservation_result->fetch_assoc();
+    $total_reservation = $reservation_row['total_reservation'];
+} else {
+    $total_reservation = 0;
+}
+
 // Fetch sales data for the current year, aggregated by month
 $sales_data_query = "
     SELECT 
@@ -200,7 +211,7 @@ $conn->close(); // Close the connection
                 </div>
                 <div class="card-info">
                     <h3>Reservations</h3>
-                    <p>60</p>
+                    <p><?php echo htmlspecialchars($total_reservation); ?></p>
                 </div>
             </div>
         </div>
