@@ -240,6 +240,8 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
           </form><br>
           <h4>Admin Dashboard</h4>
           <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
+          <h4>Join Queue</h4>
+          <a style="color: white;" href="queue-join.php">Queue</a>
         </div>
       </div>
       <div class="footer-bottom">
