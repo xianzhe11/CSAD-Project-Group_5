@@ -28,6 +28,7 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
             <li><a href="admin_reservation.php" class="<?php echo ($current_page == 'admin_reservation') ? 'active' : ''; ?>"title="Reservation"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservation</a></li>
             <li><a href="admin_table.php" class="<?php echo ($current_page == 'admin_table') ? 'active' : ''; ?>" title="Tables"><i class="fa-solid fa-table" aria-hidden="true"></i>Manage Tables</a></li>
             <li><a href="admin_users.php" class="<?php echo ($current_page == 'admin_users') ? 'active' : ''; ?>" title="Customers"><i class="fa-solid fa-person" aria-hidden="true"></i>Customers</a></li>
+            <li><a href="admin_queue.php" class="<?php echo ($current_page == 'admin_queue') ? 'active' : ''; ?>" title="Queue"><i class="fa-solid fa-list" aria-hidden="true"></i>Queue</a></li>
         </ul>
 
         <!-- Add Menu Box -->

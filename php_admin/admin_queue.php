@@ -8,14 +8,14 @@ $queueRecords = getAllQueueRecords();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,500&display=swap" rel="stylesheet" />
     <title>Admin Panel</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             background-size: cover;
             color: white;
-            text-align: center;
-            padding: 20px;
         }
 
         .container {
@@ -24,14 +24,17 @@ $queueRecords = getAllQueueRecords();
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            display: inline-block;
             width: 90%;
-            max-width: 1000px;
+            /*max-width: 1000px;  */
+            margin: 20px auto;
+            text-align: center;
         }
 
         h1 {
             font-size: 28px;
             margin-bottom: 15px;
+            font-family: 'Lobster', cursive;
+            color: #b90743;;
         }
 
         table {
@@ -47,7 +50,7 @@ $queueRecords = getAllQueueRecords();
         }
 
         th {
-            background: #5a3d8a;
+            background: #e93e68;
             color: white;
         }
 

@@ -77,7 +77,7 @@ include 'server-queue.php';
 <body>
     <div class="container">
         <h1>Join the Queue</h1>      
-        <form method="POST" action="server.php">
+        <form method="POST" action="server-queue.php">
             <label for="name">Name:</label>
             <input type="text" name="name" required>
 
@@ -90,7 +90,7 @@ include 'server-queue.php';
             <button type="submit" name="submit">Join Queue</button>
         </form>
 
-        <button class="admin-btn" onclick="window.location.href='admin.php'">Admin Panel</button>
+        <!--<button class="admin-btn" onclick="window.location.href='admin.php'">Admin Panel</button>-->
     </div>
 </body>
 </html>
