@@ -25,9 +25,9 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
             <li><a href="admin_orders.php" class="<?php echo ($current_page == 'admin_orders') ? 'active' : ''; ?>" title="Orders"><i class="fa-solid fa-shopping-cart" aria-hidden="true"></i>Orders</a></li>
             <li><a href="admin_menu.php" class="<?php echo ($current_page == 'admin_menu') ? 'active' : ''; ?>" title="Menu"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Menu</a></li>
             <li><a href="admin_reviews.php" class="<?php echo ($current_page == 'admin_reviews') ? 'active' : ''; ?>" title="Reviews"><i class="fa-solid fa-comments" aria-hidden="true"></i>Reviews</a></li>
-            <li><a href="admin_live.php" onclick="showSection('reservation-list')" class="<?php echo ($current_page == 'admin_live') ? 'active' : ''; ?>"title="Reservation"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservation</a></li>
-            <li><a href="#" onclick="showSection('manage-tables')" class="<?php echo ($current_page == 'admin_live_table') ? 'active' : ''; ?>" title="Live_Table"><i class="fa-solid fa-table" aria-hidden="true"></i>Manage Table</a></li>
-            <li><a href="admin_customers.php" class="<?php echo ($current_page == 'admin_customers') ? 'active' : ''; ?>" title="Customers"><i class="fa-solid fa-person" aria-hidden="true"></i>Customers</a></li>
+            <li><a href="admin_reservation.php" class="<?php echo ($current_page == 'admin_reservation') ? 'active' : ''; ?>"title="Reservation"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>Reservation</a></li>
+            <li><a href="admin_table.php" class="<?php echo ($current_page == 'admin_table') ? 'active' : ''; ?>" title="Tables"><i class="fa-solid fa-table" aria-hidden="true"></i>Manage Tables</a></li>
+            <li><a href="admin_users.php" class="<?php echo ($current_page == 'admin_users') ? 'active' : ''; ?>" title="Customers"><i class="fa-solid fa-person" aria-hidden="true"></i>Customers</a></li>
         </ul>
 
         <!-- Add Menu Box -->

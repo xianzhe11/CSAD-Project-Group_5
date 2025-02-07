@@ -67,8 +67,8 @@ $conn->close();
     <?php include "admin_navbar.php"?>
         <!-- Display Messages -->
 
-            <!-- Main Content Area -->
-    <div class="main-content container-fluid">
+        <!-- Main Content Area -->
+        <div class="main-content container-fluid">
         <h2>Manage Reviews</h2>
         <p>Approve or reject customer reviews.</p>
 
