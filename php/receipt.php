@@ -147,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'total_price'    => $total_price,
             'address'        => $address
         ];
-
+ 
         // Clear the cart
         unset($_SESSION['cart']);
     } catch (Exception $e) {

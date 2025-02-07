@@ -40,6 +40,11 @@ body {
     border: 1px solid #1234d9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     align-content:center;
+    background-image: url(../images/pizzabg.png);
+    background-blend-mode :lighten;
+    background-color: rgba(227, 183, 183, 0.6);
+    background-position: center; 
+   
 
 }
 .container {
@@ -47,14 +52,12 @@ body {
     height: 250px;
     width: 55%;
     margin-top: 2%;
-    width: 900px;
-    margin-top: 3%;
     margin-left: 22.5%;
     background: #feead4;
     border-radius: 10px;
     overflow: hidden;
     touch-action: pan-y;
-  }
+}
 .slider {
     display: flex;
     width: 100%;
@@ -124,7 +127,7 @@ body {
     position: relative;
     top: 39%;
     align-content: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS';
     font-weight: bold;
     background-color: #FEFDE9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -149,35 +152,35 @@ body {
 }
 .userpoint{
     position: relative;
-    left:-20%;
+    left:-15%;
     top:-15%;
 }
 .costpoint{
     position: relative;
-    left:-12.5%;
+    left:-16%;
     top:-7%;
 }
 .pointafter{
     position: relative;
-    left:-15%;
+    left:-10%;
     top:2%;
 }
-#point1{
+#currentPointsDisplay{
     position: relative;
     top:-26.5%;
-    left:30%;
+    left:29%;
     font-weight: bold;
 }   
-#point2{
+#redeemCostDisplay{
     position: relative;
     top:-18.5%;
-    left:30%;
+    left:31%;
     font-weight: bold;
 }  
-#point3{
+#pointsAfterDisplay{
     position: relative;
     top:-9.5%;
-    left:30%;
+    left:19%;
     font-weight: bold;
 }    
 .cont1{
@@ -260,3 +263,19 @@ body {
     border-radius: 12px;
     cursor: pointer;
 }
+.redeemed-box {
+    background-color: #d4edda;
+    color: #155724;           
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.2em;
+    animation: redeemed-box 0.8s;
+  }
+  @keyframes redeemed-box {
+    from {opacity: 0; }
+    to{opacity: 1; }
+   }
