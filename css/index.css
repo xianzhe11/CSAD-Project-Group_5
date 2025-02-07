@@ -614,24 +614,25 @@ footer {
 }
 
 /* Table reservation */
-.table-reservation{
+.table-reservation {
   padding-top: 50px;
   padding-bottom: 70px;
   background: #ffe4c2;
   padding-right: 50px;
-  }
-  .table {
-  margin: 0px 30px 0px 30px;
+}
+
+.table {
+  margin: 0px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  }
-  
-  .reservation {
+}
+
+.reservation {
   border: 4px solid #feead4;
-  }
-  
-  .reservation-section {
+}
+
+.reservation-section {
   background-color: #feead4cb;
   padding: 80px;
   border-left: 4px solid #feead4;
@@ -640,46 +641,45 @@ footer {
   /* Adjusted width to fit two fields per row */
   text-align: center;
   color: #000;
-  }
-  
-  #reservation-form {
-  background: none;
-  }
-  
+}
 
-  .form-row {
+/* Scoped form styles for the reservation section */
+.reservation-section form {
+  background: none;
+}
+
+.reservation-section .form-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 28px;
-  }
-  
-  .form-group {
+}
+
+.reservation-section .form-group {
   flex: 2;
   margin-right: 10px;
-  
-  }
-  
-  .form-group:last-child {
+}
+
+.reservation-section .form-group:last-child {
   margin-right: 0;
-  }
-  
-  form label {
+}
+
+.reservation-section form label {
   display: block;
   margin-bottom: 5px;
   text-align: left;
   font-weight: 450;
   font-size: 1rem;
-  }
-  
-  form input {
+}
+
+.reservation-section form input {
   width: 100%;
   padding: 8px;
   border: 1px solid black;
   border-radius: 4px;
   background: none;
-  }
-  
-  form button {
+}
+
+.reservation-section form button {
   width: 100%;
   padding: 10px;
   background-color: #fb4a36;
@@ -687,27 +687,26 @@ footer {
   color: #000;
   border-radius: 4px;
   cursor: pointer;
-  /* Space between rows and button */
-  }
-  form button:hover {
-    background-color: #f71900;
-  }
- 
-  @media screen and (max-width: 455px) {
-  .form-row {
-  flex-direction: column;
+}
+
+.reservation-section form button:hover {
+  background-color: #f71900;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 455px) {
+  .reservation-section .form-row {
+    flex-direction: column;
   }
   
-  .form-group {
-  margin-right: 0;
-  margin-bottom: 10px;
+  .reservation-section .form-group {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-  }
- 
-  @media screen and (max-width: 765px) {
-  .story-content{
+}
+
+@media screen and (max-width: 765px) {
+  .story-content {
     flex-direction: column-reverse !important;
   }
-  
-  }
- 
+}

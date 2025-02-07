@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
             $fileExt   = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
             if (in_array($fileExt, $allowed)) {
                 $newFileName = uniqid() . '.' . $fileExt;
-                $destination = 'food_images/' . $newFileName;
+                $destination = '../food_images/' . $newFileName;
                 if (move_uploaded_file($fileTmp, $destination)) {
                     $image = $destination;
                 } else {

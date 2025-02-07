@@ -4,6 +4,32 @@ session_start();
 // Include the database connection
 require_once 'db_connection.php'; // Ensure this path is correct
 
+$total_price = 0;
+if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
+    foreach($_SESSION['cart'] as $item){
+        $total_price += $item['price'] * $item['quantity'];
+    }
+}
+
+// If user is logged in, award points.
+if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] && isset($_SESSION['user_id'])) {
+    
+    $earned_points = round($total_price * 10);  // Calculate points earned (10 points per $1)
+     
+    // Update the user's points in the database.
+    $user_id = $_SESSION['user_id'];
+    
+    // Example query: add earned points to existing points
+    $stmt = $conn->prepare("UPDATE users SET points = points + ? WHERE id = ?");
+    $stmt->bind_param("ii", $earned_points, $user_id);
+    if($stmt->execute()){
+        $_SESSION['user_points'] = isset($_SESSION['user_points']) ? $_SESSION['user_points'] + $earned_points : $earned_points;         // Optionally update the session variable (if you store points in session)
+    } else {     
+        error_log("Could not update points for user {$user_id}: " . $stmt->error); // Log for error 
+    }
+    $stmt->close();
+}
+
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

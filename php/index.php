@@ -64,22 +64,22 @@ $conn->close();
         <div class="menu-card" style="background-image: url('../images/appe-index.avif');">
           <h3>Appetizer</h3>
           <p>Start your meal with our delicious appetizers.</p>
-          <a href="menu.php#appetizer" class="btn">Explore Variety</a>
+          <a href="menu.php?category=appetizer" class="btn">Explore Variety</a>
         </div>
         <div class="menu-card" style="background-image: url('../images/index-pizza.jpg');">
           <h3>Pizza</h3>
           <p>Indulge in our wide variety of pizzas.</p>
-          <a href="menu.php#pizza" class="btn">Explore Variety</a>
+          <a href="menu.php?category=pizza" class="btn">Explore Variety</a>
         </div>
         <div class="menu-card" style="background-image: url('../images/index-burger.avif');">
           <h3>Burger</h3>
           <p>Indulge in our wide variety of Burgers.</p>
-          <a href="menu.php#pizza" class="btn">Explore Variety</a>
+          <a href="menu.php?category=burgers" class="btn">Explore Variety</a>
         </div>
         <div class="menu-card" style="background-image: url('../images/bev-index.jpeg');">
           <h3>Beverages</h3>
           <p>Quench your Thirst with our refreshing Beverages</p>
-          <a href="menu.php#pizza" class="btn">Explore Variety</a>
+          <a href="menu.php?category=beverages" class="btn">Explore Variety</a>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@ $conn->close();
   <div class="container text-center">
     <h2 class="heading_space">Seasonal Promotions!</h2>
     <p class="EnjoyFood">Enjoy Delicious Food in Limited time</p>
-    <a href="menu.php" class="btn-common-white page-scroll">Order Now</a>
+    <a href="menu.php?category=seasonal" class="btn-common-white page-scroll">Order Now</a>
   </div>
 </section>
 
@@ -240,6 +240,8 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
           </form><br>
           <h4>Admin Dashboard</h4>
           <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
+          <h4>Join Queue</h4>
+          <a style="color: white;" href="queue-join.php">Queue</a>
         </div>
       </div>
       <div class="footer-bottom">

@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(password_verify($pass, $hashed_password)){
        
           $_SESSION['user_email'] = $email; // user exists so set session
-          $_SESSION['user_id'] = $row['id'];
-          $_SESSION['userloggedin'] = true;
+          $_SESSION['user_id'] = $row['id']; //Save id to user_id
+          $_SESSION['userloggedin'] = true;   //Set that user has logged in
 
           if (isset($_SESSION['prev_page'])) {
             $prevPage = $_SESSION['prev_page'];

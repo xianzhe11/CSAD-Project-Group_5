@@ -74,7 +74,7 @@
   .container {
     position: absolute;
     top: 50%;
-    right: 5%; /* Adjust to move the container horizontally */
+    right: 5%;
     transform: translateY(-50%);
     display: flex;
     width: 100%;

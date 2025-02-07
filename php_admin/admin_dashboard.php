@@ -82,6 +82,36 @@ if ($reservation_result && $reservation_result->num_rows > 0) {
     $total_reservation = 0;
 }
 
+// Fetch reservations data for the current year, by month
+$reservations_data_query = "
+    SELECT 
+        DATE_FORMAT(date_rsv, '%M') AS month,
+        COUNT(*) AS total_reservations
+    FROM 
+        reservation
+    WHERE 
+        YEAR(date_rsv) = YEAR(CURDATE())
+    GROUP BY 
+        MONTH(date_rsv)
+    ORDER BY 
+        MONTH(date_rsv) ASC
+";
+$reservations_result = $conn->query($reservations_data_query);
+
+$reservationMonths = [];
+$reservationCounts = [];
+
+if ($reservations_result && $reservations_result->num_rows > 0) {
+    while ($row = $reservations_result->fetch_assoc()) {
+        $reservationMonths[] = $row['month'];
+        $reservationCounts[] = (int)$row['total_reservations'];
+    }
+} else {
+    // If no data is found, initialize with empty arrays or default values
+    $reservationMonths = [];
+    $reservationCounts = [];
+}
+
 // Fetch sales data for the current year, aggregated by month
 $sales_data_query = "
     SELECT 
@@ -350,15 +380,18 @@ $conn->close(); // Close the connection
             }
         });
 
-        // Monthly Reservations Chart  example
+        // Reservations Chart code (mirroring the sales chart implementation)
+        const reservationMonths = <?php echo json_encode($reservationMonths); ?>;
+        const reservationCounts = <?php echo json_encode($reservationCounts); ?>;
+
         const reservationsCtx = document.getElementById('reservationsChart').getContext('2d');
         const reservationsChart = new Chart(reservationsCtx, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                labels: reservationMonths,
                 datasets: [{
                     label: 'Reservations',
-                    data: [50, 60, 70, 80, 65, 75, 85],
+                    data: reservationCounts,
                     backgroundColor: 'rgba(255, 99, 132, 0.6)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
@@ -366,14 +399,11 @@ $conn->close(); // Close the connection
             },
             options: {
                 responsive: true,
-                plugins: {
-                    legend: { display: false },
-                },
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
             }
         });
     </script>
 </body>
 </html>
+
