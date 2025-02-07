@@ -2,10 +2,8 @@
 session_start();
 $current_step = 1;
 
-// Function to check if the user is logged in
 function isUserLoggedIn() {
-    // Adjust this function based on how you manage user sessions
-    return isset($_SESSION['userloggedin']); // Assuming 'user_id' is set upon login
+    return isset($_SESSION['userloggedin']);
 }
 
 // Handle quantity updates and item deletions
@@ -34,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
         }
-
-        // Redirect to avoid form resubmission
+        // Redirect 
         header('Location: cart.php');
         exit();
     }
@@ -134,7 +131,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <!-- Pay Button Container -->
             <div class="pay-button-container">
                 <?php if (isUserLoggedIn()): ?>
-                    <!-- User is logged in, proceed to checkout.php -->
                     <form action="checkout.php" method="GET">
                         <button type="submit" class="pay-button">
                             Checkout &nbsp;<i class="fas fa-shopping-cart"></i>

@@ -2,19 +2,19 @@
 session_start();
 include 'db_connection.php';
 $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
-// Function to sanitize input data
+
+
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// Initialize cart if not already set
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
 // Handle Add to Cart with Customizations
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart'])) {
-    // Sanitize and retrieve item data
+
     $itemId = intval($_POST['item_id']);
     $itemName = sanitize_input($_POST['item_name']);
     $itemDescription = sanitize_input($_POST['item_description']);
@@ -124,7 +124,6 @@ if ($categoryResult) {
     echo "<!-- Query Failed: (" . $conn->errno . ") " . $conn->error . " -->";
 }
 
-// Retrieve and sanitize the selected category from the URL
 $selectedCategory = isset($_GET['category']) ? strtolower(trim($_GET['category'])) : strtolower($categories[0]);
 
 // Validate the selected category
@@ -146,10 +145,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/menu.css">
-    <style>
-        /* Additional styling for better UI */
-
-    </style>
 </head>
 <body>
     <?php
