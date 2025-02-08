@@ -5,9 +5,10 @@ include 'db_connection.php';
 // Process POST request for redemption and exit immediately.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     if (!isset($_SESSION['userloggedin']) || !$_SESSION['userloggedin'] || !isset($_SESSION['user_id'])) {
-        echo json_encode(['success' => false, 'message' => 'User not logged in.']);
+        echo json_encode(['success' => false, 'message' => 'Please Log in to continue']);
         exit();
     }
+    
 
     $redeem_cost = isset($_POST['redeem_cost']) ? floatval($_POST['redeem_cost']) : 0;
     $redeem_product_id = isset($_POST['redeem_product_id']) ? intval($_POST['redeem_product_id']) : 0;
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $stmt->bind_result($current_points);
+    
     if (!$stmt->fetch()) {
         echo json_encode(['success' => false, 'message' => 'User not found.']);
         exit();
@@ -71,23 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/points.css">
 <title>Points</title>
-<style>
-    .redeemed-box {
-      background-color: #d4edda;
-      color: #155724;           
-      border: 1px solid #c3e6cb;
-      padding: 15px;
-      margin: 20px auto;
-      width: 80%;
-      text-align: center;
-      border-radius: 5px;
-      font-size: 1.2em;
-    }
-  </style>
 </head>
 <body>
 <?php
-  if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin']) {
+  if (isset($_SESSION['userloggedin'])) {
       include 'navbar_loggedIn.php';
   } else {
       include 'navbar.php';
@@ -95,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
   
   
   $current_points = 0;
-  if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] && isset($_SESSION['user_id'])) {   // Fetch current points 
+  if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {   // Fetch current points 
       $user_id = $_SESSION['user_id'];
       $stmt = $conn->prepare("SELECT points FROM users WHERE id = ?");
       $stmt->bind_param("i", $user_id);
@@ -103,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
       $stmt->bind_result($points);
       if ($stmt->fetch()) {
           $current_points = $points;
-          $_SESSION['user_points'] = $points;
+          $_SESSION['user_points'] = $current_points;
       }
       $stmt->close();
   }
@@ -129,71 +118,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     <div class="container">
         <div class="slider">
             <img src = "../images/Limited.png" alt= "third" class = "image1" 
-            data-id="101" data-cost="50" data-name="Limited Product" data-image="../images/Limited.png" />
+            data-id="101" data-cost="400" data-name="Limited Product" data-image="../images/Limited.png"  />
 
             <img src = "../images/pastaredeem.png" alt= "third" class = "image1"
-            data-id="102" data-cost="120" data-name="Pasta Special" data-image="../images/pastaredeem.png"/>
+            data-id="102" data-cost="450" data-name="Pasta Special" data-image="../images/pastaredeem.png" />
 
             <img src = "../images/cheeseredeem.png" alt= "third" class  = "image1"
-            data-id="103" data-cost="80" data-name="Cheesy Delight" data-image="../images/cheeseredeem.png"/>
+            data-id="103" data-cost="300" data-name="Cheesy Delight"  data-image="../images/cheeseredeem.png" />
 
             <img src = "../images/chickenredeem.png" alt= "third" class = "image1"
-            data-id="104" data-cost="150" data-name="Crispy Chicken" data-image="../images/chickenredeem.png"/>
+            data-id="104" data-cost="250" data-name="Crispy Chicken" data-image="../images/chickenredeem.png"/>
 
             <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="105" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
+            data-id="105" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
 
             <img src = "../food_images/drink.png" alt= "third" class = "image1"
-            data-id="106" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
+            data-id="106" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
 
             <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="107" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
+            data-id="107" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
         </div>
     </div>  
-    <div class="container">
-        <div class="slider">
-            <img src = "../images/Limited.png" alt= "third" class = "image1" 
-            data-id="101" data-cost="50" data-name="Limited Product" data-image="../images/Limited.png" />
-
-            <img src = "../images/pastaredeem.png" alt= "third" class = "image1"
-            data-id="102" data-cost="120" data-name="Pasta Special" data-image="../images/pastaredeem.png"/>
-
-            <img src = "../images/cheeseredeem.png" alt= "third" class  = "image1"
-            data-id="103" data-cost="80" data-name="Cheesy Delight" data-image="../images/cheeseredeem.png"/>
-
-            <img src = "../images/chickenredeem.png" alt= "third" class = "image1"
-            data-id="104" data-cost="150" data-name="Crispy Chicken" data-image="../images/chickenredeem.png"/>
-
-            <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="105" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
-
-            <img src = "../food_images/drink.png" alt= "third" class = "image1"
-            data-id="106" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
-
-            <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="107" data-cost="30" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
+    <div id="popup" class="popup">  <!-- Pop Up -->
+      <div class="popup-content">
+        <img id="popupimage" src="" alt="image">
+        <p>Are you sure you want to redeem this product?</p>
+        <button id="confirmBtn">Confirm</button>
+        <button id="cancelBtn">Cancel</button>
+        <div class = "userpoint">
+          Your Current Points are: <span id="currentPointsDisplay"><?php echo $current_points; ?></span>
         </div>
-    </div>  
-      <div id="popup" class="popup">  <!-- Pop Up -->
-    <div class="popup-content">
-      <img id="popupimage" src="" alt="image">
-      <p>Are you sure you want to redeem this product?</p>
-      <button id="confirmBtn">Confirm</button>
-      <button id="cancelBtn">Cancel</button>
-      <div class = "userpoint">
-        Your Current Points are <span id="currentPointsDisplay"><?php echo $current_points; ?></span>
+        <div class = "costpoint">
+          This redemption costs: <span id="redeemCostDisplay"></span> 
+        </div>
+        <div class = "pointafter">
+          Your points after redemption: <span id="pointsAfterDisplay"></span> 
+        </div>
       </div>
-      <div class = "costpoint">
-        This redemption costs <span id="redeemCostDisplay"></span> 
-      </div>
-      <div class = "pointafter">
-        Your points after redemption <span id="pointsAfterDisplay"></span> 
-      </div>
-      <div class = "point1"></div>
-      <div class = "point2"></div>
-      <div class = "point3"></div>
     </div>
+    <div class = "cont1">
+    <img src = "../food_images/fries.png" alt= "third" id = "img1" data-id="108" data-cost="150" data-name="Chili Pepper Fries"
+    data-image="../food_images/fries.png"/>
+    <div class = "label1">Chili Pepper Fries</div>
+    <div class = "desc1">Fresh peeled french fries, seasoned with our homemade chili pepper. Guaranteed Spice and Flavour!</div>
+    <button id="redeem1">Redeem</button>
   </div>
+  <div class = "cont2">
+    <img src = "../food_images/seasonalnobg.png" alt= "third" id = "img2" data-id="109" data-cost="500" data-name="Punny Pepperoni Paradise"
+    data-image="../food_images/seasonalnobg.png"/>
+    <div class = "label2">Punny Pepperoni Paradise</div>
+    <div class = "desc2">This pepperoni pizza packs a punch with zesty tomato sauce, a mountain of pepperoni slices and cheesy layers.
+      A paradise of flavor that’ll have you coming back for more puns.</div>
+    <button id="redeem2">Redeem</button>
+  </div>
+
 </body>
 
 <script>
@@ -207,6 +185,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
 
   const popup = document.getElementById('popup');
   const confirmBtn = document.getElementById('confirmBtn');
+  const redeem1 = document.getElementById('redeem1');
+  const redeem2 = document.getElementById('redeem2');
   const cancelBtn = document.getElementById('cancelBtn');
   const popupimage = document.getElementById('popupimage');
   let selectedImage;
@@ -268,5 +248,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
   cancelBtn.addEventListener('click', function() {
     popup.style.display = 'none';
   });
+
+  redeem1.addEventListener('click', function() {
+    selectedImage = document.getElementById("img1")
+    popupimage.src = selectedImage.src;
+
+    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    // Get data attributes from the clicked item
+    selectedProductId = parseInt(selectedImage.getAttribute('data-id'));
+    selectedProductName = selectedImage.getAttribute('data-name');
+    selectedProductImage = selectedImage.getAttribute('data-image');   // Get the image path.
+
+    redeemCostDisplay.innerText = selectedCost;       // Update the popup display with the item's cost 
+    const currentPoints = parseFloat(currentPointsDisplay.innerText); // Update display with current points
+    pointsAfterDisplay.innerText = currentPoints - selectedCost; // Update display with computed new points
+    popup.style.display = 'block';
+
+  });
+
+  redeem2.addEventListener('click', function() {
+    selectedImage = document.getElementById("img2")
+    popupimage.src = selectedImage.src;
+    
+    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    // Get data attributes from the clicked item
+    selectedProductId = parseInt(selectedImage.getAttribute('data-id'));
+    selectedProductName = selectedImage.getAttribute('data-name');
+    selectedProductImage = selectedImage.getAttribute('data-image');   // Get the image path.
+
+    redeemCostDisplay.innerText = selectedCost;       // Update the popup display with the item's cost 
+    const currentPoints = parseFloat(currentPointsDisplay.innerText); // Update display with current points
+    pointsAfterDisplay.innerText = currentPoints - selectedCost; // Update display with computed new points
+    popup.style.display = 'block';
+  });
+
 </script>
 </html>

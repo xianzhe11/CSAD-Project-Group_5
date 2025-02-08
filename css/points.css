@@ -39,6 +39,12 @@ body {
     border-radius: 15px;
     border: 1px solid #1234d9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    align-content:center;
+    background-image: url(../images/pizzabg.png);
+    background-blend-mode :lighten;
+    background-color: rgba(227, 183, 183, 0.6);
+    background-position: center; 
+   
 
 }
 .container {
@@ -51,9 +57,7 @@ body {
     border-radius: 10px;
     overflow: hidden;
     touch-action: pan-y;
-
-
-  }
+}
 .slider {
     display: flex;
     width: 100%;
@@ -77,6 +81,8 @@ body {
     overflow: hidden;
     align-self: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
 }
 
 .slider::-webkit-scrollbar {
@@ -121,7 +127,7 @@ body {
     position: relative;
     top: 39%;
     align-content: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS';
     font-weight: bold;
     background-color: #FEFDE9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -133,6 +139,8 @@ body {
     border-radius: 12px;
     position: relative;
     top: 41%;
+    cursor: pointer;
+    
 }
 #cancelBtn{
     width: 100px;
@@ -140,19 +148,134 @@ body {
     border-radius: 12px;
     position: relative; 
     top: 41%;
+    cursor: pointer;
 }
 .userpoint{
     position: relative;
-    left:-20%;
+    left:-15%;
     top:-15%;
 }
 .costpoint{
     position: relative;
-    left:-20.5%;
+    left:-16%;
     top:-7%;
 }
 .pointafter{
     position: relative;
-    left:-15%;
+    left:-10%;
     top:2%;
 }
+#currentPointsDisplay{
+    position: relative;
+    top:-26.5%;
+    left:29%;
+    font-weight: bold;
+}   
+#redeemCostDisplay{
+    position: relative;
+    top:-18.5%;
+    left:31%;
+    font-weight: bold;
+}  
+#pointsAfterDisplay{
+    position: relative;
+    top:-9.5%;
+    left:19%;
+    font-weight: bold;
+}    
+.cont1{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont1 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label1{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc1{
+    position: relative;
+    width: 430px;
+    left: 23%;
+    top:-75%;
+}
+#redeem1{
+    position: relative;
+    left: 80%;
+    top:-190px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.cont2{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont2 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label2{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc2{
+    position: relative;
+    width: 435px;
+    left: 23%;
+    top:-85%;
+}
+#redeem2{
+    position: relative;
+    left: 80%;
+    top:-215px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.redeemed-box {
+    background-color: #d4edda;
+    color: #155724;           
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.2em;
+    animation: redeemed-box 0.8s;
+  }
+  @keyframes redeemed-box {
+    from {opacity: 0; }
+    to{opacity: 1; }
+   }
