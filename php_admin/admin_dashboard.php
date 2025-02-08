@@ -1,16 +1,12 @@
 <?php
-// admin_dashboard.php
-
-
 
 // Implement authentication to ensure only authorized users can access the dashboard
 /* if (!isset($_SESSION['admin_logged_in'])) {
      header("Location: login.php");
      exit();
 } */
-
 session_start();
-include "db_connection.php"; // Include the database connection
+include "db_connection.php"; 
 
 // Fetch recent orders
 $recent_orders_query = "

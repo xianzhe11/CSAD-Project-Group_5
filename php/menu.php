@@ -71,10 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
             ];
             break;
         default:
-            // Default or no customizations
             break;
     }
-    $customization_json = json_encode($customizations);   // Encode customizations as JSON
+    $customization_json = json_encode($customizations);  
 
     $found = false;
     foreach ($_SESSION['cart'] as $cartItem) {
@@ -84,7 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
             break;
         }
     }
-    if (!$found) {         // Add a new item to cart
+    unset($cartItem);
+
+    if (!$found) {         
         $_SESSION['cart'][] = [
             'id'            => $itemId,
             'name'          => $itemName,
@@ -96,14 +97,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
         ];
     }
     $_SESSION['success_message'] = "{$itemName} has been added to your cart.";
-    header('Location: menu.php'); // Redirect
+    header('Location: menu.php'); 
     exit;
 }
 
-// Fetch all categories from the database
 $categoryQuery = 'SELECT catName FROM menu_categories';
 $categoryResult = $conn->query($categoryQuery);
-
 $categories = [];
 if ($categoryResult) {
     while ($row = $categoryResult->fetch_assoc()) {
@@ -114,16 +113,13 @@ if ($categoryResult) {
 }
 
 $selectedCategory = isset($_GET['category']) ? strtolower(trim($_GET['category'])) : strtolower($categories[0]);
-
-// Validate the selected category
 $validCategories = array_map('strtolower', $categories);
 if (!in_array($selectedCategory, $validCategories)) {
-    $selectedCategory = strtolower($categories[0]); // Default to the first category
+    $selectedCategory = strtolower($categories[0]); 
 }
-
-// Find the index of the selected category to set the active tab
 $activeIndex = array_search($selectedCategory, $validCategories);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -144,7 +140,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     }
     ?>
 
-    <!-- Display Success Message -->
     <?php if (isset($_SESSION['success_message'])): ?>
         <div class="alert alert-success alert-dismissible fade show m-3" role="alert">
             <?= $_SESSION['success_message'] ?>
@@ -160,14 +155,14 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     </div>
 
     <div class="category-nav">
-        <ul class="nav nav-tabs justify-content-center" id="categoryTab" role="tablist">
+        <ul class="nav nav-tabs justify-content-center" id="categoryTab">
             <?php foreach ($categories as $index => $category): ?>
                 <?php 
                     $categorySlug = strtolower($category);
                     $isActive = ($index === $activeIndex) ? 'active' : '';
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link <?= $isActive ?>" id="<?= $categorySlug ?>-tab" data-toggle="tab" href="#<?= $categorySlug ?>" role="tab" aria-controls="<?= $categorySlug ?>" aria-selected="<?= ($isActive === 'active') ? 'true' : 'false'; ?>">
+                    <a class="nav-link <?= $isActive ?>" id="<?= $categorySlug ?>-tab" data-toggle="tab" href="#<?= $categorySlug?>" aria-controls="<?= $categorySlug ?>" aria-selected="<?= ($isActive === 'active') ? 'true' : 'false'; ?>">
                         <?= htmlspecialchars($category) ?>
                     </a>
                 </li>
@@ -185,10 +180,10 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                 <div class="tab-pane fade <?= $isActive ?>" id="<?= $categorySlug ?>" role="tabpanel" aria-labelledby="<?= $categorySlug ?>-tab">
                     <div class="row menu-items">
                         <?php
-                        $stmt = $conn->prepare('SELECT * FROM menu_items WHERE catName = ?');
-                        $stmt->bind_param('s', $category);
-                        $stmt->execute();
-                        $result = $stmt->get_result();
+                          $stmt = $conn->prepare('SELECT * FROM menu_items WHERE catName = ?');
+                          $stmt->bind_param('s', $category);
+                          $stmt->execute();
+                          $result = $stmt->get_result();
                         ?>
                         <?php if ($result->num_rows > 0): ?>
                             <?php while ($row = $result->fetch_assoc()): ?>
@@ -239,7 +234,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     </div>
 
     <!-- Customization Modal -->
-    <div class="modal fade" id="customizeModal" tabindex="-1" aria-labelledby="customizeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="customizeModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <form method="POST" id="customizeForm">
           <div class="modal-content">
@@ -251,7 +246,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
             </div>
             
             <div class="modal-body">
-              <!-- Hidden Inputs to Store Item Data -->
               <input type="hidden" name="item_id" id="modal_item_id">
               <input type="hidden" name="item_name" id="modal_item_name">
               <input type="hidden" name="item_description" id="modal_item_description">
@@ -277,8 +271,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
               <!-- Customization Options -->
               <div class="form-group">
                 <h6>Customize Your Meal</h6>
-                
-                <!-- Appetizers Customizations -->
+
                 <div id="customizations_appetizers" class="customizations-section">
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="extra_sauce" name="extra_sauce" value="1">
@@ -293,7 +286,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                     </div>
                 </div>
 
-                <!-- Beverages Customizations -->
                 <div id="customizations_beverages" class="customizations-section">
                     <div class="form-group">
                       <label for="beverage_size">Size:</label>
@@ -318,7 +310,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                     </div>
                 </div>
 
-                <!-- Burgers Customizations -->
                 <div id="customizations_burgers" class="customizations-section">
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="extra_cheese" name="extra_cheese" value="1">
@@ -334,7 +325,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                     </div>
                 </div>
 
-                <!-- Pizza Customizations -->
                 <div id="customizations_pizza" class="customizations-section">
                     <div class="form-group">
                       <label for="crust_type">Crust Type:</label>
@@ -360,7 +350,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                     </div>
                 </div>
 
-                <!-- Seasonal Customizations -->
                 <div id="customizations_seasonal" class="customizations-section">
                     <div class="form-check">
                       <input type="checkbox" class="form-check-input" id="special_ingredient" name="special_ingredient" value="1">
@@ -397,7 +386,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     <script>
       $(document).ready(function(){
         $('#customizeModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget); // Button that triggered the modal
+          var button = $(event.relatedTarget); 
           var itemId = button.data('id');
           var itemName = button.data('name');
           var itemDescription = button.data('description');
@@ -428,8 +417,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
 
           // Hide all customization sections
           $('.customizations-section').hide();
-
-          // Show relevant customization section based on category
           var categorySlug = category.toLowerCase();
           $('#customizations_' + categorySlug).show();
         });

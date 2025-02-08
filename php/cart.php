@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $action = $_POST['action'];
         $itemId = $_POST['item_id'];
 
-        // Ensure the cart exists
         if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $index => &$item) {
                 if ($item['id'] == $itemId) {
@@ -20,19 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $item['quantity'] += 1;
                     } elseif ($action === 'decrease') {
                         $item['quantity'] -= 1;
-                        if ($item['quantity'] <= 0) {
-                            // Remove item from cart if quantity is zero or less
-                            array_splice($_SESSION['cart'], $index, 1);
+                        if ($item['quantity'] <= 0) {            
+                            array_splice($_SESSION['cart'], $index, 1);  // Remove item from cart 
                         }
                     } elseif ($action === 'delete') {
-                        // Remove the item from the cart
                         array_splice($_SESSION['cart'], $index, 1);
                     }
                     break;
                 }
             }
         }
-        // Redirect 
         header('Location: cart.php');
         exit();
     }
@@ -98,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="quantity-section">
                         <div class="quantity-controls">
-                            <!-- Decrease Quantity Form -->
+
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="action" value="decrease">
                                 <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
@@ -107,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </button>
                             </form>
                             <span class="mx-2"><?= $item['quantity'] ?></span>
-                            <!-- Increase Quantity Form -->
+
                             <form method="POST" class="d-inline">
                                 <input type="hidden" name="action" value="increase">
                                 <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
@@ -117,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </form>
                         </div>
                     </div>
-                    <!-- Delete Button -->
+
                     <form method="POST" class="delete-form">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
@@ -128,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endforeach; ?>
 
-            <!-- Pay Button Container -->
             <div class="pay-button-container">
                 <?php if (isUserLoggedIn()): ?>
                     <form action="checkout.php" method="GET">
@@ -136,8 +131,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             Checkout &nbsp;<i class="fas fa-shopping-cart"></i>
                         </button>
                     </form>
+
                 <?php else: ?>
-                    <!-- User is not logged in, trigger modal -->
                     <button type="button" class="pay-button" data-toggle="modal" data-target="#loginPromptModal">
                         Checkout &nbsp;<i class="fas fa-shopping-cart"></i>
                     </button>
@@ -148,16 +143,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
     </div>
 
-    <!-- Modal: Login or Guest Checkout -->
     <div class="modal fade" id="loginPromptModal" tabindex="-1" aria-labelledby="loginPromptModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            
           <div class="modal-header">
             <h5 class="modal-title" id="loginPromptModalLabel">Proceed to Checkout</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+
           <div class="modal-body">
             <p>You need to sign in to your account or continue as a guest to proceed with the checkout.</p>
           </div>

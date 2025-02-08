@@ -81,12 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $stmt_item->bind_param(
             "isidds",
-            $last_order_id,    // i: integer
-            $item_name,        // s: string
-            $quantity,         // i: integer
-            $price_each,       // d: double
-            $total_item_price, // d: double
-            $customizations    // s: string (JSON)
+            $last_order_id,    
+            $item_name,        
+            $quantity,        
+            $price_each,      
+            $total_item_price, 
+            $customizations    
         );
 
         // Bind and execute for each cart item
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 throw new Exception("Execute failed for order_items: " . $stmt_item->error);
             }
         }  
-        $conn->commit(); // Commit the transaction
+        $conn->commit(); 
 
         // Store order details in session for display
         $_SESSION['order'] = [
@@ -113,17 +113,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'total_price'    => $total_price,
             'address'        => $address
         ];
-        // Clear the cart
         unset($_SESSION['cart']);
     } catch (Exception $e) {
-        // Rollback the transaction if something failed
         $conn->rollback();
         echo 'Failed to place the order: ' . $e->getMessage();
         exit();
     }
 
 } else {
-    // If accessed directly without POST data, redirect to checkout
     header('Location: checkout.php');
     exit();
 }
@@ -149,14 +146,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
 
-    <!-- Receipt Container -->
     <div class="receipt-container">
-        <i class="fas fa-check-circle tick"></i> <!-- Tick Icon -->
+        <i class="fas fa-check-circle tick"></i> 
         <div class="success-message">
             Your order was successfully placed!
         </div>
 
-        <!-- Order Details Box -->
         <div class="order-details">
             <h4>Order Summary</h4>
             <p><strong>Order ID:</strong> <?php echo htmlspecialchars($_SESSION['order']['order_id']); ?></p>
@@ -189,7 +184,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><?php echo number_format($item['quantity'] * $item['price'], 2); ?></td>
                             </tr>
                             <?php
-                                // Decode the customizations JSON
                                 $customizations = json_decode($item['customizations'], true);
                                 if (!empty($customizations)) {
                                     echo '<tr>';
