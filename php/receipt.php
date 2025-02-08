@@ -1,52 +1,22 @@
 <?php
 session_start();
 
-// Include the database connection
-require_once 'db_connection.php'; // Ensure this path is correct
-
-$total_price = 0;
-if(isset($_SESSION['cart']) && count($_SESSION['cart']) > 0){
-    foreach($_SESSION['cart'] as $item){
-        $total_price += $item['price'] * $item['quantity'];
-    }
-}
-
-// If user is logged in, award points.
-if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] && isset($_SESSION['user_id'])) {
-    
-    $earned_points = round($total_price * 10);  // Calculate points earned (10 points per $1)
-     
-    // Update the user's points in the database.
-    $user_id = $_SESSION['user_id'];
-    
-    // Example query: add earned points to existing points
-    $stmt = $conn->prepare("UPDATE users SET points = points + ? WHERE id = ?");
-    $stmt->bind_param("ii", $earned_points, $user_id);
-    if($stmt->execute()){
-        $_SESSION['user_points'] = isset($_SESSION['user_points']) ? $_SESSION['user_points'] + $earned_points : $earned_points;         // Optionally update the session variable (if you store points in session)
-    } else {     
-        error_log("Could not update points for user {$user_id}: " . $stmt->error); // Log for error 
-    }
-    $stmt->close();
-}
+require_once 'db_connection.php'; 
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // Retrieve and sanitize payment method
     $payment_method = isset($_POST['payment_method']) ? trim($_POST['payment_method']) : 'N/A';
-
-    // Retrieve table number directly 
     $table_number = isset($_POST['table_number']) ? htmlspecialchars(trim($_POST['table_number'])) : 'N/A';
     $address = isset($_POST['address']) ? htmlspecialchars(trim($_POST['address'])) : 'N/A';
-
-    // Retrieve cart items from session
-    $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-
-    // Retrieve order type
     $order_type = isset($_POST['order_type']) ? trim($_POST['order_type']) : null;
 
-    // Set table_number and address based on order_type
+    $cart_items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    if (empty($cart_items)) {
+        header('Location: cart.php');
+        exit();
+    }
+
     if ($order_type === 'dine_in') {
         $table_number = isset($_POST['table_number']) && trim($_POST['table_number']) !== '' ? htmlspecialchars(trim($_POST['table_number'])) : NULL;
         $address = NULL;
@@ -55,56 +25,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $table_number = NULL;
     }
 
-    // Check if cart is not empty
-    if (empty($cart_items)) {
-        header('Location: cart.php');
-        exit();
-    }
-
-    // Calculate total price
     $total_price = 0;
     foreach ($cart_items as $item) {
         $total_price += $item['quantity'] * $item['price'];
     }
 
-    // Generate a unique order ID (e.g., using timestamp and random number)
-    $order_id = 'ORD' . time() . rand(1000, 9999);
+    if (isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] && isset($_SESSION['user_id'])) {
     
-    // Begin Transaction
-    $conn->begin_transaction();
+        $earned_points = round($total_price * 10);  
+        $user_id = $_SESSION['user_id'];
+        
+        $stmt = $conn->prepare("UPDATE users SET points = points + ? WHERE id = ?");
+        $stmt->bind_param("ii", $earned_points, $user_id);
+        if($stmt->execute()){
+           
+        } else {     
+            error_log("Could not update points for user {$user_id}: " . $stmt->error); // Log for error 
+        }
+        $stmt->close();
+    }
 
+    $order_id = 'ORD' . time() . rand(1000, 9999); // Generate a unique order ID (e.g., using timestamp and random number)
+    
+    
+    $conn->begin_transaction(); // Begin Transaction
     try {
         // Prepare the SQL statement for inserting into 'orders' table
         $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `order_type`, `table_number`, `address`, `total_price`) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $conn->error);
         }
 
-        // Assuming you have user authentication and a user ID
         $user_id = isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] ? $_SESSION['user_id'] : null;
 
-
-        // Bind parameters
-        $stmt->bind_param(
+        $stmt->bind_param(                  // Bind parameters
             "sissssd",
-            $order_id, // s: string
-            $user_id,         // i: integer (nullable)
-            $payment_method,  // s: string
-            $order_type,      // s: string
-            $table_number,    // s: string (nullable)
-            $address,         // s: string (nullable)
-            $total_price      // d: double
+            $order_id, 
+            $user_id,         
+            $payment_method,  
+            $order_type,      
+            $table_number,    
+            $address,         
+            $total_price     
         );
-
-        // Execute the statement
         if (!$stmt->execute()) {
             throw new Exception("Execute failed: " . $stmt->error);
         }
 
-        // Get the last inserted order's ID
-        $last_order_id = $conn->insert_id;
-
+        
+        $last_order_id = $conn->insert_id; // Get the last inserted order's ID
         $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`, `customizations`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt_item) {
             throw new Exception("Prepare statement for order_items failed: " . $conn->error);
@@ -127,15 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $price_each = number_format((float)$item['price'], 2, '.', '');
             $total_item_price = number_format($quantity * $item['price'], 2, '.', '');
             $customizations   = isset($item['customizations']) ? $item['customizations'] : '';
-
-            // Execute the statement
-            if (!$stmt_item->execute()) {
+            
+            if (!$stmt_item->execute()) { 
                 throw new Exception("Execute failed for order_items: " . $stmt_item->error);
             }
-        }
-
-        // Commit the transaction
-        $conn->commit();
+        }  
+        $conn->commit(); // Commit the transaction
 
         // Store order details in session for display
         $_SESSION['order'] = [
@@ -147,7 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'total_price'    => $total_price,
             'address'        => $address
         ];
-
         // Clear the cart
         unset($_SESSION['cart']);
     } catch (Exception $e) {
@@ -166,12 +131,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt</title>
-    
-    <!-- External Stylesheets -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -249,10 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
 
-    <!-- Footer (Optional) -->
     <?php include 'footer.html'; ?>
-
-    <!-- JavaScript -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -44,7 +44,8 @@ body {
     width: 100%;
     border-collapse: collapse;
 }
-.order-items th, .order-items td {
+.order-items th, 
+.order-items td {
     border: 1px solid #ddd;
     padding: 8px;
 }
@@ -52,7 +53,7 @@ body {
     background-color: #F05D5F;
     color: white;
 }
-/* Customizations Styling */
+
 .customizations {
     margin-top: 5px;
     font-size: 0.9em;
