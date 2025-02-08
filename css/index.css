@@ -9,29 +9,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Body styling */
 body {
   font-family: "Poppins", sans-serif;
   background-color: #feead4;
 }
 
-/* Container */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
 }
 
-/* Main section */
-.main {
+.main-section {
   background-image: url('images/main-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 30px 0; /* Reduced padding */
+  padding: 30px 0; 
 }
 
-/* Flexbox layout for content */
 .row {
   display: flex;
   justify-content: space-between;
@@ -46,9 +42,8 @@ body {
 }
 
 .text-container h2 {
-  font-size: 2rem; /* Reduced font size */
-  color: #333;
-  margin-bottom: 10px; /* Reduced margin */
+  font-size: 2rem; 
+  margin-bottom: 10px; 
 }
 
 .text-container .highlight {
@@ -56,6 +51,14 @@ body {
   font-family: 'Lobster', cursive;
   font-size: 2.5rem; /* Adjusted proportion */
 }
+
+.text-container p {
+  font-size: 1rem; 
+  line-height: 1.6;
+  text-align: justify;
+  margin-bottom: 15px;
+}
+
 .lobster {
   font-family: 'Lobster', cursive;
 }
@@ -63,32 +66,23 @@ body {
 .sub-heading {
   color: gray;
   font-weight: 450;
-  font-size: 1.2rem; /* Added font size */
-  margin-bottom: 15px; /* Controlled margin */
+  font-size: 1.2rem; 
+  margin-bottom: 15px;
 }
 
-.text-container p {
-  font-size: 1rem; /* 16px */
-  line-height: 1.6;
-  text-align: justify;
-  margin-bottom: 15px; /* Consistent spacing */
-}
-
-/* Buttons */
 .button-group {
   margin-top: 20px;
   margin-right: 80px;
   display: flex;
   gap: 15px;
-  justify-content: center; /* Center the buttons */
+  justify-content: center;
 }
 
 .btn, .btn-secondary {
-  padding: 10px 20px; /* Adjusted padding */
-  font-size: 0.9rem; /* Slightly smaller font */
+  padding: 10px 20px;
+  font-size: 0.9rem; 
   text-decoration: none;
   border-radius: 30px;
-  transition: 0.3s ease;
   font-weight: bold;
 }
 
@@ -113,16 +107,14 @@ body {
   color: white;
 }
 
-/* Image container */
-.image-container {
+.main-image {
   flex: 1;
   max-width: 50%;
 }
 
-.image-container img {
+.main-image img {
   width: 100%;
   height: auto;
-  border-radius: 10px; /* Rounded corners */
 }
   
 /* Menu Section */
@@ -135,10 +127,6 @@ body {
 .section-title {
   font-size: 3rem;
   margin-bottom: 20px;
-}
-
-.section-title span {
-  color: #fb4a36;
 }
 
 /* Menu Items Layout */
@@ -159,7 +147,6 @@ body {
   position: relative;
   text-align: center;
   color: white;
-  overflow: hidden; /* Prevents content overflow */
 }
 
 /* Overlay for hover effect */
@@ -170,13 +157,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0); /* Initially transparent */
-  transition: background 0.3s ease-in-out;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0); 
+  transition: 0.3s ease-in-out;
 }
 
 /* Show dark background on hover */
 .menu-card:hover::before {
   background: rgba(0, 0, 0, 0.6); /* Dark overlay when hovered */
+  border-radius: 15px;
 }
 
 /* Menu Card Content */
@@ -186,12 +175,10 @@ body {
   width: 100%;
   padding: 0 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-45%);
   opacity: 0; /* Hide text initially */
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Positioning title and description */
 .menu-card h3 {
   top: 35%;
   font-size: 2rem;
@@ -205,11 +192,10 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-/* Show text when hovered */
 .menu-card:hover h3,
 .menu-card:hover p {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%);
 }
 
 /* Explore Variety Button (Always Visible) */
@@ -225,7 +211,7 @@ body {
   padding: 10px 20px;
   border-radius: 30px;
   text-decoration: none;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 /* Button Hover Effect */
@@ -249,73 +235,41 @@ body {
   }
 }
 
-
-
   /* Seasonal Section Styling */
-.info_section {
-  background: url(../images/paralax-half.jpg) no-repeat center center;
-  background-size: cover;
-  width: 100%;
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  text-align: center;
-  background-attachment: fixed;
-  background-position: center center;
-  background-color: #e25111;
-}
-
-
-
-.heading_space {
-  font-family: 'BebasRegular', sans-serif;
-    font-size: 40px;
-    color: #fff;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.heading_reserv {
-  font-family: 'BebasRegular', sans-serif;
-    font-size: 40px;
-    color: #000;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.EnjoyFood {
-  font-size: 20px;
-    color: #fff;
-    margin-bottom: 20px;
-}
-.ReservFood {
-  font-size: 20px;
-    color: #000;
-    margin-bottom: 20px;
-}
-
-.paralax {
+.promotion_section {
   background: url(../images/paralax.jpg) no-repeat fixed;
-  padding: 6% 0;
-  background-size: cover;
   background-position: center center;
+  background-size: cover;
+  padding: 6% 0;
+  width: 100%;  
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  text-align: center;
 }
 
-.paralax h2 {
+.promotion_section .heading{
+  font-family: 'BebasRegular', sans-serif;
+    font-size: 40px;
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.promotion_section p {
+  font-size: 20px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.promotion_section h2 {
   font-size: 40px;
   color: #fff;
   letter-spacing: 0.5px;
 }
 
-.paralax .detail {
-  font-size: 20px;
-  color: #fff;
-}
-
-/* Button Styling */
-.btn-common-white {
+.promotion_section .btn {
   background: #e25111;
   padding: 12px 30px;
   letter-spacing: 0.5px;
@@ -325,148 +279,190 @@ body {
   display: inline-block;
   color: #fff;
   text-transform: capitalize;
+  text-decoration: none;
 }
 
-.btn-common-white:hover, .btn-common-white:focus {
+.promotion_section .btn:hover {
   background: #fff;
   color: #e25111;
 }
 
-/* Responsive Styling */
-@media screen and (max-width: 1000px) {
-  .paralax h2 {
-      font-size: 30px;
-  }
-  .paralax .detail {
-      font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .paralax h2 {
-      font-size: 26px;
-  }
-  .paralax .detail {
-      font-size: 14px;
-  }
-}
-
-
 /* About Us Section */
-.aboutus-section {
-  padding: 40px 0; /* Reduced from 60px */
+.about-section {
+  padding: 40px 0;
   background: url(../images/about-bg.png);
   text-align: center;
 }
 
-.reserve-section {
-  padding: 40px 0; /* Reduced from 60px */
-  background: url(../images/about-bg.png);
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2.5rem; /* Slightly smaller */
-  margin-bottom: 20px; /* Reduced from 30px */
+/* Section Title */
+.about-section .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
   font-weight: bold;
   color: #fb4a36;
   position: relative;
 }
 
-/* Center the title */
-.section-title span {
+.about-section .section-title span {
   color: #333;
 }
 
-/* Content layout */
-.aboutus-content {
+/* Content Layout */
+.about-section .aboutus-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
 }
 
-/* Text overlay style */
-.aboutus-text {
+/* About Us Text */
+.about-section .aboutus-text {
   flex: 1;
   max-width: 100%;
-  padding: 20px; /* Reduced from 40px */
+  padding: 20px; 
   position: relative;
   color: white;
 }
 
-.text-overlay {
-  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for contrast */
-  padding: 20px; /* Reduced from 30px */
-  border-radius: 10px; /* Slightly reduced radius */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+.about-section .text-overlay {
+  background-color: rgba(0, 0, 0, 0.7); 
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.aboutus-text p {
-  font-size: 1rem; /* Reduced from 1.1rem */
-  line-height: 1.6; /* Slightly tighter line-height */
+.about-section .aboutus-text p {
+  font-size: 1rem;
+  line-height: 1.6;
   text-align: justify;
-  margin-bottom: 15px; /* Added for consistent spacing */
+  margin-bottom: 15px;
 }
 
-/* Adjust image size and layout */
-.aboutus-image {
+.about-section .aboutus-image {
   flex: 1;
   max-width: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px; /* Added padding for spacing */
+  padding: 20px;
 }
 
-.aboutus-image img {
-  width: 90%; 
-  max-width: 500px; 
-  border-radius: 10px; /* Slightly reduced radius */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+.about-section .aboutus-image img {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .aboutus-content {
+  .about-section .aboutus-content {
     flex-direction: column;
   }
 
-  .aboutus-text {
+  .about-section .aboutus-text {
     max-width: 100%;
     text-align: center;
-    padding: 15px; /* Further reduced padding */
+    padding: 15px; 
   }
 
-  .aboutus-image {
+  .about-section .aboutus-image {
     max-width: 100%;
-    padding: 15px; /* Further reduced padding */
+    padding: 15px; 
   }
 
-  .aboutus-image img {
+  .about-section .aboutus-image img {
     width: 70%;
   }
 }
 
 @media screen and (max-width: 480px) {
-  .section-title {
+  .about-section .section-title {
     font-size: 2rem;
   }
 
-  .aboutus-text {
-    padding: 10px; /* Further reduced padding */
+  .about-section .aboutus-text {
+    padding: 10px;
   }
 
-  .text-overlay {
-    padding: 15px; /* Further reduced padding */
+  .about-section .text-overlay {
+    padding: 15px; 
   }
 
-  .aboutus-image img {
+  .about-section .aboutus-image img {
     width: 100%;
   }
 }
 
+/* Facts Counter Section */
+.facts-section {
+  padding: 60px 0;
+  background: url(../images/bg-facts.jpg) no-repeat center center fixed;
+  background-size: cover;
+  text-align: center;
+}
 
+.facts-section .number-counters {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.facts-section .counters-item {
+  padding: 30px;
+  border-radius: 15px;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.facts-section .counters-item:hover {
+  transform: scale(1.05);
+}
+
+.facts-section .counters-item i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #fff; 
+}
+
+.facts-section .counters-item h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #e25111; 
+}
+
+.facts-section .counters-item p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .number-counters {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .counters-item {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .counters-item h2 {
+    font-size: 2rem;
+  }
+
+  .counters-item p {
+    font-size: 1rem;
+  }
+}
 
 /* Footer */
 footer {
@@ -498,30 +494,25 @@ footer {
 /* Social Icons Container */
 .social-icons {
   display: flex;
-  /*justify-content: center; /* Centers the icons horizontally */
-  /*align-items: center;     /* Centers the icons vertically */
-  gap: 20px;               /* Space between icons */
-  padding: 5px 0;         /* Optional padding */
+  gap: 20px;             
+  padding: 5px 0;         
 }
 
-/* Social Icons Links */
 .social-icons a {
-  color: #ffffff;          /* Sets the icon color to white */
-  font-size: 24px;         /* Adjusts the size of the icons */
-  transition: color 0.3s ease; /* Smooth color transition on hover */
+  color: #ffffff;          
+  font-size: 24px;        
+  transition: color 0.3s ease; 
 }
 
-/* Optional: Change Icon Color on Hover */
 .social-icons a:hover {
-  color: #e25111;          /* Reddish color on hover */
+  color: #e25111;          
 }
 
-/* Optional: Add Background Circle on Hover */
 .social-icons a:hover {
-  color: #ffffff;          /* Keep icon white on hover */
-  background-color: #e25111; /* Reddish background on hover */
-  border-radius: 50%;      /* Makes the background a circle */
-  padding: 10px;           /* Adds padding around the icon */
+  color: #ffffff;          
+  background-color: #e25111; 
+  border-radius: 50%;      
+  padding: 10px;           
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -542,96 +533,47 @@ footer {
 }
 
 
-/* Facts Counter Section */
-#facts {
-  padding: 60px 0;
-  background: url(../images/bg-facts.jpg) no-repeat center center fixed;
-  background-size: cover;
-  text-align: center;
-}
-
-.number-counters {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.counters-item {
-  padding: 30px;
-  border-radius: 15px;
-  color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease-in-out;
-  /*background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
-}
-
-.counters-item:hover {
-  transform: scale(1.05);
-}
-
-.counters-item i {
-  font-size: 3rem;
-  margin-bottom: 15px;
-  color: #fff; /* Icon color set to white */
-}
-
-.counters-item h2 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #e25111; /* Reddish color for numbers */
-}
-
-.counters-item p {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  text-transform: capitalize;
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-  .number-counters {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .counters-item {
-    width: 80%;
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .counters-item h2 {
-    font-size: 2rem;
-  }
-
-  .counters-item p {
-    font-size: 1rem;
-  }
-}
-
 /* Table reservation */
-.table-reservation{
+.table-reservation {
   padding-top: 50px;
   padding-bottom: 70px;
   background: #ffe4c2;
   padding-right: 50px;
-  }
-  .table {
-  margin: 0px 30px 0px 30px;
+}
+
+.table {
+  margin: 0px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  }
-  
-  .reservation {
+}
+
+.reserve-section {
+  padding: 40px 0; 
+  background: url(../images/about-bg.png);
+  text-align: center;
+}
+
+.heading_reserv {
+  font-family: 'BebasRegular', sans-serif;
+    font-size: 40px;
+    color: #000;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.ReservFood {
+  font-size: 20px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.reservation {
   border: 4px solid #feead4;
-  }
-  
-  .reservation-section {
+}
+
+.reservation-section {
   background-color: #feead4cb;
   padding: 80px;
   border-left: 4px solid #feead4;
@@ -640,46 +582,45 @@ footer {
   /* Adjusted width to fit two fields per row */
   text-align: center;
   color: #000;
-  }
-  
-  #reservation-form {
-  background: none;
-  }
-  
+}
 
-  .form-row {
+/* Scoped form styles for the reservation section */
+.reservation-section form {
+  background: none;
+}
+
+.reservation-section .form-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 28px;
-  }
-  
-  .form-group {
+}
+
+.reservation-section .form-group {
   flex: 2;
   margin-right: 10px;
-  
-  }
-  
-  .form-group:last-child {
+}
+
+.reservation-section .form-group:last-child {
   margin-right: 0;
-  }
-  
-  form label {
+}
+
+.reservation-section form label {
   display: block;
   margin-bottom: 5px;
   text-align: left;
   font-weight: 450;
   font-size: 1rem;
-  }
-  
-  form input {
+}
+
+.reservation-section form input {
   width: 100%;
   padding: 8px;
   border: 1px solid black;
   border-radius: 4px;
   background: none;
-  }
-  
-  form button {
+}
+
+.reservation-section form button {
   width: 100%;
   padding: 10px;
   background-color: #fb4a36;
@@ -687,27 +628,26 @@ footer {
   color: #000;
   border-radius: 4px;
   cursor: pointer;
-  /* Space between rows and button */
-  }
-  form button:hover {
-    background-color: #f71900;
-  }
- 
-  @media screen and (max-width: 455px) {
-  .form-row {
-  flex-direction: column;
+}
+
+.reservation-section form button:hover {
+  background-color: #f71900;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 455px) {
+  .reservation-section .form-row {
+    flex-direction: column;
   }
   
-  .form-group {
-  margin-right: 0;
-  margin-bottom: 10px;
+  .reservation-section .form-group {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-  }
- 
-  @media screen and (max-width: 765px) {
-  .story-content{
+}
+
+@media screen and (max-width: 765px) {
+  .story-content {
     flex-direction: column-reverse !important;
   }
-  
-  }
- 
+}

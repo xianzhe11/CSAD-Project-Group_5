@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(../images/pizzabg.png);
+    background-blend-mode :lighten;
+}
+
+.order-container{
+    display: fixed;
+    height: 125px;
+    width: 55%;
+    margin-top: 1%;
+    margin-left: 2%;
+    background: #eb9d30;
+    border-radius: 10px;
+}
+
+.order-container img{
+  position: relative;
+  left: -70px;
+  top :-5px;
+  width : 60px;
+  height : 60px;
+  border-radius: 10px;
+  background-color: #AEFD6C;
+}
+
+.orderno {
+ position: relative;
+ top : 10%;
+ left : 15%;
+}
+
+.view-order{
+  position: relative;
+  left: 15%;
+  top: -10%;
+  border: none;
+  background-color: rgb(157, 207, 38);
+  width: 100px;
+  height: 50px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.popup {
+  display:block;
+  width: 550px;
+  height: 80vh;
+  position: fixed;
+  top: 55%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #f1e8d1;
+  z-index: 999;
+  border-radius: 20px;
+  text-align: center;
+  background-image: url(../images/pizzabg.png);
+  background-blend-mode: overlay;
+  background-color: #fef6e4;
+}
+
+.noinfo{
+  position: relative;
+  width :80%;
+  height:50px;
+  top : 50px;
+  left :10%;
+  align-content: center;
+  text-align: center;
+  background-color: #dddada;
+  border-radius: 10px;
+  opacity :0.8;
+ 
+}
+.status-pending {
+  position: relative;
+  height : 35px;
+  width: 100px;
+  background-color :rgb(241, 237, 237) ;
+  border-radius: 5px;
+  left: 80%;
+  top : -55%;
+  text-align: center;
+  align-content: center;
+  color: orange;
+  font-weight: bold;
+}
+.status-preparing { 
+  position: relative;
+  height : 35px;
+  width: 100px;
+  background-color :rgb(241, 237, 237) ;
+  border-radius: 5px;
+  left: 80%;
+  top : -55%;
+  text-align: center;
+  align-content: center;
+  color: blue; 
+  font-weight: bold;
+ }
+.status-delivering { 
+  position: relative;
+  height : 35px;
+  width: 100px;
+  background-color :rgb(241, 237, 237) ;
+  border-radius: 5px;
+  left: 80%;
+  top : -55%;
+  text-align: center;
+  align-content: center;
+  color: pink; 
+  font-weight: bold;
+}
+.status-completed { 
+  position: relative;
+  height : 35px;
+  width: 100px;
+  background-color :rgb(241, 237, 237) ;
+  border-radius: 5px;
+  left: 80%;
+  top : -55%;
+  text-align: center;
+  align-content: center;
+  color: green; 
+  font-weight: bold;
+ }
+.status-cancelled { 
+  position: relative;
+  height : 35px;
+  width: 100px;
+  background-color :rgb(241, 237, 237) ;
+  border-radius: 5px;
+  left: 80%;
+  top : -55%;
+  text-align: center;
+  align-content: center;
+  color: red; 
+  font-weight: bold; 
+}
+#close-popup{
+  position: relative;
+  width:50px;
+  height:50px;
+  font-size: 35px;
+  background-color: #fef6e4;
+  border:none;
+  left :40%;
+  top : -43%;
+  cursor: pointer;
+  background-image: url(../images/pizzabg.png);
+  background-blend-mode :lighten;
+}
+#order-details{
+  margin-top: 5%;
+}
+#order-details p{
+  margin-top: 2%;
+}
+.cover{
+  display: fixed;
+  height: 250px;
+  width: 50%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  margin-left: 4%;
+  background: #eb9d30;
+  border-radius: 10px;
+}
+.label{
+  position: relative;
+  font-size: 20px;
+  font-weight: bold;
+  right :50%;
+  top :20px;
+
+}

@@ -1,0 +1,281 @@
+*{
+    padding :0 ;
+    margin : 0;
+    box-sizing: border-box;
+}
+:root {
+    --width: 200px;
+    --height : 250px;
+  }
+body {
+    width: 100%;
+    height: 50px; 
+    background-color: #feead4;
+  }
+.wave {
+    width : 70%;
+    right:  29%;
+    margin: 0; 
+    background : #feead4;
+    position: relative; 
+    rotate : 90deg;
+}
+.wave2 {
+    width : 55%;
+    left:62%;
+    height: 120%;
+    margin: 0; 
+    background : #feead4;
+    position: relative; 
+    rotate : 270deg;
+}
+.pointtext{
+    background : #FEFDE9 ; 
+    margin-left : 20%;
+    margin-top: -15%;
+    width: 60%;
+    height: 50px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #1234d9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    align-content:center;
+    background-image: url(../images/pizzabg.png);
+    background-blend-mode :lighten;
+    background-color: rgba(227, 183, 183, 0.6);
+    background-position: center; 
+   
+
+}
+.container {
+    display: fixed;
+    height: 250px;
+    width: 55%;
+    margin-top: 2%;
+    margin-left: 22.5%;
+    background: #feead4;
+    border-radius: 10px;
+    overflow: hidden;
+    touch-action: pan-y;
+}
+.slider {
+    display: flex;
+    width: 100%;
+    height: 250px;
+    overflow-x: auto; /* horizontal scrolling */
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory; /* smooth scrolling */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /*Firefox */
+    -ms-overflow-style: none; /* For ie, edge */
+    gap: 20px; /* images space */
+}
+
+.slider img {
+    position : relative ;
+    flex-shrink: 0; /* no image shrink for overlflow */
+    width: 300px;
+    height: 225px; 
+    border-radius: 20px;
+    left: 2%;
+    overflow: hidden;
+    align-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    
+}
+
+.slider::-webkit-scrollbar {
+    display: none; /* hide scrollbar for Chrome, safari */
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+.popup-content {
+    background-color: #feead4;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 525px;
+    border-radius: 10px;
+    height: 650px;
+    text-align: center;
+  }
+.popup-content img {
+    width: 420px;
+    height: 260px; 
+    border-radius: 20px;
+    align-self: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.popup-content p {
+    width: 108%;
+    max-width: 525px;
+    height: 50px; 
+    margin: 0;
+    margin-left: -4%;
+    position: relative;
+    top: 39%;
+    align-content: center;
+    font-family: 'Trebuchet MS';
+    font-weight: bold;
+    background-color: #FEFDE9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+#confirmBtn{
+    background-color: rgb(52, 165, 52);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    position: relative;
+    top: 41%;
+    cursor: pointer;
+    
+}
+#cancelBtn{
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    position: relative; 
+    top: 41%;
+    cursor: pointer;
+}
+.userpoint{
+    position: relative;
+    left:-15%;
+    top:-15%;
+}
+.costpoint{
+    position: relative;
+    left:-16%;
+    top:-7%;
+}
+.pointafter{
+    position: relative;
+    left:-10%;
+    top:2%;
+}
+#currentPointsDisplay{
+    position: relative;
+    top:-26.5%;
+    left:29%;
+    font-weight: bold;
+}   
+#redeemCostDisplay{
+    position: relative;
+    top:-18.5%;
+    left:31%;
+    font-weight: bold;
+}  
+#pointsAfterDisplay{
+    position: relative;
+    top:-9.5%;
+    left:19%;
+    font-weight: bold;
+}    
+.cont1{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont1 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label1{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc1{
+    position: relative;
+    width: 430px;
+    left: 23%;
+    top:-75%;
+}
+#redeem1{
+    position: relative;
+    left: 80%;
+    top:-190px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.cont2{
+    display: fixed;
+    height: 150px;
+    width: 800px;
+    margin-top: 25px;
+    margin-left: 26%;
+    background: #fff7e9;
+    border-radius: 8px;
+}
+.cont2 img{
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 125px;
+    width : 125px;
+    background-color: #f9f4ec;
+    border-radius: 10px;
+}
+.label2{
+    position: relative;
+    left: 23%;
+    top:-85%;
+    font-weight: bold;
+}
+.desc2{
+    position: relative;
+    width: 435px;
+    left: 23%;
+    top:-85%;
+}
+#redeem2{
+    position: relative;
+    left: 80%;
+    top:-215px;
+    border: none;
+    background-color: rgb(254, 146, 58);
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.redeemed-box {
+    background-color: #d4edda;
+    color: #155724;           
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.2em;
+    animation: redeemed-box 0.8s;
+  }
+  @keyframes redeemed-box {
+    from {opacity: 0; }
+    to{opacity: 1; }
+   }

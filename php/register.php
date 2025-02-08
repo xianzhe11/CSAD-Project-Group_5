@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+include("navbar.php");
+include 'db_connection.php';
+$_SESSION['prev_page'] = "index.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +15,6 @@
 
 </head>
 <body>
-<?php
-session_start();
-include("navbar.php");
-include 'db_connection.php';
-$_SESSION['prev_page'] = "index.php";
-?>
-
 <?php
 $user= $email = $pass= "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
