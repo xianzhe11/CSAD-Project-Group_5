@@ -30,11 +30,10 @@ $conn->close();
   }
   ?>
 
-<div class="main" id="home">
-  <section>
+  <section class="main-section" id="home">
     <div class="container">
       <div class="row">
-        <!-- Text Container -->
+
         <div class="text-container">
           <h2>Welcome to <span class="highlight">Burger Bliss</span></h2>
           <h4 class="sub-heading">"Where Hot Flavors Meet Cool Comfort."</h4>
@@ -42,43 +41,48 @@ $conn->close();
             Dive into a culinary celebration where every dish bursts with flavor.
             At <strong>Burger Bliss</strong>, we believe in making every meal an unforgettable experience.
           </p>
+
           <div class="button-group">
             <a href="menu.php" class="btn">Start Order</a>
-            <a href="menu.php" class="btn btn-secondary">Explore Menu</a>
+            <a href="menu.php" class="btn-secondary">Explore Menu</a>
           </div>
         </div>
-        <!-- Image Container -->
-        <div class="image-container">
-          <img src="../images/burger.png" alt="Delicious Pizza">
+
+        <div class="main-image">
+          <img src="../images/burger.png" alt="Delicious Burger Image">
         </div>
+
       </div>
     </div>
   </section>
-</div>
 
   <!-- Menu Section -->
   <section class="menu-section" id="menu">
     <div class="container">
       <h1 class="section-title lobster"> OUR <span>FOOD</span></h1>
+      
       <div class="menu-items">
         <div class="menu-card" style="background-image: url('../images/appe-index.avif');">
           <h3>Appetizer</h3>
           <p>Start your meal with our delicious appetizers.</p>
           <a href="menu.php?category=appetizer" class="btn">Explore Variety</a>
         </div>
+
         <div class="menu-card" style="background-image: url('../images/index-pizza.jpg');">
           <h3>Pizza</h3>
           <p>Indulge in our wide variety of pizzas.</p>
           <a href="menu.php?category=pizza" class="btn">Explore Variety</a>
         </div>
+
         <div class="menu-card" style="background-image: url('../images/index-burger.avif');">
           <h3>Burger</h3>
           <p>Indulge in our wide variety of Burgers.</p>
           <a href="menu.php?category=burgers" class="btn">Explore Variety</a>
         </div>
+
         <div class="menu-card" style="background-image: url('../images/bev-index.jpeg');">
           <h3>Beverages</h3>
-          <p>Quench your Thirst with our refreshing Beverages</p>
+          <p>Quench your Thirst with our refreshing Beverages.</p>
           <a href="menu.php?category=beverages" class="btn">Explore Variety</a>
         </div>
       </div>
@@ -86,11 +90,11 @@ $conn->close();
   </section>
 
   <!-- Promotional Section -->
-  <section class="info_section paralax">
+  <section class="promotion_section">
   <div class="container text-center">
-    <h2 class="heading_space">Seasonal Promotions!</h2>
-    <p class="EnjoyFood">Enjoy Delicious Food in Limited time</p>
-    <a href="menu.php?category=seasonal" class="btn-common-white page-scroll">Order Now</a>
+    <h2 class="heading">Seasonal Promotions!</h2>
+    <p>Enjoy Delicious Food in Limited time</p>
+    <a href="menu.php?category=seasonal" class="btn">Explore Menu</a>
   </div>
 </section>
 
@@ -156,7 +160,7 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
 </section>
 
 <!-- About Us Section -->
-<section class="aboutus-section" id="about-us">
+<section class="about-section" id="about-us">
   <div class="container">
     <h1 class="section-title lobster">ABOUT <span>US</span></h1>
     <div class="aboutus-content">
@@ -175,38 +179,38 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
 </section>
 
 <!-- Facts Counter Section -->
-<section id="facts">
+<section class="facts-section" id="facts">
   <div class="container">
     <div class="row number-counters"> 
-      <!-- First Count Item -->
-      <div class="col-sm-3 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="300ms">
+
+      <div class="col-sm-3 col-xs-12">
         <div class="counters-item">
           <i class="fas fa-smile"></i> 
-          <h2><strong data-to="4680">4680</strong></h2>
+          <h2><strong>4680</strong></h2>
           <p>Happy Customers</p>
         </div>
       </div>
-      <!-- Second Count Item -->
-      <div class="col-sm-3 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
+
+      <div class="col-sm-3 col-xs-12">
         <div class="counters-item"> 
           <i class="fas fa-utensils"></i>
-          <h2><strong data-to="865">865</strong></h2>
+          <h2><strong">865</strong></h2>
           <p>Dishes Served</p>
         </div>
       </div>
-      <!-- Third Count Item -->
-      <div class="col-sm-3 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="900ms">
+
+      <div class="col-sm-3 col-xs-12">
         <div class="counters-item"> 
           <i class="fas fa-glass-whiskey"></i>
-          <h2><strong data-to="510">510</strong></h2>
+          <h2><strong>510</strong></h2>
           <p>Total Beverages</p>
         </div>
       </div>
-      <!-- Fourth Count Item -->
-      <div class="col-sm-3 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1200ms">
+
+      <div class="col-sm-3 col-xs-12">
         <div class="counters-item"> 
           <i class="fas fa-coffee"></i>
-          <h2><strong data-to="1350">1350</strong></h2>
+          <h2><strong>1350</strong></h2>
           <p>Cups of Coffee</p>
         </div>
       </div>
@@ -240,6 +244,8 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
           </form><br>
           <h4>Admin Dashboard</h4>
           <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
+          <h4>Join Queue</h4>
+          <a style="color: white;" href="queue-join.php">Queue</a>
         </div>
       </div>
       <div class="footer-bottom">
@@ -247,8 +253,5 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
       </div>
     </div>
   </footer>
-
-
-  <script src="script.js"></script>
 </body>
 </html>

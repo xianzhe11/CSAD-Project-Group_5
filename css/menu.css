@@ -29,11 +29,9 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    /*background-color: #fcafa7;*/
     padding: 5px;
     border-radius: 8px;
     margin: 20px auto;
-    /*max-width: fit-content;*/
     width: 100%;
     
 }
@@ -107,7 +105,7 @@ body {
 .customizations-section {
     display: none;
 }
-/* Preserve original button and price layout */
+
 .button-container {
     display: flex;
     justify-content: space-between;

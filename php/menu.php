@@ -2,19 +2,19 @@
 session_start();
 include 'db_connection.php';
 $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
-// Function to sanitize input data
+
+
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 
-// Initialize cart if not already set
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
 // Handle Add to Cart with Customizations
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart'])) {
-    // Sanitize and retrieve item data
+
     $itemId = intval($_POST['item_id']);
     $itemName = sanitize_input($_POST['item_name']);
     $itemDescription = sanitize_input($_POST['item_description']);
@@ -22,11 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
     $itemImage = sanitize_input($_POST['item_image']);
     $category = sanitize_input($_POST['category']);
 
-    // Initialize customizations array
     $customizations = [];
-
-    // Process customizations based on category
-    switch (strtolower($category)) {
+    switch (strtolower($category)) {      // Process customizations based on category
         case 'appetizers':
             $custom_extra_sauce = isset($_POST['extra_sauce']) ? 'Yes' : 'No';
             $custom_size = isset($_POST['appetizer_size']) ? sanitize_input($_POST['appetizer_size']) : 'Regular';
@@ -77,21 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
             // Default or no customizations
             break;
     }
+    $customization_json = json_encode($customizations);   // Encode customizations as JSON
 
-    // Encode customizations as JSON
-    $customization_json = json_encode($customizations);
-
-    // Check if item with the same customizations already exists in cart
     $found = false;
-    foreach ($_SESSION['cart'] as &$cartItem) {
+    foreach ($_SESSION['cart'] as $cartItem) {
         if ($cartItem['id'] == $itemId && $cartItem['customizations'] == $customization_json) {
             $cartItem['quantity'] += 1;
             $found = true;
             break;
         }
     }
-    if (!$found) {
-        // Add a new item to cart
+    if (!$found) {         // Add a new item to cart
         $_SESSION['cart'][] = [
             'id'            => $itemId,
             'name'          => $itemName,
@@ -102,12 +95,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
             'customizations'=> $customization_json,
         ];
     }
-
-    // Set a success message
     $_SESSION['success_message'] = "{$itemName} has been added to your cart.";
-
-    // Redirect to prevent form resubmission
-    header('Location: menu.php');
+    header('Location: menu.php'); // Redirect
     exit;
 }
 
@@ -124,7 +113,6 @@ if ($categoryResult) {
     echo "<!-- Query Failed: (" . $conn->errno . ") " . $conn->error . " -->";
 }
 
-// Retrieve and sanitize the selected category from the URL
 $selectedCategory = isset($_GET['category']) ? strtolower(trim($_GET['category'])) : strtolower($categories[0]);
 
 // Validate the selected category
@@ -146,10 +134,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/menu.css">
-    <style>
-        /* Additional styling for better UI */
-
-    </style>
 </head>
 <body>
     <?php
@@ -201,7 +185,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                 <div class="tab-pane fade <?= $isActive ?>" id="<?= $categorySlug ?>" role="tabpanel" aria-labelledby="<?= $categorySlug ?>-tab">
                     <div class="row menu-items">
                         <?php
-                        // Prepare and execute the statement
                         $stmt = $conn->prepare('SELECT * FROM menu_items WHERE catName = ?');
                         $stmt->bind_param('s', $category);
                         $stmt->execute();
@@ -277,11 +260,11 @@ $activeIndex = array_search($selectedCategory, $validCategories);
               <input type="hidden" name="category" id="modal_item_category">
 
               <div class="row">
-                  <!-- Item Image -->
+
                   <div class="col-md-4 text-center">
                       <img src="" alt="" id="modal_item_image_display" class="img-fluid mb-3" style="max-height: 150px;">
                   </div>
-                  <!-- Item Details -->
+
                   <div class="col-md-8">
                       <h5 id="modal_item_name_display"></h5>
                       <p id="modal_item_description_display"></p>

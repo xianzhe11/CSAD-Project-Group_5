@@ -223,11 +223,8 @@ body.scrolled .custom-navbar {
   transform: scale(1.05);
 }
 
-/* Removed Mobile Menu Toggle styles */
-
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
-  /* Since the mobile toggle is removed, always display nav-links */
   .nav-links {
     flex-direction: column;
     background-color: var(--navbar-bg);
