@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'db_connection.php';
+$_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 
 // Process POST request for redemption and exit immediately.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
@@ -103,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
       Successfully redeemed: <?php echo htmlspecialchars($_GET['name']); ?>
     </div>
   <?php endif; ?>
-
     <div class= "wave">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff6330" fill-opacity="1" 
         d="M0,64L48,96C96,128,192,192,288,208C384,224,480,192,576,160C672,128,768,96,864,96C960,96,1056,128,1152,128C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
@@ -129,14 +129,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
             <img src = "../images/chickenredeem.png" alt= "third" class = "image1"
             data-id="104" data-cost="250" data-name="Crispy Chicken" data-image="../images/chickenredeem.png"/>
 
-            <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="105" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
-
-            <img src = "../food_images/drink.png" alt= "third" class = "image1"
-            data-id="106" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
-
-            <img src = "../food_images/drink.png" alt= "third" class  = "image1"
-            data-id="107" data-cost="100" data-name="Refreshing Drink" data-image="../food_images/drink.png"/>
+            <img src = "../images/cheesy.png" alt= "third" class  = "image1"
+            data-id="105" data-cost="250" data-name="Cheese Pizza" data-image= "../images/cheesy.png"/>
         </div>
     </div>  
     <div id="popup" class="popup">  <!-- Pop Up -->
@@ -171,7 +165,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
       A paradise of flavor that’ll have you coming back for more puns.</div>
     <button id="redeem2">Redeem</button>
   </div>
-
+  <div class = "cover"><div>
+  <div class = "cover2"><div>
 </body>
 
 <script>
