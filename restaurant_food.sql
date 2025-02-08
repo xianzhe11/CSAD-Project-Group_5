@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2025 at 10:01 AM
+-- Generation Time: Feb 08, 2025 at 05:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -65,13 +65,25 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `catName`, `itemName`, `description`, `price`, `image`, `status`) VALUES
 (2, 'Pizza', 'Stuffed Mushrooms', 'Mushrooms filled with cheese and herbs.', 8.00, 'pizza.png', 'Available'),
-(13, 'Beverages', 'Tequila Sunrise ', 'Cocktail made of tequila, orange juice, and grenadine syrup.', 6.99, 'tequila_sunrise.jpg', 'Available'),
-(14, 'Burgers', 'Double Cheesy Beef', 'Patty of ground beef grilled and placed between two halves of a bun.', 6.99, 'Beef_Cheese_Burger.jpg', 'Available'),
-(15, 'Appetizers', 'French Fries', 'Deep-fried potatoes that have been cut into various shapes, especially thin strips.', 6.99, 'french_fries.jpg', 'Available'),
-(16, 'Seasonal', 'Italian Pizza', 'Flattened disk of bread dough topped with some combination of olive oil, oregano, tomato, olives & mozzarella', 6.99, 'seasonal_pizza.jpg', 'Available'),
-(17, 'Appetizers', 'French Fries', 'Deep-fried potatoes that have been cut into various shapes, especially thin strips.', 6.99, 'french_fries.jpg', 'Available'),
-(18, 'Appetizers', 'French Fries', 'Deep-fried potatoes that have been cut into various shapes, especially thin strips.', 6.99, 'french_fries.jpg', 'Available'),
-(19, 'Appetizers', 'French Fries', 'Deep-fried potatoes that have been cut into various shapes, especially thin strips.', 6.99, 'french_fries.jpg', 'Available');
+(13, 'Beverages', 'Tequila Sunrise ', 'Cocktail made of tequila, orange juice, and grenadine syrup.', 6.00, '../food_images/67a76f56287f5.png', 'Available'),
+(14, 'Burgers', 'Double Cheesy Beef', 'Patty of ground beef grilled and placed between two halves of a bun.', 6.00, '../food_images/67a76f620dd53.png', 'Available'),
+(16, 'Seasonal', 'Italian Pizza', 'Flattened disk of bread dough topped with some combination of olive oil, oregano, tomato, olives & mozzarella', 6.00, '../food_images/67a77216c8d81.png', 'Available'),
+(19, 'Appetizers', 'French Fries', 'Deep-fried potatoes that have been cut into various shapes, especially thin strips.', 6.00, '../food_images/67a76f4bd11cf.png', 'Available'),
+(22, 'Seasonal', 'Call Service', 'Request Waiter to table for assistance', 0.00, '../food_images/67a773494dda9.png', 'Available'),
+(23, 'Appetizers', 'Call Service', 'Request Waiter to table for assistance', 0.00, '../food_images/67a7736d5b991.png', 'Available'),
+(24, 'Beverages', 'Call Service', 'Request Waiter to table for assistance', 0.00, '../food_images/67a77389a1a49.png', 'Available'),
+(25, 'Burgers', 'Call Service', 'Request Waiter to table for assistance', 0.00, '../food_images/67a7739ee64d6.png', 'Available'),
+(26, 'Pizza', 'Call Service', 'Request Waiter to table for assistance', 0.00, '../food_images/67a773bedc42a.png', 'Available'),
+(27, 'Appetizers', 'Crispy Calamari', 'Golden-fried calamari served with a tangy lemon garlic aioli and a sprinkle of fresh parsley', 10.00, '../food_images/67a7757d6b497.png', 'Available'),
+(28, 'Appetizers', 'Bruschetta', 'Toasted baguette slices topped with a fresh mixture of diced tomatoes, basil, garlic, and extra-virgin olive oil', 7.00, '../food_images/67a77593152a1.png', 'Available'),
+(29, 'Pizza', 'Margherita Pizza', 'A classic thin-crust pizza layered with zesty tomato sauce, fresh mozzarella, and basil leaves', 12.00, '../food_images/67a775ae09e19.png', 'Available'),
+(30, 'Pizza', 'Pepperoni Pizza', 'A hearty pizza loaded with spicy pepperoni, melted mozzarella, and a robust tomato sauce on a crispy crust.', 14.00, '../food_images/67a775cda8eff.png', 'Available'),
+(31, 'Burgers', 'Classic Cheeseburger', 'A juicy beef patty with melted cheddar cheese, crisp lettuce, tomato, and pickles, all served on a toasted brioche bun.', 11.00, '../food_images/67a775ecbaaac.png', 'Available'),
+(32, 'Burgers', 'Mushroom Swiss Burger', 'A tender grilled beef burger topped with sautéed mushrooms, Swiss cheese, and caramelized onions for a rich, savory flavor.', 13.00, '../food_images/67a775ffe80aa.png', 'Available'),
+(33, 'Beverages', 'Fresh Lemonade', 'Homemade lemonade made with freshly squeezed lemons and a hint of mint for extra refreshment\r\n', 3.00, '../food_images/67a776188c0bf.png', 'Available'),
+(34, 'Beverages', 'Iced Tea', 'Chilled, brewed iced tea served with a twist of lemon—a perfect thirst-quencher for any time of day', 2.00, '../food_images/67a7762d63b22.png', 'Available'),
+(35, 'Seasonal', 'Pumpkin Spice Flatbread (Fall)', 'A seasonal flatbread featuring a creamy pumpkin sauce topped with roasted butternut squash and a hint of sage.', 12.00, '../food_images/67a7764f8ef11.png', 'Available'),
+(36, 'Seasonal', 'Winter Citrus Salad (Winter)', 'A vibrant salad of mixed greens with seasonal citrus segments, pomegranate seeds, and a light, zesty dressing', 9.00, '../food_images/67a776bed312b.png', 'Available');
 
 -- --------------------------------------------------------
 
@@ -110,7 +122,14 @@ INSERT INTO `orders` (`id`, `order_id`, `user_id`, `payment_method`, `order_type
 (12, 'ORD17384768162020', NULL, 'paypal', 'dine_in', '2', NULL, 6.99, '2025-02-02 06:13:36', 'Pending', 'Unpaid'),
 (13, 'ORD17384771443492', NULL, 'paynow', 'dine_in', '1', NULL, 8.00, '2025-02-02 06:19:04', 'Pending', 'Unpaid'),
 (14, 'ORD17384775859560', NULL, 'paynow', 'dine_in', '5', NULL, 8.00, '2025-02-02 06:26:25', 'Pending', 'Unpaid'),
-(15, 'ORD17384778934818', 2, 'paynow', 'dine_in', '2', NULL, 6.99, '2025-02-02 06:31:33', 'Delivering', 'Unpaid');
+(15, 'ORD17384778934818', 2, 'paynow', 'dine_in', '2', NULL, 6.99, '2025-02-02 06:31:33', 'Delivering', 'Unpaid'),
+(16, 'ORD17387324371594', 2, 'paynow', 'dine_in', '2', NULL, 13.98, '2025-02-05 05:13:57', 'Pending', 'Unpaid'),
+(17, 'ORD17387369572875', 2, 'paynow', 'dine_in', '2', NULL, 13.98, '2025-02-05 06:29:17', 'Pending', 'Unpaid'),
+(18, 'ORD17387372005637', 2, 'paynow', 'dine_in', '4', NULL, 13.98, '2025-02-05 06:33:20', 'Pending', 'Unpaid'),
+(19, 'ORD17389819321676', NULL, 'paynow', 'dine_in', '5', NULL, 6.99, '2025-02-08 02:32:12', 'Pending', 'Unpaid'),
+(20, 'ORD17389829276020', 2, 'paynow', 'dine_in', '5', NULL, 6.99, '2025-02-08 02:48:47', 'Pending', 'Unpaid'),
+(21, 'ORD17389933971541', 2, 'paynow', 'dine_in', '5', NULL, 8.00, '2025-02-08 05:43:17', 'Pending', 'Unpaid'),
+(24, 'ORD17390299932080', NULL, 'paynow', 'dine_in', '2', NULL, 10.00, '2025-02-08 15:53:13', 'Pending', 'Unpaid');
 
 -- --------------------------------------------------------
 
@@ -146,7 +165,40 @@ INSERT INTO `order_items` (`id`, `order_id`, `item_name`, `quantity`, `price_eac
 (12, 12, 'Tequila Sunrise', 1, 6.99, 6.99, '{\"Size\":\"Medium\",\"No Ice\":\"No\",\"Sugar Level\":\"Normal\"}'),
 (13, 13, 'Stuffed Mushrooms', 1, 8.00, 8.00, '{\"Crust Type\":\"Regular\",\"Extra Toppings\":\"No\",\"Size\":\"Medium\"}'),
 (14, 14, 'Stuffed Mushrooms', 1, 8.00, 8.00, '{\"Crust Type\":\"Regular\",\"Extra Toppings\":\"No\",\"Size\":\"Medium\"}'),
-(15, 15, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}');
+(15, 15, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(16, 16, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(17, 16, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(18, 17, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(19, 17, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(20, 18, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(21, 18, 'Tequila Sunrise', 1, 6.99, 6.99, '{\"Size\":\"Medium\",\"No Ice\":\"No\",\"Sugar Level\":\"Normal\"}'),
+(22, 19, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(23, 20, 'French Fries', 1, 6.99, 6.99, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}'),
+(24, 21, 'Stuffed Mushrooms', 1, 8.00, 8.00, '{\"Crust Type\":\"Regular\",\"Extra Toppings\":\"No\",\"Size\":\"Medium\"}'),
+(27, 24, 'Crispy Calamari', 1, 10.00, 10.00, '{\"Extra Dipping Sauce\":\"No\",\"Size\":\"Regular\"}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `queuedetails`
+--
+
+CREATE TABLE `queuedetails` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `contact_number` varchar(20) NOT NULL,
+  `number_of_persons` int(11) NOT NULL,
+  `groups` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `queuedetails`
+--
+
+INSERT INTO `queuedetails` (`id`, `name`, `contact_number`, `number_of_persons`, `groups`) VALUES
+(42, 'test3', '213', 4, 4),
+(43, 'wadwda', '213', 1, 5),
+(44, 'tat', '23', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -227,7 +279,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `pass`, `points`, `created_at`, `profile_picture`) VALUES
 (1, 'john_doe', 'john@example.com', 0, 'hashed_password_here', 0, '2025-01-28 22:40:13', ''),
-(2, 'xianzhe', 'xianzhe@gmail.com', 0, '$2y$10$pXv2KanvFpyGV8kAhnx6yOFSeOxubhnb.ujJQIgganQFNPHNV4fPq', 0, '2025-02-02 13:33:25', '');
+(2, 'xianzhe', 'xianzhe@gmail.com', 0, '$2y$10$pXv2KanvFpyGV8kAhnx6yOFSeOxubhnb.ujJQIgganQFNPHNV4fPq', 430, '2025-02-02 13:33:25', '');
 
 --
 -- Indexes for dumped tables
@@ -260,6 +312,12 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `queuedetails`
+--
+ALTER TABLE `queuedetails`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `reservation`
@@ -295,19 +353,25 @@ ALTER TABLE `menu_categories`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `queuedetails`
+--
+ALTER TABLE `queuedetails`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `reservation`

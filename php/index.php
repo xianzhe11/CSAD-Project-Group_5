@@ -90,7 +90,7 @@ $conn->close();
   </section>
 
   <!-- Promotional Section -->
-  <section class="promotion_section">
+  <section class="promotion_section" id="promo-section">
   <div class="container text-center">
     <h2 class="heading">Seasonal Promotions!</h2>
     <p>Enjoy Delicious Food in Limited time</p>
@@ -99,7 +99,7 @@ $conn->close();
 </section>
 
 <!-- Reservation Section -->
-<<?php
+<?php
 $rsvmsg = isset($_SESSION['rsvmsg']) ? $_SESSION['rsvmsg'] : ""; // Retrieve message from session
 unset($_SESSION['rsvmsg']); // Clear the message after displaying
 ?>
@@ -159,6 +159,14 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
     </div>
 </section>
 
+<section class="promotion_section" id="queue-section" style="background-image: url(../images/darkres.jpg); box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);">
+  <div class="container text-center">
+    <h2 class="heading">Restaurant Full?</h2>
+    <p>Queue Online to secure spot! </p>
+    <a href="queue-join.php" class="btn">Join Queue</a>
+  </div>
+</section>
+
 <!-- About Us Section -->
 <section class="about-section" id="about-us">
   <div class="container">
@@ -194,7 +202,7 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
       <div class="col-sm-3 col-xs-12">
         <div class="counters-item"> 
           <i class="fas fa-utensils"></i>
-          <h2><strong">865</strong></h2>
+          <h2><strong>865</strong></h2>
           <p>Dishes Served</p>
         </div>
       </div>
@@ -219,7 +227,7 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
 </section>
 
   <!-- Footer -->
-  <footer id="contact">
+  <footer id="footer">
     <div class="footer-container">
       <div class="footer-row">
         <div class="footer-col">
@@ -244,8 +252,6 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
           </form><br>
           <h4>Admin Dashboard</h4>
           <a style="color: white;" href="../php_admin/admin_dashboard.php">Dashboard</a>
-          <h4>Join Queue</h4>
-          <a style="color: white;" href="queue-join.php">Queue</a>
         </div>
       </div>
       <div class="footer-bottom">

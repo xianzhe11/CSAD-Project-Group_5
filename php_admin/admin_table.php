@@ -60,6 +60,7 @@ $conn->close();
                     let response = JSON.parse(xhr.responseText);
                     if (response.status === "success") {
                         button.style.backgroundColor = "green"; // Indicate attended
+                        button.style.color = 'white';
                         button.disabled = true; // Disable button after handling
                     } else {
                         alert("Error removing table: " + response.message);
@@ -104,6 +105,7 @@ $conn->close();
                 let button = document.getElementById('table-' + tableNumber);
                 if (button) {
                     button.style.backgroundColor = 'yellow';
+                    button.style.color = 'gray';
                 }
                 });
             };

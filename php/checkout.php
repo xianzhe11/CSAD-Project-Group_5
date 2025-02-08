@@ -35,11 +35,13 @@ if (empty($cart_items)) {
     ?>
 
     <?php $current_step = 2; include 'progressbar.php'; ?>
+    <?php $isFree = ($total_price == 0); ?>
 
     <form action="receipt.php" method="POST" id="paymentForm">
         <div class="checkout-container">
-
+        
             <div class="payment-box">
+            <?php if(!$isFree): ?>
                 <h4 class="mb-4">Choose Payment Method</h4>
 
                 <div class="payment-option">
@@ -77,10 +79,15 @@ if (empty($cart_items)) {
                     <i class="fab fa-google-pay"></i> Google Pay
                 </button>
 
+            <?php else: ?>
+                <p>Your order is free! No payment information is required.</p>
+            <?php endif; ?>
+
                 <button type="submit" class="pay-button">
-                    Pay SGD <?php echo number_format($total_price, 2); ?>
+                    <?= $isFree ? 'Complete Order' : 'Pay SGD ' . number_format($total_price, 2); ?>
                 </button>
             </div>
+            
 
             <div class="cart-summary">
                 <h4>Cart Summary</h4>

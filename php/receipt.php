@@ -3,7 +3,6 @@ session_start();
 
 require_once 'db_connection.php'; 
 
-// Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $payment_method = isset($_POST['payment_method']) ? trim($_POST['payment_method']) : 'N/A';

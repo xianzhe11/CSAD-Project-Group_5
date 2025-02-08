@@ -67,7 +67,7 @@ if (isset($_SESSION['cart'])) {
           </a>
         </li>
         <li>
-          <a href="<?php echo ($currentPage === 'index.php') ? '#contact' : 'index.php#contact'; ?>" class="<?php echo ($currentPage === 'index.php#contact') ? 'active' : ''; ?>">
+          <a href="<?php echo ($currentPage === 'index.php') ? '#footer' : 'index.php#footer'; ?>" class="<?php echo ($currentPage === 'index.php#contact') ? 'active' : ''; ?>">
             <i class="fas fa-envelope"></i> Contact
           </a>
         </li>

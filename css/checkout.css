@@ -74,9 +74,9 @@ body {
     padding: 15px;
     cursor: pointer;
     font-size: 20px;
-    margin: 20px 0;
     display: block;
     text-align: center;
+    margin-top: auto;
 }
 /* Cart Summary Styling */
 .cart-summary h4 {

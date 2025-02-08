@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
     $category = sanitize_input($_POST['category']);
 
     $customizations = [];
+    if($itemName !== "Call Service"){
     switch (strtolower($category)) {      // Process customizations based on category
         case 'appetizers':
             $custom_extra_sauce = isset($_POST['extra_sauce']) ? 'Yes' : 'No';
@@ -72,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
             break;
         default:
             break;
+    }
     }
     $customization_json = json_encode($customizations);  
 
@@ -180,7 +182,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                 <div class="tab-pane fade <?= $isActive ?>" id="<?= $categorySlug ?>" role="tabpanel" aria-labelledby="<?= $categorySlug ?>-tab">
                     <div class="row menu-items">
                         <?php
-                          $stmt = $conn->prepare('SELECT * FROM menu_items WHERE catName = ?');
+                          $stmt = $conn->prepare("SELECT * FROM menu_items WHERE catName = ? ORDER BY (itemName = 'Call Service') DESC, id ASC");
                           $stmt->bind_param('s', $category);
                           $stmt->execute();
                           $result = $stmt->get_result();
@@ -198,6 +200,21 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                                             <?php else: ?>
                                                 <div class="button-container mt-auto">
                                                     <p class="card-text">SGD&nbsp;<?= number_format($row['price'], 2) ?>/-</p>
+                                                    <?php if ($row['itemName'] === 'Call Service'): ?>
+                                                        <!-- Direct Add-to-Cart Form for "Call Service" -->
+                                                        <form method="POST" class="d-inline">
+                                                            <input type="hidden" name="item_id" value="<?= htmlspecialchars($row['id']) ?>">
+                                                            <input type="hidden" name="item_name" value="<?= htmlspecialchars($row['itemName']) ?>">
+                                                            <input type="hidden" name="item_description" value="<?= htmlspecialchars($row['description']) ?>">
+                                                            <input type="hidden" name="item_price" value="<?= htmlspecialchars($row['price']) ?>">
+                                                            <input type="hidden" name="item_image" value="<?= htmlspecialchars($row['image']) ?>">
+                                                            <input type="hidden" name="category" value="<?= htmlspecialchars($category) ?>">
+                                                            <!-- You can omit customization inputs since none are needed -->
+                                                            <button type="submit" name="confirm_add_to_cart" class="btn btn-primary addItemBtn">
+                                                                <i class="fas fa-cart-plus"></i> Call Service
+                                                            </button>
+                                                        </form>
+                                                    <?php else: ?>
                                                     <button 
                                                         type="button" 
                                                         class="btn btn-primary addItemBtn" 
@@ -212,6 +229,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                                                     >
                                                         <i class="fas fa-cart-plus"></i> Add to Cart
                                                     </button>
+                                                    <?php endif; ?>
                                                 </div>
                                             <?php endif; ?>
                                         </div>
