@@ -17,7 +17,7 @@ h2, h1 {
     width: 100vw; /* Force full width */
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Prevent unwanted horizontal scrolling */
+    overflow-x: hidden; 
 }
 
 /* Sidebar */
