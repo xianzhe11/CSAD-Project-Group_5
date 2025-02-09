@@ -3,6 +3,33 @@ body {
     background-image: url(../images/pizzabg.png);
     background-blend-mode :lighten;
 }
+#order-details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+#order-details th, #order-details td {
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+#order-details th {
+  background-color: #f4f4f4;
+}
+
+#order-details tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#order-details td {
+  text-align: center;
+}
+
+#order-details p {
+  margin: 8px 0;
+}
 
 .order-container{
     display: fixed;
@@ -10,7 +37,7 @@ body {
     width: 55%;
     margin-top: 1%;
     margin-left: 2%;
-    background: #eb9d30;
+    background: #f4b45a;
     border-radius: 10px;
 }
 
@@ -58,7 +85,8 @@ body {
   text-align: center;
   background-image: url(../images/pizzabg.png);
   background-blend-mode: overlay;
-  background-color: #fef6e4;
+  background-color: #f8f1db;
+  overflow-y: auto ;
 }
 
 .noinfo{
@@ -140,14 +168,14 @@ body {
   font-weight: bold; 
 }
 #close-popup{
-  position: relative;
+  position: fixed;
+  top : 10px;
+  right:20px;
   width:50px;
   height:50px;
   font-size: 35px;
-  background-color: #fef6e4;
+  background-color: #f8f1db;
   border:none;
-  left :40%;
-  top : -43%;
   cursor: pointer;
   background-image: url(../images/pizzabg.png);
   background-blend-mode :lighten;
@@ -155,16 +183,14 @@ body {
 #order-details{
   margin-top: 5%;
 }
-#order-details p{
-  margin-top: 2%;
-}
+
 .cover{
   display: fixed;
   height: 250px;
-  width: 50%;
+  width: 900px;
   margin-top: 2%;
   margin-bottom: 1%;
-  margin-left: 4%;
+  margin-left: 3%;
   background: #eb9d30;
   border-radius: 10px;
 }
@@ -172,7 +198,7 @@ body {
   position: relative;
   font-size: 20px;
   font-weight: bold;
-  right :50%;
-  top :20px;
+  right :53%;
+  top :15px;
 
 }

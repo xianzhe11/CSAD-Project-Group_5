@@ -18,6 +18,8 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #fef6e4;
+  background-image: url(../images/main-bg.png);
+  background-blend-mode :darken;
 }
 
 .container {
