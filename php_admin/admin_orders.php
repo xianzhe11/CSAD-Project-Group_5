@@ -1,12 +1,6 @@
 <?php
-// admin_orders.php
 session_start();
-
-// Include database connection
-include 'db_connection.php'; // Ensure this file contains your DB credentials
-
-
-// Fetch orders from the database
+include 'db_connection.php'; 
 $sql = "SELECT orders.*, users.username FROM orders LEFT JOIN users ON orders.user_id = users.id ORDER BY orders.created_at DESC";
 $result = $conn->query($sql);
 ?>
@@ -19,17 +13,13 @@ $result = $conn->query($sql);
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="../css/admin_orders.css">
-    <!-- Include Bootstrap CSS for better styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- DataTables CSS for advanced table features -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 <body>
     <?php include "admin_navbar.php"?>
-
-    <!-- Main Content Area -->
     <div class="main-content container-fluid">
         <h2>Admin Orders</h2>
         <p>Manage restaurant's orders efficiently.</p>
@@ -124,7 +114,6 @@ $result = $conn->query($sql);
         </table>
     </div>
 
-    <!-- View Details Modal -->
     <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -133,7 +122,7 @@ $result = $conn->query($sql);
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <!-- Order details will be loaded here via AJAX -->
+
             <div id="orderDetailsContent"></div>
           </div>
           <div class="modal-footer">
@@ -143,7 +132,7 @@ $result = $conn->query($sql);
       </div>
     </div>
 
-    <!-- Change Status Modal -->
+
     <div class="modal fade" id="changeStatusModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -182,53 +171,44 @@ $result = $conn->query($sql);
       </div>
     </div>
 
-    <!-- Include Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize DataTable
             $('#ordersTable').DataTable({
-                "order": [[7, "desc"]], // Order by Created At descending
+                "order": [[7, "desc"]], 
                 "responsive": true,
-                "dom": '<"d-flex justify-content-between align-items-center"lfB>tip', // Custom layout
+                "dom": '<"d-flex justify-content-between align-items-center"lfB>tip',
                 "initComplete": function () {
-                    // Add Refresh Button
                     $('.dataTables_filter').append(
                         '<button id="refreshBtn" class="btn btn-refresh ms-2"><i class="fas fa-sync-alt"></i> Refresh</button>'
                     );
-                    // Customize Search Input
+  
                     $('.dataTables_filter label').contents().filter(function() {
-                        return this.nodeType === 3; // Remove default "Search:" text
+                        return this.nodeType === 3; 
                     }).remove();
 
-                    // Add placeholder to search input
                     $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
 
-                    // Wrap input and icon
                     $('.dataTables_filter input').wrap('<div class="search-box"></div>');
                     $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
                     $('.custom-search').after('<i class="fas fa-search search-icon"></i>');
                 }
             });
-            // Refresh Button Click Event
+
             $(document).on('click', '#refreshBtn', function () {
-                location.reload(); // Reload the page
+                location.reload(); 
             });
 
-            // Handle Change Status button click
+
             $('.change-status').on('click', function() {
                 var orderId = $(this).data('order-id');
                 $('#changeStatusOrderId').val(orderId);
-                // Optionally, fetch current status via AJAX and set the select values
-                // For simplicity, we'll leave the selects with their default options
                 $('#changeStatusModal').modal('show');
             });
 
-            // Handle Change Status form submission
             $('#changeStatusForm').on('submit', function(e) {
                 e.preventDefault();
                 $.ajax({

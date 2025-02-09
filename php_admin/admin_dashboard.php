@@ -1,14 +1,8 @@
 <?php
 
-// Implement authentication to ensure only authorized users can access the dashboard
-/* if (!isset($_SESSION['admin_logged_in'])) {
-     header("Location: login.php");
-     exit();
-} */
 session_start();
 include "db_connection.php"; 
 
-// Fetch recent orders
 $recent_orders_query = "
     SELECT orders.order_id AS order_id, users.username AS customer_name, orders.total_price, orders.order_status,
            GROUP_CONCAT(order_items.item_name SEPARATOR ', ') AS items
@@ -21,7 +15,6 @@ $recent_orders_query = "
 
 $recent_orders_result = $conn->query($recent_orders_query);
 $recent_orders = [];
-
 if ($recent_orders_result && $recent_orders_result->num_rows > 0) {
     while ($row = $recent_orders_result->fetch_assoc()) {
         $recent_orders[] = [
@@ -34,7 +27,6 @@ if ($recent_orders_result && $recent_orders_result->num_rows > 0) {
     }
 }
 
-// Fetch total Menu Items
 $menu_count_query = "SELECT COUNT(*) as total_menu FROM menu_items";
 $menu_result = $conn->query($menu_count_query);
 
@@ -45,7 +37,6 @@ if ($menu_result && $menu_result->num_rows > 0) {
     $total_menu = 0;
 }
 
-// Fetch total orders
 $order_count_query = "SELECT COUNT(*) as total_orders FROM orders";
 $order_result = $conn->query($order_count_query);
 
@@ -56,7 +47,6 @@ if ($order_result && $order_result->num_rows > 0) {
     $total_orders = 0;
 }
 
-// Fetch total reviews
 $review_count_query = "SELECT COUNT(*) as total_reviews FROM reviews";
 $review_result = $conn->query($review_count_query);
 
@@ -67,7 +57,6 @@ if ($review_result && $review_result->num_rows > 0) {
     $total_reviews = 0;
 }
 
-// Fetch total reservations
 $reservation_count_query = "SELECT COUNT(*) as total_reservation FROM reservation";
 $reservation_result = $conn->query($reservation_count_query);
 
@@ -78,7 +67,6 @@ if ($reservation_result && $reservation_result->num_rows > 0) {
     $total_reservation = 0;
 }
 
-// Fetch reservations data for the current year, by month
 $reservations_data_query = "
     SELECT 
         DATE_FORMAT(date_rsv, '%M') AS month,
@@ -93,22 +81,18 @@ $reservations_data_query = "
         MONTH(date_rsv) ASC
 ";
 $reservations_result = $conn->query($reservations_data_query);
-
 $reservationMonths = [];
 $reservationCounts = [];
-
 if ($reservations_result && $reservations_result->num_rows > 0) {
     while ($row = $reservations_result->fetch_assoc()) {
         $reservationMonths[] = $row['month'];
         $reservationCounts[] = (int)$row['total_reservations'];
     }
 } else {
-    // If no data is found, initialize with empty arrays or default values
     $reservationMonths = [];
     $reservationCounts = [];
 }
 
-// Fetch sales data for the current year, aggregated by month
 $sales_data_query = "
     SELECT 
         DATE_FORMAT(created_at, '%M') AS month,
@@ -122,23 +106,19 @@ $sales_data_query = "
     ORDER BY 
         MONTH(created_at) ASC
 ";
-
 $sales_result = $conn->query($sales_data_query);
 $months = [];
 $sales = [];
-
 if ($sales_result && $sales_result->num_rows > 0) {
     while ($row = $sales_result->fetch_assoc()) {
         $months[] = $row['month'];
         $sales[] = (float)$row['total_sales'];
     }
 } else {
-    // If no data is found, initialize with empty arrays or default values
     $months = [];
     $sales = [];
 }
 
-// Fetch the latest two reviews
 $latest_reviews_query = "
     SELECT 
         id,
@@ -156,18 +136,12 @@ $latest_reviews_query = "
         id DESC
     LIMIT 2
 ";
-
 $reviews_result = $conn->query($latest_reviews_query);
-
 $latest_reviews = [];
-
 if ($reviews_result && $reviews_result->num_rows > 0) {
     while ($row = $reviews_result->fetch_assoc()) {
-        // Calculate average rating
         $average_rating = ($row['food_quality'] + $row['service'] + $row['value'] + $row['cleanliness'] + $row['speed']) / 5;
-        $average_rating = round($average_rating * 2) / 2; // Round to nearest 0.5
-
-        // Add to latest_reviews array
+        $average_rating = round($average_rating, 1); 
         $latest_reviews[] = [
             'name' => htmlspecialchars($row['name']),
             'date_of_visit' => date('Y-m-d', strtotime($row['date_of_visit'])),
@@ -176,11 +150,10 @@ if ($reviews_result && $reviews_result->num_rows > 0) {
         ];
     }
 } else {
-    // No reviews found
     $latest_reviews = [];
 }
 
-$conn->close(); // Close the connection
+$conn->close(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,18 +164,14 @@ $conn->close(); // Close the connection
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="../css/admin_dashboard.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <?php include "admin_navbar.php"?>
-
-    <!-- Main Content Area -->
     <div class="main-content">
         <h2>Welcome to the Dashboard</h2>
         <p>Manage your restaurant efficiently.</p>
 
-        <!-- Statistics Cards -->
         <div class="stats-cards">
             <div class="card">
                 <div class="card-icon">
@@ -242,7 +211,6 @@ $conn->close(); // Close the connection
             </div>
         </div>
 
-        <!-- Charts Section -->
         <div class="charts-section">
             <div class="chart-container">
                 <h3>Sales Overview</h3>
@@ -254,7 +222,6 @@ $conn->close(); // Close the connection
             </div>
         </div>
 
-    <!-- Recent Orders -->
     <div class="recent-section">
         <h3>Recent Orders</h3>
         <table class="recent-orders">
@@ -291,8 +258,6 @@ $conn->close(); // Close the connection
         </table>
     </div>
 
-
-        <!-- Recent Reviews -->
         <div class="recent-section">
             <h3>Recent Reviews</h3>
             <?php if (!empty($latest_reviews)): ?>
@@ -322,13 +287,9 @@ $conn->close(); // Close the connection
         </div>
     </div>
 
-    <!-- Chart.js Scripts -->
     <script>
-        // Fetch the PHP arrays and convert them to JavaScript arrays
         const salesLabels = <?php echo json_encode($months); ?>;
         const salesData = <?php echo json_encode($sales); ?>;
-
-        // Initialize Sales Overview Chart
         const salesCtx = document.getElementById('salesChart').getContext('2d');
         const salesChart = new Chart(salesCtx, {
             type: 'line',
@@ -341,7 +302,7 @@ $conn->close(); // Close the connection
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 2,
                     fill: true,
-                    tension: 0.4
+                    tension: 0.4    
                 }]
             },
             options: {
@@ -375,11 +336,8 @@ $conn->close(); // Close the connection
                 }
             }
         });
-
-        // Reservations Chart code (mirroring the sales chart implementation)
         const reservationMonths = <?php echo json_encode($reservationMonths); ?>;
         const reservationCounts = <?php echo json_encode($reservationCounts); ?>;
-
         const reservationsCtx = document.getElementById('reservationsChart').getContext('2d');
         const reservationsChart = new Chart(reservationsCtx, {
             type: 'bar',

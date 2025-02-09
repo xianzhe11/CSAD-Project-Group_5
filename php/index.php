@@ -56,7 +56,7 @@ $conn->close();
     </div>
   </section>
 
-  <!-- Menu Section -->
+
   <section class="menu-section" id="menu">
     <div class="container">
       <h1 class="section-title lobster"> OUR <span>FOOD</span></h1>
@@ -89,7 +89,6 @@ $conn->close();
     </div>
   </section>
 
-  <!-- Promotional Section -->
   <section class="promotion_section" id="promo-section">
   <div class="container text-center">
     <h2 class="heading">Seasonal Promotions!</h2>
@@ -98,10 +97,9 @@ $conn->close();
   </div>
 </section>
 
-<!-- Reservation Section -->
 <?php
-$rsvmsg = isset($_SESSION['rsvmsg']) ? $_SESSION['rsvmsg'] : ""; // Retrieve message from session
-unset($_SESSION['rsvmsg']); // Clear the message after displaying
+$rsvmsg = isset($_SESSION['rsvmsg']) ? $_SESSION['rsvmsg'] : ""; 
+unset($_SESSION['rsvmsg']); 
 ?>
 
 <section class="reserve-section" id="reservation">
@@ -109,7 +107,6 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
     <h1 class="heading_reserv"><br><span style="color:red">TABLE</span> <span>RESERVATION</span></h1>
     <p class="ReservFood">Book your dining experience with us here</p>
 
-    <!-- Display reservation message -->
     <?php if (!empty($rsvmsg)) : ?>
       <p style="color: green; font-weight: bold;"><?php echo $rsvmsg; ?></p>
     <?php endif; ?>
@@ -167,7 +164,6 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
   </div>
 </section>
 
-<!-- About Us Section -->
 <section class="about-section" id="about-us">
   <div class="container">
     <h1 class="section-title lobster">ABOUT <span>US</span></h1>
@@ -186,7 +182,6 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
   </div>
 </section>
 
-<!-- Facts Counter Section -->
 <section class="facts-section" id="facts">
   <div class="container">
     <div class="row number-counters"> 
@@ -226,7 +221,6 @@ unset($_SESSION['rsvmsg']); // Clear the message after displaying
   </div>
 </section>
 
-  <!-- Footer -->
   <footer id="footer">
     <div class="footer-container">
       <div class="footer-row">

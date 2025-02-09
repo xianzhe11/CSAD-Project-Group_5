@@ -1,16 +1,12 @@
 <?php
 session_start();
 
-// Include the database connection
-require_once 'db_connection.php'; // Ensure this path is correct
+require_once 'db_connection.php'; 
 $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
-// Initialize variables
 $errors = [];
 $success = "";
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve and sanitize input
     $name = isset($_POST['name']) ? htmlspecialchars(trim($_POST['name'])) : '';
     $email = isset($_POST['email']) ? htmlspecialchars(trim($_POST['email'])) : '';
     $date_of_visit = isset($_POST['date_of_visit']) ? $_POST['date_of_visit'] : '';
@@ -22,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cleanliness = isset($_POST['cleanliness']) ? (int)$_POST['cleanliness'] : 0;
     $speed = isset($_POST['speed']) ? (int)$_POST['speed'] : 0;
 
-    // Validation for new inputs
     if (empty($name)) {
         $errors[] = "Name is required.";
     }
@@ -43,12 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = "Invalid Phone Number format. Please use the format +65 1234 5678.";
     }
 
-    // Validation for feedback
     if (empty($feedback)) {
         $errors[] = "Feedback is required.";
     }
 
-    // Validate ratings (should be between 1 and 5)
     foreach (['food_quality', 'service', 'value', 'cleanliness', 'speed'] as $rating) {
         if (!isset($$rating) || $$rating < 1 || $$rating > 5) {
             $errors[] = ucfirst(str_replace('_', ' ', $rating)) . " rating must be between 1 and 5.";
@@ -56,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (empty($errors)) {
-        // Prepare the SQL statement with new fields and status
         $stmt = $conn->prepare("INSERT INTO `reviews` (`name`, `email`, `date_of_visit`, `phone_number`, `feedback`, `food_quality`, `service`, `value`, `cleanliness`, `speed`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
         if ($stmt) {
             $stmt->bind_param(
@@ -75,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($stmt->execute()) {
                 $success = "Thank you for your feedback! Your review is pending approval.";
-                // Clear POST data to prevent resubmission
                 $_POST = [];
             } else {
                 $errors[] = "Error submitting your review. Please try again.";
@@ -88,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Retrieve existing reviews with status 'approved'
 $reviews = [];
 $result = $conn->query("SELECT * FROM `reviews` WHERE `status` = 'approved' ORDER BY `created_at` DESC");
 if ($result) {
@@ -121,11 +111,8 @@ $conn->close();
       include 'navbar.php';
     }
     ?>
-    <!-- Main Content -->
     <div class="review-container">
         <h2 class="mb-4 text-center">We Value Your Feedback</h2>
-
-        <!-- Display Success or Error Messages -->
         <?php if (!empty($success)): ?>
             <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
         <?php endif; ?>
@@ -140,21 +127,17 @@ $conn->close();
             </div>
         <?php endif; ?>
 
-        <!-- Review Submission Form -->
         <div class="review-form">
             <form action="review.php" method="POST">
-                <!-- CSRF Token (Optional but Recommended) -->
-                <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?? ''; ?>">
-
                 <div class="form-row">
-                    <!-- Name -->
+
                     <div class="form-group col-md-6">
                         <label for="name"><strong>Name</strong></label>
                         <input type="text" class="form-control" id="name" name="name" 
                                value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" 
                                required>
                     </div>
-                    <!-- Email -->
+
                     <div class="form-group col-md-6">
                         <label for="email"><strong>Email</strong></label>
                         <input type="email" class="form-control" id="email" name="email" 
@@ -163,14 +146,14 @@ $conn->close();
                     </div>
                 </div>
                 <div class="form-row">
-                    <!-- Date of Visit -->
+
                     <div class="form-group col-md-6">
                         <label for="date_of_visit"><strong>Date of Visit</strong></label>
                         <input type="date" class="form-control" id="date_of_visit" name="date_of_visit" 
                                value="<?php echo isset($_POST['date_of_visit']) ? htmlspecialchars($_POST['date_of_visit']) : ''; ?>" 
                                required>
                     </div>
-                    <!-- Phone Number -->
+
                     <div class="form-group col-md-6">
                         <label for="phone_number"><strong>Phone Number</strong></label>
                         <input type="tel" class="form-control" id="phone_number" name="phone_number" 
@@ -190,7 +173,7 @@ $conn->close();
                 <div class="form-group">
                     <label><strong>Rate Us:</strong></label>
                     <div class="d-flex flex-wrap">
-                        <!-- Food Quality -->
+
                         <div class="rating-category mr-3 mb-2">
                             <span>Food Quality:</span>
                             <div class="star-rating">
@@ -204,7 +187,7 @@ $conn->close();
                                 ?>
                             </div>
                         </div>
-                        <!-- Service -->
+
                         <div class="rating-category mr-3 mb-2">
                             <span>Service:</span>
                             <div class="star-rating">
@@ -218,7 +201,7 @@ $conn->close();
                                 ?>
                             </div>
                         </div>
-                        <!-- Value -->
+
                         <div class="rating-category mr-3 mb-2">
                             <span>Value:</span>
                             <div class="star-rating">
@@ -232,7 +215,7 @@ $conn->close();
                                 ?>
                             </div>
                         </div>
-                        <!-- Cleanliness -->
+
                         <div class="rating-category mr-3 mb-2">
                             <span>Cleanliness:</span>
                             <div class="star-rating">
@@ -246,7 +229,7 @@ $conn->close();
                                 ?>
                             </div>
                         </div>
-                        <!-- Speed -->
+
                         <div class="rating-category mr-3 mb-2">
                             <span>Speed:</span>
                             <div class="star-rating">
@@ -267,7 +250,6 @@ $conn->close();
             </form>
         </div>
 
-        <!-- Display Reviews -->
         <div class="reviews-list">
             <h3 class="mb-4">Customer Reviews</h3>
             <?php if (empty($reviews)): ?>
@@ -281,7 +263,6 @@ $conn->close();
                         </div>
                         <p class="mt-2"><?php echo nl2br(htmlspecialchars($review['feedback'])); ?></p>
                         <div class="d-flex flex-wrap">
-                            <!-- Display Ratings -->
                             <?php
                                 $categories = [
                                     'Food Quality' => $review['food_quality'],
@@ -310,13 +291,10 @@ $conn->close();
         </div>
     </div>
 
-    <!-- Footer -->
-    <?php include 'footer.html'; ?>
 
-    <!-- JavaScript -->
+    <?php include 'footer.html'; ?>
     <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js'></script>
-    <!-- Inline JavaScript for Interactive Star Ratings -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const starRatings = document.querySelectorAll('.star-rating');
@@ -338,8 +316,6 @@ $conn->close();
                         setRating(starRating, index + 1);
                     });
                 });
-
-                // Initialize stars based on checked input
                 resetStars(starRating);
             });
 
@@ -362,7 +338,6 @@ $conn->close();
                     const rating = parseInt(checkedInput.value);
                     highlightStars(starRating, rating);
                 } else {
-                    // If no rating is selected, reset all stars to empty
                     const stars = starRating.querySelectorAll('label');
                     stars.forEach(function(star) {
                         star.classList.add('far');

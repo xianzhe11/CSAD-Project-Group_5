@@ -18,30 +18,31 @@ $_SESSION['prev_page'] = "index.php";
 <?php
 $user= $email = $pass= "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get data
         
         $user = $_POST['username'];
         $email = $_POST['email'];
         $pass = $_POST['password'];
     
-        // Hash password
         $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
       
         $sql = "SELECT * FROM users WHERE username='$user'";
         $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo '<div class="error">Sorry! Username Already Exists</div>'; //registed username
+        echo '<div class="error">Sorry! Username Already Exists</div>'; 
         $user = "";
     } else {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            echo '<div class="error">Sorry! Email is already registered</div>'; // registered email
+            echo '<div class="error">Sorry! Email is already registered</div>'; 
             $email = "";
         } else {
-            $sql = "INSERT INTO users (username, email, pass) VALUES ('$user', '$email', '$hashed_password')"; //insert data
+            $sql = "INSERT INTO users (username, email, pass) VALUES ('$user', '$email', '$hashed_password')"; 
             if ($conn->query($sql) === TRUE) {
                 echo '<div class="popup">Account Created! Please proceed to Login.</div>';
+                $user = "";
+                $email = "";
+                $pass = "";
             } 
         }
     }

@@ -1,10 +1,10 @@
 <?php
-// progressbar.php
+
 
 if ($current_step < 1) $current_step = 1;
 if ($current_step > 3) $current_step = 3;
 
-// Define steps with labels
+
 $steps = [
     1 => 'Shopping Cart',
     2 => 'Payment Method',

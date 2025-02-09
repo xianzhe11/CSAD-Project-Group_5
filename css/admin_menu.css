@@ -17,7 +17,6 @@ h2 {
     margin-bottom: 20px;
 }
 
-  /* DataTables & Search Box Customizations */
 .btn-refresh {
     background-color: #e93e68 !important;
     color: white !important;
@@ -70,7 +69,6 @@ h2 {
     font-size: 1rem !important;
 }
 
-  /* Menu Table: Remove vertical borders and add horizontal lines */
 .menu-table {
     border: none !important;
 }
@@ -87,18 +85,18 @@ h2 {
     background-color: #e93e68 !important;
     color: white !important;
 }
-  /* Display the actual food image */
+
 .menu-table img {
     width: 70px;
     height: auto;
     border-radius: 5px;
 }
 
-  /* Styling for checkboxes in the table */
+
 .select-checkbox {
     transform: scale(1.2);
 }
-  /* Add New Item and Edit Button Styling */
+
 .edit-item-btn {
       background-color: #e93e68 !important;
       color: white !important;
@@ -131,14 +129,14 @@ h2 {
       background-color: #c12f57 !important;
       cursor: pointer !important;
 }
-  /* Container for the Add New Item button (centered below the table) */
+
 .add-item-container {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-top: 20px;
   }
-  /* Initially hide the Delete Selected button */
+
 .multiselect-container {
       display: none;
       justify-content: flex-end;

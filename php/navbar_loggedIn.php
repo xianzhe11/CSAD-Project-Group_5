@@ -1,15 +1,15 @@
 <?php
-// navbar_loggedIn.php
 
-// Get the current page's filename
+
+
 $currentPage = basename($_SERVER['PHP_SELF']);
 
-// Start the session if it hasn't been started already
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Calculate total items in the cart
+
 $totalItems = 0;
 if (isset($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $item) {
@@ -17,7 +17,6 @@ if (isset($_SESSION['cart'])) {
     }
 }
 
-//Get the user's profile picture from session data & Assume profile picture path is in $_SESSION['user']['profile_picture'].
 $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION['user']['profile_picture']))
     ? $_SESSION['user']['profile_picture']
     : "../images/empty_pfp.png";
@@ -26,24 +25,21 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta tags and other head elements -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Navbar - Logged In</title>
   <link rel="stylesheet" href="../css/navbar.css">
-  <!-- Google Fonts -->
+  
   <link href="https://fonts.googleapis.com/css?family=Lobster|Poppins:400,500&display=swap" rel="stylesheet">
-  <!-- Font Awesome for Icons -->
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   
   <style>
-    /* User Dropdown Container */
     .user-dropdown {
       position: relative;
       display: inline-block;
       cursor: pointer;
     }
-    /* Profile Picture Styling */
     .user-dropdown img.user-pfp {
       width: 50px;
       height: 50px;
@@ -52,11 +48,11 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
       border: 2px solid #fff;
       margin-left: 20px;
     }
-    /* Dropdown Content Styling */
+
     .user-dropdown .dropdown-content {
       position: absolute;
-      top: calc(100%); /* Places dropdown just below the profile pic */
-      transform: translateX(55%) translateY(-10px); /* Start 10px above the final position */
+      top: calc(100%); 
+      transform: translateX(55%) translateY(-10px); 
       right: 50%;
       background-color: var(--dropdown-bg);
       min-width: 200px;
@@ -70,13 +66,13 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
       font-weight: 500;
       font-size: 18px;
     }
-    /* Show Dropdown on Hover */
+
     .user-dropdown:hover .dropdown-content {
       opacity: 1;
       visibility: visible;
       transform: translateX(55%);
     }
-    /* Dropdown Link Styling */
+
     .user-dropdown .dropdown-content a {
       white-space: nowrap;
       display: block;
@@ -88,7 +84,7 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
     .user-dropdown .dropdown-content a i {
       margin-right: 10px;
     }
-    /* Hover Effect for Dropdown Links */
+
     .user-dropdown .dropdown-content a:hover {
       background-color: var(--navbar-hover);
       color: #fff;
@@ -98,10 +94,10 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
 <body>
   <nav class="custom-navbar">
     <div class="navbar-container">
-      <!-- Brand -->
+      
       <a href="<?php echo ($currentPage === 'index.php') ? '#home' : 'index.php#home'; ?>" class="brand">Burger Bliss</a>
 
-      <!-- Navigation Menu -->
+      
       <ul class="nav-links">
         <li>
           <a href="<?php echo ($currentPage === 'index.php') ? '#home' : 'index.php#home'; ?>" class="<?php echo ($currentPage === 'index.php') ? 'active' : ''; ?>">
@@ -142,13 +138,13 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
         </li>
       </ul>
 
-      <!-- Right Section: Cart Dropdown -->
+      
       <div class="right-section">
         <a href="cart.php" class="cart-icon" title="Cart" data-count="<?= htmlspecialchars($totalItems) ?>">
           <i class="fas fa-shopping-cart"></i>
         </a>
 
-        <!-- User Profile Picture & Dropdown Menu -->
+        
         <div class="user-dropdown">
           <img src="<?= htmlspecialchars($userPicture) ?>" alt="Profile Picture" class="user-pfp">
           <div class="dropdown-content">

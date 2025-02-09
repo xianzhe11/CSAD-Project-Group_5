@@ -1,4 +1,3 @@
-/* Root Variables for Consistency */
 :root {
     --font-primary: 'Roboto', sans-serif;
     --font-secondary: 'Lobster', cursive;
@@ -13,7 +12,6 @@
     --transition-speed: 0.3s;
 }
 
-/* Ensure the body uses flexbox to accommodate the sidebar */
 body {
     display: flex;
     margin: 0;
@@ -21,7 +19,6 @@ body {
     background-color: #f4f6f9;
 }
 
-/* Main Content Area */
 .main-content {
     flex: 1;
     padding: 30px;
@@ -53,7 +50,6 @@ body {
     animation-delay: 1.5s;
 }
 
-/* Statistics Cards */
 .stats-cards {
     display: flex;
     flex-wrap: wrap;
@@ -95,7 +91,6 @@ body {
     color: #333333;
 }
 
-/* Charts Section */
 .charts-section {
     display: flex;
     flex-wrap: wrap;
@@ -117,7 +112,6 @@ body {
     font-size: 18px;
 }
 
-/* Recent Orders and Reviews */
 .recent-section {
     margin-top: 40px;
 }
@@ -177,10 +171,9 @@ table tbody tr:hover {
 }
 
 .recent-reviews td i.fa-star {
-    color: #FFD700; /* Gold */
+    color: #FFD700; 
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
     .card {
         flex: 1 1 calc(50% - 20px);
@@ -201,7 +194,6 @@ table tbody tr:hover {
     }
 }
 
-/* Animations */
 @keyframes fadeInUp {
     to {
         opacity: 1;

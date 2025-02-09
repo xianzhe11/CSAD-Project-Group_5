@@ -5,7 +5,7 @@ $host = 'localhost';
 $user = 'root';
 $password = '';
 $database = 'restaurant_food';
-$port = 3306; // Adjust if necessary
+$port = 3306; 
 
 $db = mysqli_connect($host, $user, $password, $database, $port);
 

@@ -6,7 +6,6 @@ function isUserLoggedIn() {
     return isset($_SESSION['userloggedin']);
 }
 
-// Handle quantity updates and item deletions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'], $_POST['item_id'])) {
         $action = $_POST['action'];
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     } elseif ($action === 'decrease') {
                         $item['quantity'] -= 1;
                         if ($item['quantity'] <= 0) {            
-                            array_splice($_SESSION['cart'], $index, 1);  // Remove item from cart 
+                            array_splice($_SESSION['cart'], $index, 1);  
                         }
                     } elseif ($action === 'delete') {
                         array_splice($_SESSION['cart'], $index, 1);
@@ -92,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <?php endif; ?>
                         </div>
                     </div>
+                    <?php if (floatval($item['price']) > 0): ?>
                     <div class="quantity-section">
                         <div class="quantity-controls">
 
@@ -117,10 +117,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <form method="POST" class="delete-form">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="item_id" value="<?= htmlspecialchars($item['id']) ?>">
-                        <button type="submit" class="delete-button" title="Remove Item">
+                        <button type="submit" class="delete-button" title="Remove Item">    
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </form>
+                    <?php else: ?>
+                        <div class="quantity-section">
+                            <span class="mx-2"><Strong>Quantity: </Strong> <?= $item['quantity'] ?></span>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
 

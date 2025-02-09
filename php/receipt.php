@@ -39,25 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if($stmt->execute()){
            
         } else {     
-            error_log("Could not update points for user {$user_id}: " . $stmt->error); // Log for error 
+            error_log("Could not update points for user {$user_id}: " . $stmt->error); 
         }
         $stmt->close();
     }
 
-    $order_id = 'ORD' . time() . rand(1000, 9999); // Generate a unique order ID (e.g., using timestamp and random number)
-    
-    
-    $conn->begin_transaction(); // Begin Transaction
+    $order_id = 'ORD' . time() . rand(1000, 9999); 
+    $conn->begin_transaction(); 
     try {
-        // Prepare the SQL statement for inserting into 'orders' table
         $stmt = $conn->prepare("INSERT INTO `orders` (`order_id`, `user_id`, `payment_method`, `order_type`, `table_number`, `address`, `total_price`) VALUES (?, ?, ?, ?, ?, ?, ?)");
         if (!$stmt) {
             throw new Exception("Prepare statement failed: " . $conn->error);
         }
-
         $user_id = isset($_SESSION['userloggedin']) && $_SESSION['userloggedin'] ? $_SESSION['user_id'] : null;
-
-        $stmt->bind_param(                  // Bind parameters
+        $stmt->bind_param(                  
             "sissssd",
             $order_id, 
             $user_id,         
@@ -71,8 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Execute failed: " . $stmt->error);
         }
 
-        
-        $last_order_id = $conn->insert_id; // Get the last inserted order's ID
+        $last_order_id = $conn->insert_id; 
         $stmt_item = $conn->prepare("INSERT INTO `order_items` (`order_id`, `item_name`, `quantity`, `price_each`, `total_price`, `customizations`) VALUES (?, ?, ?, ?, ?, ?)");
         if (!$stmt_item) {
             throw new Exception("Prepare statement for order_items failed: " . $conn->error);
@@ -88,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $customizations    
         );
 
-        // Bind and execute for each cart item
         foreach ($cart_items as $item) {
             $item_name = htmlspecialchars($item['name']);
             $quantity = (int)$item['quantity'];
@@ -101,8 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }  
         $conn->commit(); 
-
-        // Store order details in session for display
         $_SESSION['order'] = [
             'order_id'       => $order_id,
             'payment_method' => $payment_method,
@@ -156,6 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p><strong>Order ID:</strong> <?php echo htmlspecialchars($_SESSION['order']['order_id']); ?></p>
             <p><strong>Payment Method:</strong> <?php echo htmlspecialchars($_SESSION['order']['payment_method']); ?></p>
             <p><strong>Order Type:</strong> <?php echo htmlspecialchars(str_replace('_', ' ', ucfirst($_SESSION['order']['order_type']))); ?></p>
+            
             <?php if ($_SESSION['order']['order_type'] === 'dine_in' && !empty($_SESSION['order']['table_number'])): ?>
                 <p><strong>Table Number:</strong> <?php echo htmlspecialchars($_SESSION['order']['table_number']); ?></p>
             <?php endif; ?>

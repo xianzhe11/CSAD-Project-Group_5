@@ -12,7 +12,6 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
-// Handle Add to Cart with Customizations
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart'])) {
 
     $itemId = intval($_POST['item_id']);
@@ -24,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_add_to_cart']
 
     $customizations = [];
     if($itemName !== "Call Service"){
-    switch (strtolower($category)) {      // Process customizations based on category
+    switch (strtolower($category)) {    
         case 'appetizers':
             $custom_extra_sauce = isset($_POST['extra_sauce']) ? 'Yes' : 'No';
             $custom_size = isset($_POST['appetizer_size']) ? sanitize_input($_POST['appetizer_size']) : 'Regular';
@@ -201,15 +200,14 @@ $activeIndex = array_search($selectedCategory, $validCategories);
                                                 <div class="button-container mt-auto">
                                                     <p class="card-text">SGD&nbsp;<?= number_format($row['price'], 2) ?>/-</p>
                                                     <?php if ($row['itemName'] === 'Call Service'): ?>
-                                                        <!-- Direct Add-to-Cart Form for "Call Service" -->
+                                                        
                                                         <form method="POST" class="d-inline">
                                                             <input type="hidden" name="item_id" value="<?= htmlspecialchars($row['id']) ?>">
                                                             <input type="hidden" name="item_name" value="<?= htmlspecialchars($row['itemName']) ?>">
                                                             <input type="hidden" name="item_description" value="<?= htmlspecialchars($row['description']) ?>">
                                                             <input type="hidden" name="item_price" value="<?= htmlspecialchars($row['price']) ?>">
                                                             <input type="hidden" name="item_image" value="<?= htmlspecialchars($row['image']) ?>">
-                                                            <input type="hidden" name="category" value="<?= htmlspecialchars($category) ?>">
-                                                            <!-- You can omit customization inputs since none are needed -->
+                                                            <input type="hidden" name="category" value="<?= htmlspecialchars($category) ?>">      
                                                             <button type="submit" name="confirm_add_to_cart" class="btn btn-primary addItemBtn">
                                                                 <i class="fas fa-cart-plus"></i> Call Service
                                                             </button>
@@ -251,7 +249,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
         </div>
     </div>
 
-    <!-- Customization Modal -->
     <div class="modal fade" id="customizeModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <form method="POST" id="customizeForm">
@@ -286,7 +283,7 @@ $activeIndex = array_search($selectedCategory, $validCategories);
 
               <hr>
 
-              <!-- Customization Options -->
+
               <div class="form-group">
                 <h6>Customize Your Meal</h6>
 
@@ -412,7 +409,6 @@ $activeIndex = array_search($selectedCategory, $validCategories);
           var itemImage = button.data('image');
           var category = button.data('category');
 
-          // Update the modal's content.
           var modal = $(this);
           modal.find('#modal_item_id').val(itemId);
           modal.find('#modal_item_name').val(itemName);
@@ -427,13 +423,11 @@ $activeIndex = array_search($selectedCategory, $validCategories);
           modal.find('#modal_item_image_display').attr('src', '../food_images/' + itemImage);
           modal.find('#modal_item_image_display').attr('alt', itemName);
           
-          // Reset customization options
           modal.find('input[type="checkbox"]').prop('checked', false);
           modal.find('select').each(function(){
               $(this).val($(this).find('option[selected]').val());
           });
 
-          // Hide all customization sections
           $('.customizations-section').hide();
           var categorySlug = category.toLowerCase();
           $('#customizations_' + categorySlug).show();

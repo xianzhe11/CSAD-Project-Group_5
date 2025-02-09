@@ -3,7 +3,6 @@ session_start();
 include 'db_connection.php';
 $_SESSION['prev_page'] = $_SERVER['REQUEST_URI'];
 
-// Process POST request for redemption and exit immediately.
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     if (!isset($_SESSION['userloggedin']) || !$_SESSION['userloggedin'] || !isset($_SESSION['user_id'])) {
         echo json_encode(['success' => false, 'message' => 'Please Log in to continue']);
@@ -85,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
   
   
   $current_points = 0;
-  if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {   // Fetch current points 
+  if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {
       $user_id = $_SESSION['user_id'];
       $stmt = $conn->prepare("SELECT points FROM users WHERE id = ?");
       $stmt->bind_param("i", $user_id);
@@ -105,12 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     </div>
   <?php endif; ?>
     <div class= "wave">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff6330" fill-opacity="1" 
+        <svg xmlns="http:
         d="M0,64L48,96C96,128,192,192,288,208C384,224,480,192,576,160C672,128,768,96,864,96C960,96,1056,128,1152,128C1248,128,1344,96,1392,80L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
     </div>
     <div class= "wave2">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 320"><path fill="#ff5500" fill-opacity="1" 
+        <svg xmlns="http:
         d="M0,128L48,117.3C96,107,192,85,288,85.3C384,85,480,107,576,138.7C672,171,768,213,864,208C960,203,1056,149,1152,138.7C1248,128,1344,160,1392,176L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
         </svg>
     </div>
@@ -170,11 +169,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
 </body>
 
 <script>
-  const sliders = document.querySelectorAll('.slider');    // Horizontal scrolling
+  const sliders = document.querySelectorAll('.slider');    
   sliders.forEach(slider => {
     slider.addEventListener('wheel', function(event) {
-      event.preventDefault();     // Prevent vertical scrolling
-      slider.scrollLeft += event.deltaY;     // Scroll horizontally.
+      event.preventDefault();    
+      slider.scrollLeft += event.deltaY;     
     });
   });
 
@@ -197,14 +196,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
         selectedImage = event.target;
         popupimage.src = selectedImage.src;
 
-        selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    // Get data attributes from the clicked item
+        selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));   
         selectedProductId = parseInt(selectedImage.getAttribute('data-id'));
         selectedProductName = selectedImage.getAttribute('data-name');
-        selectedProductImage = selectedImage.getAttribute('data-image');    // Get the image path.
+        selectedProductImage = selectedImage.getAttribute('data-image');    
 
-        redeemCostDisplay.innerText = selectedCost;       // Update the popup display with the item's cost 
-        const currentPoints = parseFloat(currentPointsDisplay.innerText); // Update display with current points
-        pointsAfterDisplay.innerText = currentPoints - selectedCost; // Update display with computed new points
+        redeemCostDisplay.innerText = selectedCost;       
+        const currentPoints = parseFloat(currentPointsDisplay.innerText); 
+        pointsAfterDisplay.innerText = currentPoints - selectedCost; 
 
         popup.style.display = 'block';
       }
@@ -212,22 +211,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
   });
 
   confirmBtn.addEventListener('click', function() {
-    const formData = new URLSearchParams(); // build  data to send to the server
-    formData.append('redeem_action', '1'); // key/value pair to signal server redeem action is requested
+    const formData = new URLSearchParams(); 
+    formData.append('redeem_action', '1'); 
     formData.append('redeem_cost', selectedCost);
     formData.append('redeem_product_id', selectedProductId);
     formData.append('redeem_product_name', selectedProductName);
-    formData.append('redeem_product_image', selectedProductImage); // Pass the image
+    formData.append('redeem_product_image', selectedProductImage); 
 
-    fetch('points.php', { // send to points.php using POST, tell data is URL-encoded, body = string of formData
+    fetch('points.php', { 
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formData.toString()
     })
 
-    .then(response => response.json())   //convert JSON Respone to javascript object
+    .then(response => response.json())   
     .then(data => {
-      if (data.success) {     //process object
+      if (data.success) {     
         window.location.href = window.location.pathname + '?redeemed=1&name=' + encodeURIComponent(selectedProductName);
       } else {
         alert("Error: " + data.message);
@@ -248,14 +247,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     selectedImage = document.getElementById("img1")
     popupimage.src = selectedImage.src;
 
-    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    // Get data attributes from the clicked item
+    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    
     selectedProductId = parseInt(selectedImage.getAttribute('data-id'));
     selectedProductName = selectedImage.getAttribute('data-name');
-    selectedProductImage = selectedImage.getAttribute('data-image');   // Get the image path.
+    selectedProductImage = selectedImage.getAttribute('data-image');   
 
-    redeemCostDisplay.innerText = selectedCost;       // Update the popup display with the item's cost 
-    const currentPoints = parseFloat(currentPointsDisplay.innerText); // Update display with current points
-    pointsAfterDisplay.innerText = currentPoints - selectedCost; // Update display with computed new points
+    redeemCostDisplay.innerText = selectedCost;       
+    const currentPoints = parseFloat(currentPointsDisplay.innerText); 
+    pointsAfterDisplay.innerText = currentPoints - selectedCost; 
     popup.style.display = 'block';
 
   });
@@ -264,14 +263,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['redeem_action'])) {
     selectedImage = document.getElementById("img2")
     popupimage.src = selectedImage.src;
     
-    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    // Get data attributes from the clicked item
+    selectedCost = parseFloat(selectedImage.getAttribute('data-cost'));    
     selectedProductId = parseInt(selectedImage.getAttribute('data-id'));
     selectedProductName = selectedImage.getAttribute('data-name');
-    selectedProductImage = selectedImage.getAttribute('data-image');   // Get the image path.
+    selectedProductImage = selectedImage.getAttribute('data-image');   
 
-    redeemCostDisplay.innerText = selectedCost;       // Update the popup display with the item's cost 
-    const currentPoints = parseFloat(currentPointsDisplay.innerText); // Update display with current points
-    pointsAfterDisplay.innerText = currentPoints - selectedCost; // Update display with computed new points
+    redeemCostDisplay.innerText = selectedCost;       
+    const currentPoints = parseFloat(currentPointsDisplay.innerText); 
+    pointsAfterDisplay.innerText = currentPoints - selectedCost; 
     popup.style.display = 'block';
   });
 

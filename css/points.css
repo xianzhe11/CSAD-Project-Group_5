@@ -12,6 +12,22 @@ body {
     height: 50px; 
     background-color: #feead4;
 }
+.pointtext{
+    background : #FEFDE9 ; 
+    margin-left : 20%;
+    margin-top: -26%;
+    width: 60%;
+    height: 50px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #1234d9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    align-content:center;
+    background-image: url(../images/pizzabg.png);
+    background-blend-mode :lighten;
+    background-color: rgba(227, 183, 183, 0.6);
+    background-position: center; 
+}
 .wave {
     width : 70%;
     right:  29%;
@@ -32,25 +48,7 @@ body {
     position: relative; 
     rotate : 270deg;
     background-image: url(../images/pizzabg.png);
-    background-blend-mode :overlay;
-}
-.pointtext{
-    background : #FEFDE9 ; 
-    margin-left : 20%;
-    margin-top: -28%;
-    width: 60%;
-    height: 50px;
-    text-align: center;
-    border-radius: 15px;
-    border: 1px solid #1234d9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    align-content:center;
-    background-image: url(../images/pizzabg.png);
-    background-blend-mode :lighten;
-    background-color: rgba(227, 183, 183, 0.6);
-    background-position: center; 
-   
-
+    background-blend-mode :overlay;
 }
 .container {
     display: fixed;
@@ -299,3 +297,4 @@ body {
     from {opacity: 0; }
     to{opacity: 1; }
    }
+

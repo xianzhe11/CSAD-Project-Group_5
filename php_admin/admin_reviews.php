@@ -1,11 +1,6 @@
 <?php
-// admin_reviews.php
-
 session_start();
-
-include 'db_connection.php'; // Include the database connection
-
-// Handle Approve/Reject Actions
+include 'db_connection.php'; 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['review_id']) && isset($_POST['action'])) {
         $review_id = intval($_POST['review_id']);
@@ -33,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit();
 }
 
-// Fetch all reviews
 $reviews = [];
 $result = $conn->query("SELECT * FROM `reviews` ORDER BY `created_at` DESC");
 if ($result) {
@@ -57,17 +51,12 @@ $conn->close();
     <link rel="stylesheet" href="../css/admin_navbar.css">
     <link rel="stylesheet" href="../css/admin_reviews.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Include Bootstrap CSS for better styling -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
 
 </head>
 <body>
     <?php include "admin_navbar.php"?>
-        <!-- Display Messages -->
-
-        <!-- Main Content Area -->
         <div class="main-content container-fluid">
         <h2>Manage Reviews</h2>
         <p>Approve or reject customer reviews.</p>
@@ -89,7 +78,7 @@ $conn->close();
                 ?>
             </div>
         <?php endif; ?>
-        <!-- Reviews Table -->
+      
         <div class="table-responsive">
             <table id="reviewsTable" class="reviews-table table table-striped table-bordered">
                 <thead>
@@ -162,7 +151,7 @@ $conn->close();
                                 <td><?php echo htmlspecialchars(date("F j, Y, g:i a", strtotime($review['created_at']))); ?></td>
                                 <td class="action-buttons">
                                     <?php if ($review['status'] === 'pending'): ?>
-                                        <!-- Approve Button -->
+
                                         <form method="POST" action="admin_reviews.php" class="action-form">
                                             <input type="hidden" name="review_id" value="<?php echo htmlspecialchars($review['id']); ?>">
                                             <input type="hidden" name="action" value="approve">
@@ -170,7 +159,7 @@ $conn->close();
                                                 <i class="fas fa-check"></i> Approve
                                             </button>
                                         </form>
-                                        <!-- Reject Button -->
+
                                         <form method="POST" action="admin_reviews.php" class="action-form">
                                             <input type="hidden" name="review_id" value="<?php echo htmlspecialchars($review['id']); ?>">
                                             <input type="hidden" name="action" value="reject">
@@ -193,43 +182,37 @@ $conn->close();
         </div>
     </div>
 
-    <!-- Include Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Include DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initialize DataTable with custom dom to add the refresh button
             var table = $('#reviewsTable').DataTable({
                 "order": [[0, "desc"]],
                 "pageLength": 10,
                 "responsive": true,
-                "dom": '<"d-flex justify-content-between align-items-center"lfB>tip', // Custom layout
+                "dom": '<"d-flex justify-content-between align-items-center"lfB>tip',
                 "initComplete": function () {
-                    // Add Refresh Button
                     $('.dataTables_filter').append(
                         '<button id="refreshBtn" class="btn btn-refresh ms-2"><i class="fas fa-sync-alt"></i> Refresh</button>'
                     );
-                    // Customize Search Input
+
                     $('.dataTables_filter label').contents().filter(function() {
-                        return this.nodeType === 3; // Remove default "Search:" text
+                        return this.nodeType === 3; 
                     }).remove();
 
-                    // Add placeholder to search input
+
                     $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
 
-                    // Wrap input and icon
                     $('.dataTables_filter input').wrap('<div class="search-box"></div>');
                     $('.dataTables_filter input').attr('placeholder', 'Search Here').addClass('custom-search');
                     $('.custom-search').after('<i class="fas fa-search search-icon"></i>');
                 }
             });
 
-            // Refresh Button Click Event
             $(document).on('click', '#refreshBtn', function () {
-                location.reload(); // Reload the page
+                location.reload(); 
             });
         });
     </script>

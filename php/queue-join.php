@@ -89,8 +89,6 @@ include 'server-queue.php';
 
             <button type="submit" name="submit">Join Queue</button>
         </form>
-
-        <!--<button class="admin-btn" onclick="window.location.href='admin.php'">Admin Panel</button>-->
     </div>
 </body>
 </html>

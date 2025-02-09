@@ -38,27 +38,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<div class="error1"></div>';
         if(password_verify($pass, $hashed_password)){
        
-          $_SESSION['user_email'] = $email; // user exists so set session
-          $_SESSION['user_id'] = $row['id']; //Save id to user_id
-          $_SESSION['userloggedin'] = true;   //Set that user has logged in
+          $_SESSION['user_email'] = $email; 
+          $_SESSION['user_id'] = $row['id']; 
+          $_SESSION['userloggedin'] = true;   
 
           if (isset($_SESSION['prev_page'])) {
             $prevPage = $_SESSION['prev_page'];
-            unset($_SESSION['prev_page']); // clear previous page URL
-            header("Location: $prevPage"); //back to the previous page
+            unset($_SESSION['prev_page']); 
+            header("Location: $prevPage"); 
             exit();
         } else {
-            header("Location: index.php"); // Default redirect
+            header("Location: index.php"); 
             exit();
         }
          
         }
         else {
           echo '<div class="error1">Credentials are Wrong. Please check your Credentials</div>';
-          echo '<div class="error2">Credentials are Wrong. Please check your Credentials</div>'; //wrong creds
+          echo '<div class="error2">Credentials are Wrong. Please check your Credentials</div>'; 
       }
     } else {
-        echo '<div class="error1">Credentials are Wrong. Please check your Credentials</div>'; //wrong creds
+        echo '<div class="error1">Credentials are Wrong. Please check your Credentials</div>'; 
         echo '<div class="error2">Credentials are Wrong. Please check your Credentials</div>';
     }
     $stmt->close();

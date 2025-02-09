@@ -37,8 +37,8 @@ h2 {
 }
 
 .order-table th, .order-table td{      
-    border-left: none !important;  /* Removes left border */
-    border-right: none !important; /* Removes right border */     
+    border-left: none !important;  
+    border-right: none !important;      
     padding: 10px 12px !important;
     text-align: center !important;
     vertical-align: middle !important;
@@ -48,9 +48,8 @@ h2 {
     color: white !important;
 }
 
-/*Refresh Button */
 .btn-refresh {
-    background-color: #e93e68 !important; /* Custom color */
+    background-color: #e93e68 !important;
     color: white !important;
     border: none !important;
     padding: 6px 12px !important;
@@ -65,12 +64,11 @@ h2 {
 
 
 .btn-refresh:hover {
-    background-color: #c12f57 !important; /* Slightly darker on hover */
+    background-color: #c12f57 !important; 
     color: #ffffff !important;
     cursor: pointer !important;
 }
 
-/* Search Box Container */
 .search-box {
     position: relative !important;
     display: inline-block !important;
@@ -78,30 +76,27 @@ h2 {
     margin-right: 15px !important;
 }
 
-/* Custom Search Input */
 .custom-search {
     width: 100% !important;
-    border-radius: 20px !important; /* Rounded corners */
-    padding: 8px 35px 8px 12px !important; /* Right padding for icon space */
+    border-radius: 20px !important; 
+    padding: 8px 35px 8px 12px !important; 
     border: 1px solid #ccc !important;
     outline: none !important;
     transition: all 0.3s ease !important;
     font-size: 0.9rem !important;
 }
 
-/* Focus Effect */
 .custom-search:focus {
     border-color: #e93e68 !important;
     box-shadow: 0 0 5px rgba(233, 62, 104, 0.5) !important;
 }
 
-/* Search Icon Inside the Input */
 .search-icon {
     position: absolute !important;
-    right: 10px !important; /* Icon position inside the box */
+    right: 10px !important;
     top: 50% !important;
     transform: translateY(-50%) !important;
     color: #e93e68 !important;
-    pointer-events: none !important; /* Allow clicks to pass through to input */
+    pointer-events: none !important; 
     font-size: 1rem !important;
 }

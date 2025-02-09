@@ -1,6 +1,6 @@
 <?php  
 session_start();
-// Include database connection
+
 include 'db_connection.php';
 $per_page = 20;
 $count = $conn->query("SELECT * FROM users");
@@ -17,24 +17,19 @@ $users = $conn->query("SELECT * FROM users LIMIT $start, $per_page");
     <meta charset="UTF-8">
     <title>Bliss Burger - Users</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,500&display=swap" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <!-- External CSS Files -->
     <link rel="stylesheet" href="../css/admin_users.css"> 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 <body>
 <div class="container">
-    <!-- Sidebar -->
+
     <?php include "admin_navbar.php" ?>
 
-    <!-- Main Content -->
+
     <div class="main-content container-fluid">
         <h1>Admin Users</h1>
         <p style="padding-bottom:15px;">Check and view user accounts</p>

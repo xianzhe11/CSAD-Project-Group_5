@@ -130,36 +130,6 @@
     text-align: center;
   }
   
-  @media (max-width: 768px) {
-    .cart-item {
-      flex-direction: column;
-      align-items: center;
-    }
-    .price-section {
-      flex: 0 0 auto;
-      margin-bottom: 10px;
-    }
-    .details {
-      flex-direction: column;
-      align-items: center;
-      padding: 0;
-    }
-    .details img {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-    .quantity-section {
-      flex: 0 0 auto;
-      margin-top: 10px;
-    }
-    .pay-button-container {
-      flex-direction: column;
-    }
-    .pay-button {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
   
   .customizations {
     font-size: 0.9em;

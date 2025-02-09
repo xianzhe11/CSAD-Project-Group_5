@@ -1,4 +1,3 @@
-/* Reset styles */
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +34,6 @@ body {
   gap: 20px;
 }
 
-/* Text container */
 .text-container {
   flex: 1;
   max-width: 50%;
@@ -49,7 +47,7 @@ body {
 .text-container .highlight {
   color: #fb4a36;
   font-family: 'Lobster', cursive;
-  font-size: 2.5rem; /* Adjusted proportion */
+  font-size: 2.5rem; 
 }
 
 .text-container p {
@@ -117,7 +115,6 @@ body {
   height: auto;
 }
   
-/* Menu Section */
 .menu-section {
   background-color: #ffe4c2;
   padding: 60px 0;
@@ -129,7 +126,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Menu Items Layout */
 .menu-items {
   display: flex;
   justify-content: center;
@@ -137,7 +133,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Menu Card Styling */
 .menu-card {
   width: 45%;
   height: 300px;
@@ -149,7 +144,6 @@ body {
   color: white;
 }
 
-/* Overlay for hover effect */
 .menu-card::before {
   content: "";
   position: absolute;
@@ -162,13 +156,11 @@ body {
   transition: 0.3s ease-in-out;
 }
 
-/* Show dark background on hover */
 .menu-card:hover::before {
-  background: rgba(0, 0, 0, 0.6); /* Dark overlay when hovered */
+  background: rgba(0, 0, 0, 0.6); 
   border-radius: 15px;
 }
 
-/* Menu Card Content */
 .menu-card h3,
 .menu-card p {
   position: absolute;
@@ -176,7 +168,7 @@ body {
   padding: 0 20px;
   left: 50%;
   transform: translateX(-45%);
-  opacity: 0; /* Hide text initially */
+  opacity: 0;
 }
 
 .menu-card h3 {
@@ -198,7 +190,6 @@ body {
   transform: translateX(-50%);
 }
 
-/* Explore Variety Button (Always Visible) */
 .menu-card .btn {
   position: absolute;
   bottom: 20px;
@@ -214,13 +205,11 @@ body {
   transition: all 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-/* Button Hover Effect */
 .menu-card .btn:hover {
   background-color: #fb4a36;
   color: white;
 }
 
-/* Responsive Design */
 @media screen and (max-width: 768px) {
   .menu-card {
     width: 100%;
@@ -235,7 +224,6 @@ body {
   }
 }
 
-  /* Seasonal Section Styling */
 .promotion_section {
   background: url(../images/paralax.jpg) no-repeat fixed;
   background-position: center center;
@@ -287,14 +275,12 @@ body {
   color: #e25111;
 }
 
-/* About Us Section */
 .about-section {
   padding: 40px 0;
   background: url(../images/about-bg.png);
   text-align: center;
 }
 
-/* Section Title */
 .about-section .section-title {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -307,7 +293,6 @@ body {
   color: #333;
 }
 
-/* Content Layout */
 .about-section .aboutus-content {
   display: flex;
   justify-content: space-between;
@@ -315,7 +300,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* About Us Text */
 .about-section .aboutus-text {
   flex: 1;
   max-width: 100%;
@@ -354,7 +338,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
 @media screen and (max-width: 768px) {
   .about-section .aboutus-content {
     flex-direction: column;
@@ -394,7 +377,6 @@ body {
   }
 }
 
-/* Facts Counter Section */
 .facts-section {
   padding: 60px 0;
   background: url(../images/bg-facts.jpg) no-repeat center center fixed;
@@ -440,7 +422,6 @@ body {
   text-transform: capitalize;
 }
 
-/* Responsive Styles */
 @media screen and (max-width: 768px) {
   .number-counters {
     flex-direction: column;
@@ -464,7 +445,6 @@ body {
   }
 }
 
-/* Footer */
 footer {
   background-color: #333;
   color: white;
@@ -491,7 +471,6 @@ footer {
   margin-top: 20px;
 }
 
-/* Social Icons Container */
 .social-icons {
   display: flex;
   gap: 20px;             
@@ -517,7 +496,6 @@ footer {
 }
 
 
-/* Responsive */
 @media screen and (max-width: 768px) {
   .form-row {
     flex-direction: column;
@@ -533,7 +511,6 @@ footer {
 }
 
 
-/* Table reservation */
 .table-reservation {
   padding-top: 50px;
   padding-bottom: 70px;
@@ -579,12 +556,10 @@ footer {
   border-left: 4px solid #feead4;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 600px;
-  /* Adjusted width to fit two fields per row */
   text-align: center;
   color: #000;
 }
 
-/* Scoped form styles for the reservation section */
 .reservation-section form {
   background: none;
 }
@@ -634,7 +609,6 @@ footer {
   background-color: #f71900;
 }
 
-/* Responsive styles */
 @media screen and (max-width: 455px) {
   .reservation-section .form-row {
     flex-direction: column;

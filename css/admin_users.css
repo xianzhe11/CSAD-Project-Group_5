@@ -1,26 +1,23 @@
-/* Reset default styles */
 body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
-/* Page Heading */
+
 h2, h1 {
-    font-family: "Lobster", cursive; /* Use double quotes or escape single quotes */
+    font-family: "Lobster", cursive; 
     margin-bottom: 20px;
     color: #B90743;
 }
 
-/* Full-Width Main Container */
 .container {
     display: flex;
-    width: 100vw; /* Force full width */
+    width: 100vw; 
     margin: 0;
     padding: 0;
     overflow-x: hidden; 
 }
 
-/* Sidebar */
 .sidebar {
     width: 250px;
     background-color: #B90743;
@@ -30,16 +27,14 @@ h2, h1 {
     flex-direction: column;
 }
 
-/* Main Content */
 .main-content {
     flex: 1;
     padding: 20px;
     background: #f8f9fa;
     margin: 0;
-    width: 100%; /* Ensure full width */
+    width: 100%; 
 }
 
-/* Reservation Table */
 .users-list {
     background: white;
     padding: 20px;
@@ -83,12 +78,11 @@ h2, h1 {
     background: #ffeeee;
 }
 .refresh-container {
-    margin-left: auto; /* Pushes the button to the right */
+    margin-left: auto; 
 }
 
-/*Button Refresh */
 .btn-refresh {
-    background-color: #e93e68 !important; /* Custom color */
+    background-color: #e93e68 !important; 
     color: white !important;
     border: none !important;
     padding: 6px 12px !important;
@@ -107,7 +101,7 @@ h2, h1 {
 }
 
 .btn-refresh {
-    background-color: #e93e68 !important; /* Custom color */
+    background-color: #e93e68 !important;
     color: white !important;
     border: none !important;
     padding: 6px 12px !important;
@@ -115,9 +109,8 @@ h2, h1 {
     border-radius: 15px !important;
     transition: background-color 0.3s ease !important;
 }
-/* Hover Effect */
 .btn-refresh:hover {
-    background-color: #c12f57 !important; /* Slightly darker on hover */
+    background-color: #c12f57 !important; 
     color: #ffffff !important;
     cursor: pointer !important;
 }

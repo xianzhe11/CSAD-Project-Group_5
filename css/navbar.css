@@ -1,11 +1,9 @@
-/* Reset styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Root Variables for Consistent Theming */
 :root {
   --navbar-bg: #ffbda1;
   --navbar-hover: #fb4a36;
@@ -20,45 +18,41 @@
   --font-secondary: 'Lobster', cursive;
 }
 
-/* Body styling */
 body {
   font-family: var(--font-primary);
   background-color: #feead4;
-  padding-top: 80px; /* Adjust if navbar is fixed */
+  padding-top: 80px; 
   transition: background-color var(--transition-speed);
 }
 
-/* Navbar styling */
+
 .custom-navbar {
-  position: fixed; /* Fixed position */
-  top: 0;          /* At the top */
-  left: 0;         /* Align to the left */
-  width: 100%;     /* Full width */
+  position: fixed; 
+  top: 0;         
+  left: 0;         
+  width: 100%;     
   background-color: var(--navbar-bg);
   padding: 15px 30px;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
-  z-index: 1000;   /* Stay on top */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  z-index: 1000;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   transition: background-color var(--transition-speed), padding var(--transition-speed);
 }
 
-/* Shrink navbar on scroll (optional) */
 body.scrolled .custom-navbar {
   padding: 10px 30px;
   background-color: #ffa07a;
 }
 
-/* Flexbox layout to align items horizontally */
 .navbar-container {
   display: flex;
-  justify-content: space-between; /* Space between brand and nav links */
+  justify-content: space-between;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Logo/Brand styling */
 .brand {
   font-family: var(--font-secondary);
   font-size: 33px;
@@ -71,17 +65,16 @@ body.scrolled .custom-navbar {
   color: var(--navbar-hover);
 }
 
-/* Navigation links styling */
 .nav-links {
   display: flex;
   gap: 25px;
-  list-style: none; /* Removes default bullets */
+  list-style: none; 
   position: relative;
   transition: max-height var(--transition-speed) ease-in-out;
 }
 
 .nav-links li {
-  position: relative; /* Necessary for dropdown positioning */
+  position: relative; 
 }
 
 .nav-links a {
@@ -99,7 +92,6 @@ body.scrolled .custom-navbar {
   transition: transform var(--transition-speed);
 }
 
-/* Change color and slight scale on hover */
 .nav-links a:hover {
   color: var(--navbar-hover);
   transform: scale(1.05);
@@ -109,22 +101,20 @@ body.scrolled .custom-navbar {
   transform: rotate(10deg);
 }
 
-/* Active Navigation Link */
 .nav-links a.active {
   color: var(--navbar-hover);
 }
 
-/* Dropdown menu styling */
 .dropdown-menu {
   position: absolute;
-  top: 100%;            /* Position below the parent */
-  left: 50%;            /* Start from the center */
+  top: 100%;            
+  left: 50%;           
   transform: translateX(-50%);
   background-color: var(--dropdown-bg);
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 10px 0;
-  min-width: 200px; /* Ensure sufficient width */
+  min-width: 200px; 
   list-style-type: none;
 
   opacity: 0;
@@ -137,7 +127,6 @@ body.scrolled .custom-navbar {
   opacity: 1;
   visibility: visible;
   border-radius: 10px;
-  /*transform: translateX(-50%) translateY(10px);*/
 }
 
 .dropdown-menu li {
@@ -163,14 +152,12 @@ body.scrolled .custom-navbar {
   color: #fff;
 }
 
-/* Right section (cart + login button) */
 .right-section {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* Cart icon */
 .cart-icon {
   font-size: 20px;
   color: #28a745;
@@ -194,15 +181,13 @@ body.scrolled .custom-navbar {
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 12px;
-  display: none; /* Hide by default, show when there are items */
+  display: none; 
 }
 
-/* Show count when there are items */
 .cart-icon[data-count]:not([data-count="0"])::after {
   display: block;
 }
 
-/* Login button */
 .login-btn {
   background-color: var(--login-bg);
   color: white;
@@ -223,7 +208,6 @@ body.scrolled .custom-navbar {
   transform: scale(1.05);
 }
 
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .nav-links {
     flex-direction: column;
@@ -233,7 +217,7 @@ body.scrolled .custom-navbar {
     position: absolute;
     top: 70px;
     left: 0;
-    display: flex; /* Always show on mobile */
+    display: flex; 
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -242,7 +226,6 @@ body.scrolled .custom-navbar {
     border-bottom-right-radius: 0;
   }
 
-  /* Adjust dropdown-menu for mobile */
   .dropdown-menu {
     position: static;
     transform: translateY(0);
@@ -265,8 +248,8 @@ body.scrolled .custom-navbar {
     padding-left: 0;
   }
 
-  /* Adjust padding-top to accommodate navbar height */
+
   body {
-    padding-top: 100px; /* Adjust if navbar height changes */
+    padding-top: 100px; 
   }
 }

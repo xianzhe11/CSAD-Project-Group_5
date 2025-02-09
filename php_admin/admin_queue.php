@@ -25,7 +25,6 @@ $queueRecords = getAllQueueRecords();
             border-radius: 10px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             width: 90%;
-            /*max-width: 1000px;  */
             margin: 20px auto;
             text-align: center;
         }

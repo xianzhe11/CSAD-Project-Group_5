@@ -4,20 +4,18 @@ body {
     margin: 0;
     padding: 0;
 }
-/* Checkout Container with 70-30% Ratio */
 .checkout-container {
     display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    flex-wrap: nowrap; 
     justify-content: space-between;
-    align-items: stretch; /* Equal height */
+    align-items: stretch; 
     gap: 40px;
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
-/* Payment Box Styling */
 .payment-box {
-    background-color: #ffbda1; /* Updated Background Color */
+    background-color: #ffbda1; 
     border: 1px solid #ddd;
     border-radius: 15px;
     padding: 30px;
@@ -28,19 +26,19 @@ body {
     flex-direction: column;
     height: auto;
 }
-/* Cart Summary Styling */
+
 .cart-summary {
-    background-color: #ffbda1; /* Updated Background Color */
+    background-color: #ffbda1;
     border: 1px solid #ddd;
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    flex: 0 0 30%; /* 30% for Cart Summary */
+    flex: 0 0 30%; 
     max-width: 30%;
     display: flex;
     flex-direction: column;
 }
-/* Payment Options Styling */
+
 .payment-option {
     margin-bottom: 20px;
     font-size: 18px;
@@ -78,7 +76,7 @@ body {
     text-align: center;
     margin-top: auto;
 }
-/* Cart Summary Styling */
+
 .cart-summary h4 {
     margin-bottom: 20px;
 }
@@ -87,7 +85,7 @@ body {
     padding: 0;
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 300px; /* Limit height to accommodate 3 items */
+    max-height: 300px; 
 }
 .cart-summary li {
     padding: 10px 0;
@@ -122,9 +120,9 @@ body {
     font-weight: bold;
     font-size: 20px;
     margin-top: 20px;
-    text-align: left; /* Align to the left */
+    text-align: left; 
 }
-/* Order Type Styling */
+
 .order-type {
     margin-top: 20px;
 }
@@ -135,28 +133,11 @@ body {
 .order-type input {
     margin-right: 10px;
 }
-/* Credit Card Details Styling */
+
 .credit-card-details {
     margin-top: 20px;
-    display: none; /* Hidden by default */
+    display: none; 
 }
 .credit-card-details input {
     margin-bottom: 15px;
-}
-/* Responsive Adjustments */
-@media (max-width: 992px) {
-    .checkout-container {
-        flex-direction: column;
-        padding: 20px;
-    }
-    .payment-box, .cart-summary {
-        max-width: 100%;
-        flex: 0 0 100%;
-    }
-    .google-pay-btn, .pay-button {
-        width: 100%;
-    }
-    .cart-summary ul {
-        max-height: none; /* Remove max-height on smaller screens */
-    }
 }

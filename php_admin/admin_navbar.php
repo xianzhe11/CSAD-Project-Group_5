@@ -1,6 +1,6 @@
 <?php
 
-$current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the current page name
+$current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,13 +13,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <!-- Sidebar Navigation -->
     <nav class="sidebar">
         <div class="logo">
             <a href="../php/index.php">Bliss Burger</a>
         </div>
 
-        <!-- Navigation Items -->
         <ul class="nav-items">
             <li><a href="admin_dashboard.php" class="<?php echo ($current_page == 'admin_dashboard') ? 'active' : ''; ?>" title="Dashboard"><i class="fa-solid fa-tachometer-alt" aria-hidden="true"></i>Dashboard</a></li>
             <li><a href="admin_orders.php" class="<?php echo ($current_page == 'admin_orders') ? 'active' : ''; ?>" title="Orders"><i class="fa-solid fa-shopping-cart" aria-hidden="true"></i>Orders</a></li>
@@ -31,13 +29,11 @@ $current_page = basename($_SERVER['SCRIPT_NAME'], ".php");  // Determine the cur
             <li><a href="admin_queue.php" class="<?php echo ($current_page == 'admin_queue') ? 'active' : ''; ?>" title="Queue"><i class="fa-solid fa-list" aria-hidden="true"></i>Queue</a></li>
         </ul>
 
-        <!-- Add Menu Box -->
         <div class="add-menu-box">
             <p>Organize your menu using the button below</p>
             <button onclick="window.location.href='admin_menu.php'"><i class="fa-solid fa-plus"></i> Add Menu</button>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <p>Burger Bliss Restaurant Dashboard</p>
             <p>&copy; 2025 All rights reserved</p>

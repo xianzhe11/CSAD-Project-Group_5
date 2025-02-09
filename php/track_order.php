@@ -20,23 +20,23 @@ if (isset($_SESSION['userloggedin'])) {
 }
 ?>
 <?php
-// Check user is logged in and user_id set in session
+
 if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
-    // Fetch order information from db for the logged-in user
+    
     $sql = "SELECT id,order_id, order_status, order_type, payment_method, table_number, total_price, address FROM orders WHERE user_id = $user_id";
     $result = $conn->query($sql);
 
     if ($result) {
-        $orders = []; //  empty array to storeorders
+        $orders = []; 
         $items = [];
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                // Store fetched order in orders array
+                
                 $orders[] = $row;
             }
-            // Reverse array order
+            
            
             $orders = array_reverse($orders);
             $jsonOrders= json_encode($orders);
@@ -44,7 +44,7 @@ if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {
             $dineInCount = 0;
             $takeawayCount = 0;
 
-            // Count orders
+            
             foreach ($orders as $count) {
                 if ($count['order_type'] == 'dine_in') {
                     $dineInCount++;
@@ -60,11 +60,11 @@ if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {
                 $sql ="SELECT order_id,item_name,quantity,price_each, total_price FROM order_items WHERE order_id = " . $info['id'];
                 $result = $conn->query($sql);
                 while ($rows = $result->fetch_assoc()) {
-                    // Store fetched order in orders array
+                    
                     $items[] = $rows;
                     
                 }
-                // Display all order details
+                
 ?>
                 <div class="order-container">
                     <h2 class="orderno">Order Number: <?php echo $info['order_id']; ?></h2>
@@ -111,7 +111,7 @@ if (isset($_SESSION['userloggedin']) && isset($_SESSION['user_id'])) {
             </div>
         <?php
         } else {
-            //if no orders found
+            
             echo '<div class="noinfo">No order information available.</div>';
         }
     } else {

@@ -35,12 +35,8 @@ $conn->close();
     <meta charset="UTF-8">
     <title>Bliss Burger - Table Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,500&display=swap" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <!-- External CSS Files -->
     <link rel="stylesheet" href="../css/admin_live.css"> 
 
     <script>
@@ -48,20 +44,18 @@ $conn->close();
         function removeTable(tableNumber) {
             let button = document.getElementById('table-' + tableNumber);
 
-            if (!button) return;
-            
-            // Send AJAX request to delete the table row
+            if (!button) return;  
             let xhr = new XMLHttpRequest();
-            xhr.open("POST", "", true); // Same file
+            xhr.open("POST", "", true); 
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let response = JSON.parse(xhr.responseText);
                     if (response.status === "success") {
-                        button.style.backgroundColor = "green"; // Indicate attended
+                        button.style.backgroundColor = "green";
                         button.style.color = 'white';
-                        button.disabled = true; // Disable button after handling
+                        button.disabled = true; 
                     } else {
                         alert("Error removing table: " + response.message);
                     }
@@ -83,24 +77,21 @@ $conn->close();
                         return;
                     }
 
-                    console.log("Server Response:", response); // Debugging log
+                    console.log("Server Response:", response); 
 
                     if (response.new_orders) {
                         console.log("New order detected! Reloading...");
-                        location.reload(); // Refresh the page
+                        location.reload(); 
                     }
                 }
             };
             xhr.send();
         }
-
-            // Check for new orders every 5 seconds
             setInterval(checkForNewOrders, 5000);
 
             window.onload = function() {
                 const tablesWithZeroPrice = <?php echo json_encode($tables); ?>;
 
-            // Highlight tables with total_price = 0.00
             tablesWithZeroPrice.forEach(tableNumber => {
                 let button = document.getElementById('table-' + tableNumber);
                 if (button) {
@@ -114,15 +105,15 @@ $conn->close();
 <body>
 
 <div class="container">
-    <!-- Sidebar -->
+
     <?php include "admin_navbar.php"?>
 
-    <!-- Main Content -->
+
     <div class="main-content container-fluid">
         <h1>Admin Tables</h1>
         <p style="padding-bottom:15px;">Attend to tables</p>
 
-        <!-- Manage Tables Layout -->
+
         <section id="manage-tables" class="manage-tables">
             <div class="table-column">
                 <button id="table-1" class="table-btn" onclick="removeTable(1)">1</button>
