@@ -153,7 +153,6 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
           <img src="<?= htmlspecialchars($userPicture) ?>" alt="Profile Picture" class="user-pfp">
           <div class="dropdown-content">
             <a href="track_order.php"><i class="fas fa-truck"></i> Track Order</a>
-            <a href="profile_settings.php"><i class="fas fa-user-cog"></i> Profile Settings</a>
             <a href="points.php"><i class="fas fa-gift"></i> Reward System</a>
             <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
           </div>
