@@ -67,7 +67,7 @@ if (isset($_GET['del'])) {
         $_SESSION['message'] = "Failed to delete queue entry!";
     }
 
-    header('location: admin.php');
+    header('location: ../php_admin/admin_queue.php');
     exit();
 }
 ?>

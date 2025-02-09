@@ -90,7 +90,7 @@ $queueRecords = getAllQueueRecords();
                     <td><?= htmlspecialchars($row['contact_number']) ?></td>
                     <td><?= $row['number_of_persons'] ?></td>
                     <td>
-                        <a href="server.php?del=<?= $row['id'] ?>" class="delete-btn">Delete</a>
+                        <a href="../php/server-queue.php?del=<?= $row['id'] ?>" class="delete-btn">Delete</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
