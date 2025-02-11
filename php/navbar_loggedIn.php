@@ -127,7 +127,7 @@ $userPicture = (isset($_SESSION['user']['profile_picture']) && !empty($_SESSION[
           </a>
         </li>
         <li>
-          <a href="<?php echo ($currentPage === 'index.php') ? '#contact' : 'index.php#contact'; ?>" class="<?php echo ($currentPage === 'index.php#contact') ? 'active' : ''; ?>">
+          <a href="<?php echo ($currentPage === 'index.php') ? '#footer' : 'index.php#footer'; ?>" class="<?php echo ($currentPage === 'index.php#footer') ? 'active' : ''; ?>">
             <i class="fas fa-envelope"></i> Contact
           </a>
         </li>
